@@ -111,38 +111,18 @@ const model = {
     );
   },
   sortByPrice() {
-    this.filteredProducts.sort((a, b) => a - b);
+    this.filteredProducts.sort((a, b) => a.price - b.price);
   },
   sortByPriceReverse() {
-    this.filteredProducts.sort((a, b) => b - a);
+    this.filteredProducts.sort((a, b) => b.price - a.price);
   },
   sortByCaption() {
-    this.filteredProducts.sort();
+    this.filteredProducts.sort((a, b) => a.caption - b.caption)
   },
   sortByCaptionReverse() {
-    this.filteredProducts.sort().reverse();
+    this.filteredProducts.sort((a, b) => b.caption - a.caption)
   },
   sortByNew() {
     console.log("sort by new");
   },
 };
-
-
-
-const arr = ['alpha','betta','gamma','delta','epsilon','jenny']
-
-arr.sort(() => 0.5 - Math.random())
-arr
-
-arr.sort().reverse()
-arr
-arr.sort((a, b) => b - a)
-arr
-
-const num = [1,2,3,5,6,7,8,9,10,11]
-num.sort(() => 0.5 - Math.random())
-num
-num.sort((a, b) => b - a)
-num
-num.sort((a, b) => a - b)
-num
