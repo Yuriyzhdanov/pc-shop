@@ -219,3 +219,8 @@ document
   .querySelector('button.filter')
   .addEventListener('click', onClickButtonFilter)
 window.addEventListener('load', handleLoadWindow)
+
+const elCart = document.querySelector(".cart");
+const elFavorites = document.querySelectorAll(".favorite");
+const elCompares = document.querySelectorAll(".compare");
+const elPaginator = document.querySelector(".paginator");
