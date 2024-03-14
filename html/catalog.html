@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Computers shop</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header row">
+      <div class="left">
+        <div class="wrap-img">
+          <!-- <a href=""> -->
+          <img src="./img/bg/logo.png" alt="logo">
+          <!-- </a> -->
+        </div>
+      </div>
+      <div class="center">
+        <div class="wrap-search">
+          <form action="">
+            <input type="hidden" name="page" value="search">
+            <div class="row">
+              <div class="left">
+                <input type="text" name="query" placeholder="Что ищем ?">
+              </div>
+              <div class="right">
+                <input type="submit" value="">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="right">
+        <div class="wrap-account">
+          <div class="top">
+            <span>Нажмите кнопку</span>
+          </div>
+          <div class="middle">
+            <a href="?page=login">
+              <button class="btn">Войти</button>
+            </a>
+          </div>
+          <div class="bottom">
+            <span>Либо</span>
+            <a href="?page=register">зарегистрируйтесь</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main">
+      <div class="top">
+        <div class="wrap-navigation">
+          <a href="">Каталог</a>
+          <a href="">Электроника</a>
+          <a href="">Компьютерная техника</a>
+          <a href="">Собранные компьютеры</a>
+
+        </div>
+      </div>
+      <div class="bottom row">
+        <div class="left">
+          <div class="wrap-filter">
+            <div class="wrap-props">
+              <p>Соритирвка</p>
+              <select name="sort" class="sort">
+                <option value="1">От дешевых к дорогим</option>
+                <option value="2">От дорогиx к дешевым</option>
+                <option value="3">A - Я</option>
+                <option value="4">Я - А</option>
+                <option value="5">Новинки</option>
+              </select>
+            </div>
+            <div class="wrap-props">
+              <div>
+                <button class=" btn filter"> Фильтровать </button>
+              </div>
+            </div>
+            <!-- <form action="">
+              <input type="hidden" name="page" value="filter">
+              <div class="wrap-props">
+                <h3>Бренд</h3>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="brand" id="brand_01" value="ASUS">
+                  <label for="brand_01">ASUS</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="brand" id="brand_02" value="Acer">
+                  <label for="brand_02">Acer</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="brand" id="brand_03" value="Apple">
+                  <label for="brand_03">Apple</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="brand" id="brand_04" value="Dell">
+                  <label for="brand_04">Dell</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="brand" id="brand_05" value="HP">
+                  <label for="brand_05">HP</label>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>Цена</h3>
+                <div class="wrap-range">
+                  <label for="01">От:</label>
+                  <input type="range" max="100" value="10" name="price_from">
+                </div>
+                <div class="wrap-range">
+                  <label for="02">До:</label>
+                  <input type="range" max="100" value="90" name="price_to">
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>Процессор</h3>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="cpu" id="cpu_01" value="Ryzen3">
+                  <label for="cpu_01">AMD Ryzen 3</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="cpu" id="cpu_02" value="Ryzen5">
+                  <label for="cpu_02">AMD Ryzen 5</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="cpu" id="cpu_03" value="Ryzen7">
+                  <label for="cpu_03">AMD Ryzen 7</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="cpu" id="cpu_04" value="Corei5">
+                  <label for="cpu_04">Intel Core i5</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="cpu" id="cpu_05" value="Corei7">
+                  <label for="cpu_05">Intel Core i7</label>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>ОЗУ</h3>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ram" id="ram_01" value="4Gb">
+                  <label for="ram_01">4 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ram" id="ram_02" value="8Gb">
+                  <label for="ram_02">8 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ram" id="ram_03" value="16Gb">
+                  <label for="ram_03">16 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ram" id="ram_04" value="32Gb">
+                  <label for="ram_04">32 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ram" id="ram_05" value="64Gb">
+                  <label for="ram_05">64 Gb</label>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>Видеокарта</h3>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="gpu" id="gpu_01" value="RadeonHD">
+                  <label for="gpu_01">Radeon HD</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="gpu" id="gpu_02" value="RadeonR">
+                  <label for="gpu_02">Radeon R</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="gpu" id="gpu_03" value="RadeonRX">
+                  <label for="gpu_03">Radeon RX</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="gpu" id="gpu_04" value="GeForceGTX">
+                  <label for="gpu_04">GeForce GTX</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="gpu" id="gpu_05" value="GeForceRTX">
+                  <label for="gpu_05">GeForce RTX</label>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>Накопитель</h3>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ssd" id="ssd_01" value="250Gb">
+                  <label for="ssd_01">250 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ssd" id="ssd_02" value="500Gb">
+                  <label for="ssd_02">500 Gb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ssd" id="ssd_03" value="1Tb">
+                  <label for="ssd_03">1 Tb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ssd" id="ssd_04" value="2Tb">
+                  <label for="ssd_04">2 Tb</label>
+                </div>
+                <div class="wrap-checkbox">
+                  <input type="checkbox" name="ssd" id="ssd_05" value="4Tb">
+                  <label for="ssd_05">4 Tb</label>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <div>
+                  <input type="submit" value="Фильтровать" class="btn">
+                </div>
+              </div>
+            </form> -->
+            <!-- <div class="wrap-props">
+              <div>
+                <input type="submit" value="Фильтровать" class="btn">
+              </div>
+            </div> -->
+          </div>
+
+        </div>
+        <div class="right">
+          <div class="container-products pave">
+            <!-- <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p>
+                  <b>6900</b>
+                  грн
+                </p>
+              </div>
+              <div class="row">
+                <div>
+                  <button class="cart"></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button class="compare"></button>
+                </div>
+              </div>
+              <div class="new"></div>
+            </div> -->
+            <!-- <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="wrap-product">
+              <div>
+                <div class="wrap-img">
+                  <img src="./img/bg/computer.png" alt="product">
+                </div>
+              </div>
+              <div>
+                <h3>Компьютер 001</h3>
+              </div>
+              <div>
+                <label for="brand_01">ASUS</label>
+                <label for="ram_03">16 Gb</label>
+                <span>3.2Ghz</span>
+                <label for="gpu_03">Radeon RX</label>
+                <label for="ssd_03">1 Tb</label>
+              </div>
+              <div>
+                <p><b>6900</b> грн</p>
+              </div>
+              <div class="row">
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+                <div>
+                  <button></button>
+                </div>
+              </div>
+            </div> -->
+
+
+
+
+
+
+          </div>
+          <div class="paginator">
+            <span> [ 1 ] </span>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <a href="">7</a>
+            <a href="">8</a>
+            <a href="">9</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="top row">
+        <div class="wrap-menu">
+          <div><a href="">О нас</a></div>
+          <div><a href="">Контакты</a></div>
+          <div><a href="">Новости</a></div>
+          <div><a href="">Отзывы</a></div>
+          <div><a href="">Акции</a></div>
+        </div>
+        <div class="wrap-links">
+          <div><a href="">Гарантия</a></div>
+          <div><a href="">Возврат товара</a></div>
+          <div><a href="">Кредит</a></div>
+          <div><a href="">Подарочные сертификаты</a></div>
+          <div><a href="">Стать партнером</a></div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="wrap-copyrights">
+          <span>Lorem Ipsum &#0169; 2024 Все права защищены</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../js/api.js"></script>
+  <script src="../js/model.js"></script>
+  <script src="../js/controller.js"></script>
+  <script src="../js/view.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/index.js"></script>
+
+</body>
+
+</html>

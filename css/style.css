@@ -128,11 +128,11 @@ a {
   height: 50px;
   width: 50px;
   font-size: 18px;
-  background: #fff url(./img/bg/search.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/search.png) center / 70% no-repeat;
   border: 0px solid #ccc;
 }
 .wrap-search input[type='submit']:hover {
-  background: #f0f3f5 url(./img/bg/search-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/search-hover.png) center / 70% no-repeat;
 }
 
 .wrap-account {
@@ -229,7 +229,7 @@ a {
   left: 5px;
   width: 55px;
   height: 55px;
-  background: white url(./img/bg/new.png) center / contain no-repeat;
+  background: white url(../img/bg/new.png) center / contain no-repeat;
 }
 .wrap-product > div:nth-child(-n + 2) {
   cursor: pointer;
@@ -304,22 +304,22 @@ a {
   box-shadow: 0 0 10px 0 #ccc;
 }
 .wrap-product .row > div:nth-child(1) > button {
-  background: #fff url(./img/bg/addtocart.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/addtocart.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(1) > button:hover {
-  background: #f0f3f5 url(./img/bg/addtocart-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/addtocart-hover.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(2) > button {
-  background: #fff url(./img/bg/tofav.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/tofav.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(2) > button:hover {
-  background: #f0f3f5 url(./img/bg/tofav-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/tofav-hover.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(3) > button {
-  background: #fff url(./img/bg/tocompare.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/tocompare.png) center / 70% no-repeat;
 }
 .wrap-product .row > div:nth-child(3) > button:hover {
-  background: #f0f3f5 url(./img/bg/tocompare-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/tocompare-hover.png) center / 70% no-repeat;
 }
 
 .footer {
