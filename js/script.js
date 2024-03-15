@@ -41,7 +41,8 @@ const data = [
   }
 ];
 
-function generateProduct(data) {
+// !!! >>>>>
+function generateLeft(data) {
   const sliderContainer = document.createElement('div');
   sliderContainer.classList.add('left');
 
@@ -104,9 +105,12 @@ function generateProduct(data) {
 // renderProduct(generatedProduct);
 
 
+
+
+
 function generateProductInfo(data) {
-  const containerInfo = document.createElement('div');
-  containerInfo.classList.add('container-info', 'pave');
+  // const containerInfo = document.createElement('div');
+  // containerInfo.classList.add('product-info', 'pave');
 
   const wrapInfo = document.createElement('div');
   wrapInfo.classList.add('wrap-info');
@@ -174,9 +178,20 @@ function generateProductInfo(data) {
   containerInfo.appendChild(wrapInfo);
 
   return containerInfo;
+
+  // return wrapInfo !!!
 }
 
 
+function renderBottom(data) {
+   const elBottom = document.querySelector('.bottom');
+   const elLeft = generateLeft(data)
+   elBottom.appendChild(elLeft)
+}
 
-
+// function renderProductInfo(data) {
+//   const productInfo = document.querySelector('product-info');
+//   const wrapInfo = generateProductInfo(data)
+//   productInfo.appendChild(wrapInfo)
+// }
 
