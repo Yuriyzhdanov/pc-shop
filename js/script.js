@@ -1,7 +1,14 @@
-const product = loadComputers().then ((product)=> console.log(product[0]))
+// const product = loadComputers().then ((product)=> console.log(product[0]))
 // const product = loadComputers().then ((product)=> generateHTML(product[0]))
 
+const productPromise = loadComputers();
 
+productPromise.then(products => {
+  const firstProduct = products[0]; 
+  console.log(firstProduct);
+  renderProductInfo(firstProduct)
+  renderLeft(firstProduct);
+});
 
 // async function loadProductById(productId) {
 //   const url = `${API_COMPUTERS}/${productId}`;
@@ -21,177 +28,138 @@ const product = loadComputers().then ((product)=> console.log(product[0]))
 //   console.log(product.id);
 // }
 
-// main();
 
-const data = [
-  {
-    caption: "Геймерский ПК Solaris-S",
-    id: "89d7cf5d",
-    photos: { dir: '/img/products', files: Array(7)},
-    price: 311.25,
-    purpose: "Для геймеров",
-    specs: {
-      "Блок питания": { brand: 'GameMax', power: '500W' },
-      "Корпус": { brand: 'Chieftec' },
-      "Материнская плата": { brand: 'Asus' },
-      "Накопитель SSD": { brand: 'Kingston', capacity: '250Gb' },
-      "Оперативная память": { brand: 'Patriot', capacity: '16Gb', type: 'DDR4', frequency: '3200Mhz' },
-      "Процессор": { brand: 'AMD', frequency: '3.7Ghz' }
-    }
-  }
-];
 
-// !!! >>>>>
-function generateLeft(data) {
-  const sliderContainer = document.createElement('div');
-  sliderContainer.classList.add('left');
+function generateLeft(product) {
+  const slider = document.createElement("div");
+  const navigation = document.createElement("div");
+  const URI = "http://34.71.150.163:8181";
 
-  const slider = document.createElement('div');
-  slider.classList.add('slider');
+  slider.classList.add("slider");
+  navigation.classList.add("navigation");
 
-  const navigation = document.createElement('div');
-  navigation.classList.add('navigation');
+  product.photos.files.forEach((file, index) => {
+    const input = document.createElement("input");
+    const label = document.createElement("label");
+    const img = document.createElement("img");
 
-  data.photos.files.forEach((file, index) => {
-    const input = document.createElement('input');
-    input.type = 'radio';
-    input.name = 'r';
-    input.id = `slider-r${index+1}`;
+    input.type = "radio";
+    input.name = "r";
+    input.id = `slider-r${index + 1}`;
     if (index === 0) {
-      input.checked = true;
+      input.checked = true
     }
-    slider.appendChild(input);
+    
+    label.htmlFor = `slider-r${index + 1}`;
+    img.src = URI + product.photos.dir + "/" + file;
+    img.alt = `img${index + 1}`;
 
-    const label = document.createElement('label');
-    label.htmlFor = `slider-r${index+1}`;
-    const img = document.createElement('img');
-    img.src = `${data.photos.dir}/${file}`;
-    img.alt = `img${index+1}`;
     label.appendChild(img);
     navigation.appendChild(label);
+    slider.appendChild(input);
   });
 
-  slider.appendChild(navigation);
-  sliderContainer.appendChild(slider);
+  const specsContainer = document.createElement("div");
+  specsContainer.classList.add("specs");
 
-  const specsContainer = document.createElement('div');
-  specsContainer.classList.add('specs');
-
-  Object.entries(data.specs).forEach(([spec, prop]) => {
-    const elP = document.createElement('p');
-    elP.innerHTML = `${spec}: <span>${prop.brand}`;
-    if (prop.power) {
-      elP.innerHTML += ` (${prop.power})`;
-    }
-    if (prop.capacity) {
-      elP.innerHTML += ` (${prop.capacity})`;
-    }
-    if (prop.type && prop.frequency) {
-      elP.innerHTML += ` (${prop.type}, ${prop.frequency})`;
-    }
-    elP.innerHTML += `</span>`;
+  Object.entries(product.specs).forEach(([spec, prop]) => {
+    const elP = document.createElement("p");
+    const span = document.createElement("span");
+    elP.innerHTML = `${spec}: `;
+    span.textContent = prop.brand +
+      (prop.power ? ` (${prop.power})` : '') +
+      (prop.capacity ? ` (${prop.capacity})` : '') +
+      (prop.type && prop.frequency ? ` (${prop.type}, ${prop.frequency})` : '');
+    elP.appendChild(span);
     specsContainer.appendChild(elP);
   });
 
-  sliderContainer.appendChild(specsContainer);
+  slider.appendChild(navigation);
+  slider.appendChild(specsContainer);
 
-  return sliderContainer;
+  return slider;
 }
 
-// function renderProduct(element) {
-//   document.body.appendChild(element);
-// }
-// const generatedProduct = generateProduct(data[0]);
-// renderProduct(generatedProduct);
-
-
-
-
-
-function generateProductInfo(data) {
-  // const containerInfo = document.createElement('div');
-  // containerInfo.classList.add('product-info', 'pave');
-
+function generateProductInfo(product) {
   const wrapInfo = document.createElement('div');
-  wrapInfo.classList.add('wrap-info');
-
   const caption = document.createElement('div');
-  caption.classList.add('caption');
   const h4 = document.createElement('h4');
-  h4.textContent = data.caption;
-  caption.appendChild(h4);
-  wrapInfo.appendChild(caption);
-
   const rating = document.createElement('div');
+  const wrapInfoButtons = document.createElement('div');
+  const buttons = document.createElement('div');
+  const btnFavorite = document.createElement('button');
+  const btnCompare = document.createElement('button');
+  const wrapInfoPrice = document.createElement('div');
+  const price = document.createElement('div');
+  const priceParagraph = document.createElement('p');
+  const span = document.createElement('span');
+  const wrapInfoCart = document.createElement('div');
+  const cartButton = document.createElement('div');
+  const btnCart = document.createElement('button');
+
+  wrapInfo.classList.add('wrap-info');
+  caption.classList.add('caption');
   rating.classList.add('rating');
+  wrapInfoButtons.classList.add('wrap-info-buttons');
+  buttons.classList.add('buttons');
+  btnFavorite.classList.add('btn');
+  btnCompare.classList.add('btn');
+  wrapInfoPrice.classList.add('wrap-info-price');
+  price.classList.add('price');
+  wrapInfoCart.classList.add('wrap-info-cart');
+  cartButton.classList.add('cart-button');
+  btnCart.classList.add('btn');
+
+  h4.textContent = product.caption;
+  wrapInfo.appendChild(caption);
+  caption.appendChild(h4);
+  wrapInfo.appendChild(rating);
+
   for (let i = 1; i <= 5; i++) {
     const input = document.createElement('input');
+    const label = document.createElement('label');
+
     input.type = 'radio';
     input.name = 'rating';
     input.id = `r${i}`;
-    const label = document.createElement('label');
     label.htmlFor = `r${i}`;
+
     rating.appendChild(input);
     rating.appendChild(label);
   }
-  wrapInfo.appendChild(rating);
 
-  const wrapInfoButtons = document.createElement('div');
-  wrapInfoButtons.classList.add('wrap-info-buttons');
-  const buttons = document.createElement('div');
-  buttons.classList.add('buttons');
-  const btnFavorite = document.createElement('button');
-  btnFavorite.classList.add('btn');
-  btnFavorite.textContent = 'В избранное';
-  const btnCompare = document.createElement('button');
-  btnCompare.classList.add('btn');
-  btnCompare.textContent = 'Сравнить';
+  wrapInfo.appendChild(wrapInfoButtons);
+  wrapInfoButtons.appendChild(buttons);
   buttons.appendChild(btnFavorite);
   buttons.appendChild(btnCompare);
-  wrapInfoButtons.appendChild(buttons);
-  wrapInfo.appendChild(wrapInfoButtons);
+  btnFavorite.textContent = 'В избранное';
+  btnCompare.textContent = 'Сравнить';
 
-  const wrapInfoPrice = document.createElement('div');
-  wrapInfoPrice.classList.add('wrap-info-price');
-  const price = document.createElement('div');
-  price.classList.add('price');
-  const priceParagraph = document.createElement('p');
-  priceParagraph.textContent = `${data.price} грн`;
-  const span = document.createElement('span');
-  span.textContent = 'грн';
-  priceParagraph.appendChild(span);
-  price.appendChild(priceParagraph);
-  wrapInfoPrice.appendChild(price);
   wrapInfo.appendChild(wrapInfoPrice);
+  wrapInfoPrice.appendChild(price);
+  price.appendChild(priceParagraph);
+  priceParagraph.textContent = `${product.price} `;
+  priceParagraph.appendChild(span);
+  span.textContent = 'грн';
 
-  const wrapInfoCart = document.createElement('div');
-  wrapInfoCart.classList.add('wrap-info-cart');
-  const cartButton = document.createElement('div');
-  cartButton.classList.add('cart-button');
-  const btnCart = document.createElement('button');
-  btnCart.classList.add('btn');
-  btnCart.textContent = 'В корзину';
-  cartButton.appendChild(btnCart);
-  wrapInfoCart.appendChild(cartButton);
   wrapInfo.appendChild(wrapInfoCart);
+  wrapInfoCart.appendChild(cartButton);
+  cartButton.appendChild(btnCart);
+  btnCart.textContent = 'В корзину';
 
-  containerInfo.appendChild(wrapInfo);
-
-  return containerInfo;
-
-  // return wrapInfo !!!
+  return wrapInfo;
 }
 
 
-function renderBottom(data) {
-   const elBottom = document.querySelector('.bottom');
-   const elLeft = generateLeft(data)
-   elBottom.appendChild(elLeft)
+function renderLeft(product) {
+  const elLeft = document.querySelector('#left');
+  const elSlider = generateLeft(product)
+  elLeft.appendChild(elSlider)
 }
 
-// function renderProductInfo(data) {
-//   const productInfo = document.querySelector('product-info');
-//   const wrapInfo = generateProductInfo(data)
-//   productInfo.appendChild(wrapInfo)
-// }
+function renderProductInfo(product) {
+  const productInfo = document.querySelector('.product-info');
+  const wrapInfo = generateProductInfo(product)
+  productInfo.appendChild(wrapInfo)
+}
 
