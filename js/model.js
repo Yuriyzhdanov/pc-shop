@@ -117,10 +117,10 @@ const model = {
     this.filteredProducts.sort((a, b) => b.price - a.price);
   },
   sortByCaption() {
-    this.filteredProducts.sort((a, b) => a.caption - b.caption)
+    this.filteredProducts.sort();
   },
   sortByCaptionReverse() {
-    this.filteredProducts.sort((a, b) => b.caption - a.caption)
+    this.filteredProducts.sort().reverse();
   },
   sortByNew() {
     console.log("sort by new");
