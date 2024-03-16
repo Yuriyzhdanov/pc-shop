@@ -4,7 +4,7 @@
 const productPromise = loadComputers();
 
 productPromise.then(products => {
-  const firstProduct = products[0]; 
+  const firstProduct = products[0];
   console.log(firstProduct);
   renderProductInfo(firstProduct)
   renderLeft(firstProduct);
@@ -42,18 +42,17 @@ function generateLeft(product) {
     const input = document.createElement("input");
     const label = document.createElement("label");
     const img = document.createElement("img");
-
     input.type = "radio";
     input.name = "r";
     input.id = `slider-r${index + 1}`;
     if (index === 0) {
       input.checked = true
     }
-    
-    label.htmlFor = `slider-r${index + 1}`;
+    let len = product.photos.files.length
+    let idx = index + 2 === len ? 1 : index + 2
+    label.htmlFor = `slider-r${idx}`;
     img.src = URI + product.photos.dir + "/" + file;
     img.alt = `img${index + 1}`;
-
     label.appendChild(img);
     navigation.appendChild(label);
     slider.appendChild(input);
@@ -162,4 +161,3 @@ function renderProductInfo(product) {
   const wrapInfo = generateProductInfo(product)
   productInfo.appendChild(wrapInfo)
 }
-
