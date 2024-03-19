@@ -10,7 +10,6 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
 function handleLoadWindow() {
   model.addProducts(products => {
     console.log(products)
-
     renderContainerProducts(products)
     renderWrapFilter(model.filter)
   })
