@@ -43,3 +43,4 @@ sortSelect.addEventListener('change', function () {
 //   const productId = e.target.closest('.wrap-product').dataset.productId;
 //   console.log(productId);
 // }
+

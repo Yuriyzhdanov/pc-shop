@@ -167,7 +167,6 @@ a {
   text-align: center;
 }
 
-
 .caption {
   text-align: center;
 }
@@ -194,16 +193,15 @@ a {
   border-radius: 10px;
   padding: 10px;
 }
-.price > p > span{
+.price > p > span {
   font-weight: normal;
-
 }
 
 .specs > p > span {
   font-weight: bold;
 }
 
-.recomend{
+.recomend {
   text-align: center;
 }
 .recomend-title {
@@ -337,7 +335,6 @@ div {
   width: 300px;
 }
 
-
 /* RATING */
 .rating {
   margin: 0 auto;
@@ -383,6 +380,7 @@ div {
 /* SLIDER */
 .navigation {
   margin: 0 auto;
+  background-color: #fff;
 }
 .navigation > label {
   display: inline-block;
