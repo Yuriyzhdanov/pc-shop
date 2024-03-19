@@ -189,6 +189,16 @@ function renderWrapFilter(modelFilter) {
   elWrapFilter.appendChild(elForm);
 }
 
+function onClickButtonFilter() {
+  const checkboxes = document.querySelectorAll(
+    '.wrap-checkbox input[type="checkbox"]:checked'
+  );
+  const elInputFrom = document.querySelector("#price_from");
+  const elInputTo = document.querySelector("#price_to");
+  const filterDataIds = Array.from(checkboxes).map((checkbox) => checkbox.id);
+  handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value);
+}
+
 document
   .querySelector("button.filter")
   .addEventListener("click", onClickButtonFilter);
