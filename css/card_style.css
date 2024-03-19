@@ -120,11 +120,11 @@ a {
   height: 50px;
   width: 50px;
   font-size: 18px;
-  background: #fff url(img/search.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/search.png) center / 70% no-repeat;
   border: 0px solid #ccc;
 }
 .wrap-search input[type="submit"]:hover {
-  background: #f0f3f5 url(img/search-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/search-hover.png) center / 70% no-repeat;
 }
 
 .wrap-account {
@@ -381,6 +381,8 @@ div {
 .navigation {
   margin: 0 auto;
   background-color: #fff;
+  height: 260px;
+  text-align: center;
 }
 .navigation > label {
   display: inline-block;
