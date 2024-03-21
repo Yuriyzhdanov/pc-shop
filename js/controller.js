@@ -7,14 +7,6 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderContainerProducts(model.filteredProducts)
 }
 
-function handleLoadWindow() {
-  model.addProducts(products => {
-    console.log(products)
-    renderContainerProducts(products)
-    renderWrapFilter(model.filter)
-  })
-}
-
 sortSelect.addEventListener('change', function () {
   const selectedValue = parseInt(this.value)
   switch (selectedValue) {
@@ -22,7 +14,7 @@ sortSelect.addEventListener('change', function () {
       model.sortByPrice()
       break
     case 2:
-      model.sortByPriceReverse() 
+      model.sortByPriceReverse()
       break
     case 3:
       model.sortByCaption()

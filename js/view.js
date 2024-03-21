@@ -321,26 +321,28 @@ function renderProductInfo(product) {
   productInfo.appendChild(wrapInfo);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded");
-  handlePageReady();
-});
+document.addEventListener("DOMContentLoaded", onLoadPage);
 
-// document.addEventListener('DOMContentLoaded', () => console.log('DOMContentLoaded'))
-// document.addEventListener('DOMContentLoaded', () => handlePageReady)
-document.addEventListener("click", onClickButtonFilter);
-// window.addEventListener("load", handleLoadWindow);
+function onLoadPage() {
+  console.log('onLoadPage');
+  const pageName = location.pathname.replace('/html/', '').replace('.html', '')
+  if (pageName === 'catalog') {
+    model.addProducts(products => {
+      renderContainerProducts(products)
+      renderWrapFilter(model.filter)
+    })
 
-function handlePageReady() {
-  document
-    .querySelector("button.filter")
-    ?.addEventListener("click", onClickButtonFilter);
+    document
+      .querySelector("button.filter")
+      .addEventListener("click", onClickButtonFilter);
+  }
+  if (pageName === 'product') {
+    const productPromise = loadComputers();
+    productPromise.then(products => {
+      const firstProduct = products[0];
+      renderProductInfo(firstProduct)
+      renderLeft(firstProduct);
+    });
+  }
 }
 
-const productPromise = loadComputers();
-productPromise.then(products => {
-  const firstProduct = products[0];
-  console.log(firstProduct);
-  renderProductInfo(firstProduct)
-  renderLeft(firstProduct);
-});
