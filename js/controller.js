@@ -30,8 +30,3 @@ sortSelect.addEventListener('change', function () {
   }
   renderContainerProducts(model.filteredProducts)
 })
-
-// function onClickProductCardHandler(e) {
-//   const productId = e.target.closest('.wrap-product').dataset.productId;
-//   console.log(productId);
-// }

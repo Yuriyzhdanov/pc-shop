@@ -120,11 +120,11 @@ a {
   height: 50px;
   width: 50px;
   font-size: 18px;
-  background: #fff url(img/search.png) center / 70% no-repeat;
+  background: #fff url(../img/bg/search.png) center / 70% no-repeat;
   border: 0px solid #ccc;
 }
 .wrap-search input[type="submit"]:hover {
-  background: #f0f3f5 url(img/search-hover.png) center / 70% no-repeat;
+  background: #f0f3f5 url(../img/bg/search-hover.png) center / 70% no-repeat;
 }
 
 .wrap-account {
@@ -329,10 +329,10 @@ a {
   box-shadow: 0 0 5px 0 #789;
 }
 
-div {
+/* div {
   border: 1px solid black;
   padding: 10px;
-}
+} */
 .slider > img {
   width: 300px;
 }

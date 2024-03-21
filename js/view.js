@@ -149,10 +149,6 @@ function generateProduct(product) {
   divButtonCompare.appendChild(buttonCompare);
   p.innerHTML += " грн";
 
-  // buttonCart.onclick = onClickAddToCartHandler
-  // buttonFavorite.onclick = onClickAddToFavoriteHandler
-  // buttonCompare.onclick = onClickAddToCompareHandler
-  // divWrapA.onclick = onClickProductCardHandler
   return divContainterProduct;
 }
 
