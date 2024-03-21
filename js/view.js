@@ -329,10 +329,18 @@ document.addEventListener("DOMContentLoaded", () => {
 // document.addEventListener('DOMContentLoaded', () => console.log('DOMContentLoaded'))
 // document.addEventListener('DOMContentLoaded', () => handlePageReady)
 document.addEventListener("click", onClickButtonFilter);
-window.addEventListener("load", handleLoadWindow);
+// window.addEventListener("load", handleLoadWindow);
 
 function handlePageReady() {
   document
     .querySelector("button.filter")
-    .addEventListener("click", onClickButtonFilter);
+    ?.addEventListener("click", onClickButtonFilter);
 }
+
+const productPromise = loadComputers();
+productPromise.then(products => {
+  const firstProduct = products[0];
+  console.log(firstProduct);
+  renderProductInfo(firstProduct)
+  renderLeft(firstProduct);
+});
