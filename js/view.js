@@ -119,7 +119,7 @@ function generateProduct(product) {
   buttonCart.classList.add("cart");
   buttonFavorite.classList.add("favorite");
   buttonCompare.classList.add("compare");
-  aLink.setAttribute("href", `../html/product.html?${product.id}`);
+  aLink.setAttribute("href", `./product.html?id=${product.id}`);
   aLink.setAttribute("target", "_blank");
   aLink.setAttribute("class", "a-link");
   divH3.setAttribute("class", "wrap-h3");
@@ -333,12 +333,11 @@ function onLoadPage() {
       .addEventListener("click", onClickButtonFilter);
   }
   if (pageName === 'product') {
-    const productPromise = loadComputers();
-    productPromise.then(products => {
-      const firstProduct = products[0];
-      renderProductInfo(firstProduct)
-      renderLeft(firstProduct);
+    const id = new URLSearchParams(location.search).get('id')
+    const productPromise = loadComputers(id);
+    productPromise.then(product => {
+      renderProductInfo(product)
+      renderLeft(product);
     });
   }
 }
-
