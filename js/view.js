@@ -320,8 +320,9 @@ function renderProductInfo(product) {
 document.addEventListener("DOMContentLoaded", onLoadPage);
 
 function onLoadPage() {
-  console.log('onLoadPage');
-  const pageName = location.pathname.replace('/html/', '').replace('.html', '')
+  const pageName = location.pathname.replace('/pc-shop/html/', '').replace('.html', '')
+  console.log(pageName );
+  
   if (pageName === 'catalog') {
     model.addProducts(products => {
       renderContainerProducts(products)
