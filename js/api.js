@@ -14,9 +14,6 @@ async function loadCurrency() {
 }
 
 async function loadComputers(id = '') {
+  console.log(id)
   return sendRequest(API_COMPUTERS + id)
 }
-
-
-
-
