@@ -67,7 +67,6 @@ const model = {
       for (const key in spec) {
         const options = spec[key];
         for (const option in options) {
-          // if (key === 'filter') console.log(key)
           if (key === "Процессор" && option === "frequency") {
             this.replaceSpecs(options);
           }
@@ -126,3 +125,5 @@ const model = {
     console.log("sort by new");
   },
 };
+
+

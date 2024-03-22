@@ -320,8 +320,8 @@ function renderProductInfo(product) {
 document.addEventListener("DOMContentLoaded", onLoadPage);
 
 function onLoadPage() {
-  const pageName = location.pathname.replace('/pc-shop/html/', '').replace('.html', '')
-  console.log(pageName );
+  const pageName = getPageName()
+  console.log(pageName);
   
   if (pageName === 'catalog') {
     model.addProducts(products => {
@@ -342,3 +342,5 @@ function onLoadPage() {
     });
   }
 }
+
+
