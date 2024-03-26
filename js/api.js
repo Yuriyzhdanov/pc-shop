@@ -14,6 +14,11 @@ async function loadCurrency() {
 }
 
 async function loadComputers(id = '') {
-  console.log(id)
   return sendRequest(API_COMPUTERS + id)
 }
+
+// async function loadComputersRecomend() {
+//   return sendRequest(API_COMPUTERS)
+// }
+
+//id подгружать не с сервера а с массива тк там есть конверт price 

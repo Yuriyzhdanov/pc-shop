@@ -36,7 +36,7 @@
 }
 
 html {
-  font-family: Calibri, "Franklin Gothic", sans-serif;
+  font-family: Calibri, 'Franklin Gothic', sans-serif;
   color: var(--clr_black);
   background-color: var(--clr_white);
 }
@@ -106,7 +106,7 @@ a {
 .wrap-search .right {
   width: 50px;
 }
-.wrap-search input[type="text"] {
+.wrap-search input[type='text'] {
   color: var(--clr_black);
   width: 100%;
   text-indent: 3px;
@@ -116,14 +116,14 @@ a {
   border: 0;
   outline: 0;
 }
-.wrap-search input[type="submit"] {
+.wrap-search input[type='submit'] {
   height: 50px;
   width: 50px;
   font-size: 18px;
   background: #fff url(../img/bg/search.png) center / 70% no-repeat;
   border: 0px solid #ccc;
 }
-.wrap-search input[type="submit"]:hover {
+.wrap-search input[type='submit']:hover {
   background: #f0f3f5 url(../img/bg/search-hover.png) center / 70% no-repeat;
 }
 
@@ -161,21 +161,26 @@ a {
   font-weight: bold;
 }
 .wrap-navigation > a::before {
-  content: "> ";
+  content: '> ';
 }
+
 .slider > .navigation {
   text-align: center;
 }
 
-
 .caption {
   text-align: center;
+}
+.wrap-info {
+  width: 100%;
+  padding: 10px;
 }
 
 .wrap-info-buttons > .buttons {
   text-align: center;
 }
 .wrap-info-buttons > .buttons > button {
+  margin: 0 10px;
   cursor: pointer;
 }
 .cart-button {
@@ -194,24 +199,52 @@ a {
   border-radius: 10px;
   padding: 10px;
 }
-.price > p > span{
+.price > p > span {
   font-weight: normal;
-
 }
 
 .specs > p > span {
   font-weight: bold;
 }
 
-.recomend{
+.payment-options {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.guarantee {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recomend {
   text-align: center;
 }
 .recomend-title {
   text-align: center;
+  padding: 20px;
 }
 
-.recomend > img {
+.recomend > a > img {
   height: 150px;
+  border-radius: 20px;
+}
+.recomend > a > img:hover {
+  box-shadow: 0 0 30px rgb(0, 187, 255);
+}
+.recomend > p{
+  padding: 10px;
+}
+
+.tile {
+  width: calc(25% - 10px);
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  vertical-align: top;
 }
 
 .container-comments > .top {
@@ -244,16 +277,19 @@ a {
   overflow: visible;
 }
 .container-comments {
-  background-color: #b2bbbd;
-  color: aliceblue;
+  color: rgb(17, 17, 17);
+}
+.wrap-card-comment {
+  margin: 10px;
 }
 .card-comment {
   width: 400px;
-  height: 200px;
-  background-color: #486b7d;
-  border: 3px solid #79d1fc;
-  margin: 5px;
+  height: auto;
+  background-color: #c3c8ca;
+  border: 1px solid #7b7b7b;
+  border-radius: 10px;
   text-align: left;
+  padding: 10px;
 }
 .card-comment > .left {
   width: 30%;
@@ -264,6 +300,7 @@ a {
 .card-comment > .left > .top {
   text-align: center;
   height: 15%;
+  padding: 5px;
 }
 .card-comment > .left > .bottom {
   height: 85%;
@@ -337,19 +374,20 @@ a {
   width: 300px;
 }
 
-
 /* RATING */
 .rating {
-  margin: 0 auto;
-  width: 300px;
-  height: 100px;
+  /* width: 500px; */
+  height: 70px;
+  /* text-align: center; */
 }
 .rating > * {
+  /* display: inline-block; */
+  /* vertical-align: middle; */
   float: right;
 }
 .rating label {
-  height: 20px;
-  width: 10%;
+  height: 10px;
+  width: 6%;
   position: relative;
   cursor: pointer;
 }
@@ -360,7 +398,7 @@ a {
   transition: all 0.4s ease-out;
   -webkit-font-smoothing: antialiased;
   position: absolute;
-  content: "☆";
+  content: '☆';
   color: #444;
   top: 0;
   left: 0;
@@ -375,7 +413,7 @@ a {
 }
 .rating input:checked + label:after,
 .rating input:checked ~ label:after {
-  content: "★";
+  content: '★';
   color: #f9bf3b;
   text-shadow: 0 0 20px #f9bf3b;
 }
@@ -392,6 +430,7 @@ a {
 .navigation img {
   width: 70%;
   cursor: pointer;
+  border-radius: 30px;
 }
 #slider-r1:checked ~ .navigation > label:nth-child(1) {
   width: 100%;

@@ -1,8 +1,6 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 
-sortSelect.addEventListener('change', onChangeSelectSort)
-
 function onChangeSelectSort() {
   const selectedValue = parseInt(this.value)
   switch (selectedValue) {
@@ -62,7 +60,7 @@ function generateFilterCheckbox(value, caption, key) {
   return elDiv
 }
 
-function generateFilterRange(id, labelText, value) {
+function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   const wrap = document.createElement('div')
   const label = document.createElement('label')
   const input = document.createElement('input')
@@ -72,8 +70,8 @@ function generateFilterRange(id, labelText, value) {
   label.textContent = labelText + ' ' + value
   label.setAttribute('for', id)
   input.setAttribute('type', 'range')
-  input.setAttribute('min', '0')
-  input.setAttribute('max', '100000')
+  input.setAttribute('min', minPrice)
+  input.setAttribute('max', maxPrice)
   input.setAttribute('value', value)
   input.setAttribute('name', id)
   input.setAttribute('id', id)
@@ -87,8 +85,22 @@ function generateFilterRange(id, labelText, value) {
 function generateFilterPrice() {
   const wrapProps = document.createElement('div')
   const h3 = document.createElement('h3')
-  const wrapRangeFrom = generateFilterRange('price_from', 'От:', 0)
-  const wrapRangeTo = generateFilterRange('price_to', 'До:', 100000)
+  const wrapRangeFrom = generateFilterRange(
+    'price_from',
+    'От:',
+    model.minPrice,
+    model.minPrice,
+    model.maxPrice
+  )
+
+  const wrapRangeTo = generateFilterRange(
+    'price_to',
+    'До:',
+    model.maxPrice,
+    model.minPrice,
+    model.maxPrice
+  )
+  console.log(wrapRangeTo)
   wrapProps.appendChild(h3)
   wrapProps.appendChild(wrapRangeFrom)
   wrapProps.appendChild(wrapRangeTo)
@@ -276,7 +288,7 @@ function generateLeft(product) {
 function generateProductInfo(product) {
   const wrapInfo = document.createElement('div')
   const caption = document.createElement('div')
-  const h4 = document.createElement('h4')
+  const h3 = document.createElement('h3')
   const rating = document.createElement('div')
   const wrapInfoButtons = document.createElement('div')
   const buttons = document.createElement('div')
@@ -301,9 +313,9 @@ function generateProductInfo(product) {
   wrapInfoCart.classList.add('wrap-info-cart')
   cartButton.classList.add('cart-button')
   btnCart.classList.add('btn')
-  h4.textContent = product.caption
+  h3.textContent = product.caption
   wrapInfo.appendChild(caption)
-  caption.appendChild(h4)
+  caption.appendChild(h3)
   wrapInfo.appendChild(rating)
   for (let i = 1; i <= 5; i++) {
     const input = document.createElement('input')
@@ -334,6 +346,30 @@ function generateProductInfo(product) {
   return wrapInfo
 }
 
+function generateRecomendProd(product) {
+  const URI = 'http://34.71.150.163:8181'
+  const elPave = document.createElement('div')
+  const recomendDiv = document.createElement('div')
+  const elLink = document.createElement('a')
+  const img = document.createElement('img')
+  elPave.classList.add('tile')
+  recomendDiv.classList.add('recomend')
+  const pElement = document.createElement('p')
+
+  elLink.setAttribute('href', `./product.html?id=${product.id}`)
+  elLink.setAttribute('target', '_blank')
+
+  img.src = URI + product.photos.dir + '/' + product.photos.files[0]
+  img.alt = product.caption
+  pElement.textContent = product.caption
+
+  recomendDiv.appendChild(elLink)
+  elLink.appendChild(img)
+  recomendDiv.appendChild(pElement)
+  elPave.appendChild(recomendDiv)
+  return elPave
+}
+
 function renderLeft(product) {
   const elLeft = document.querySelector('#left')
   const elSlider = generateLeft(product)
@@ -346,29 +382,63 @@ function renderProductInfo(product) {
   productInfo.appendChild(wrapInfo)
 }
 
+function renderRecomendProd(product) {
+  const containerPave = document.querySelector('.container-pave')
+  const elPave = generateRecomendProd(product)
+  containerPave.appendChild(elPave)
+}
+
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
 function onLoadPage() {
   const pageName = getPageName()
-  console.log(pageName)
-
   if (pageName === 'catalog') {
+    sortSelect.addEventListener('change', onChangeSelectSort)
     model.addProducts(products => {
       renderContainerProducts(products)
       renderWrapFilter(model.filter)
     })
-
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
   }
+
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
     if (!id) return
+
+    
     const productPromise = loadComputers(id)
     productPromise.then(product => {
       renderProductInfo(product)
       renderLeft(product)
+      loadComputers().then(recommendation => {     
+        renderRecomendProd(recommendation[1])
+        renderRecomendProd(recommendation[2])
+        renderRecomendProd(recommendation[3])
+        renderRecomendProd(recommendation[4])
+      })
     })
   }
 }
+  function onLoadPrice() {
+  model.addProducts(products => {
+    console.log(products[1].convertedPrice);
+    return products.convertedPrice})
+  }
+
+// onLoadPrice().then(prod => console.log(prod[0]))
+
+// const productPromise = loadComputers(id)
+// productPromise.then(product =>
+//   model.products = [product],
+//   model.convertPrice().then(() => {
+//     model.products[0]})
+//   )    
+
+// model.addProducts(product => {
+//   console.log(product).then(product => {
+//   renderProductInfo(product)
+//   renderLeft(product)}).then (
+//     console.log('hello')
+//   )

@@ -6,17 +6,17 @@ const model = {
   currencyUSD: 0,
   maxPrice: 0,
   minPrice: 0,
+  
 
   calcMaxMinPrice() {
     const prices = this.products.map((product) => product.convertedPrice);
-    this.maxPrice = Math.max(...prices);
-    this.minPrice = Math.min(...prices);
+    this.maxPrice = Math.floor(Math.max(...prices))
+    this.minPrice = Math.ceil(Math.min(...prices))
   },
 
   async convertPrice() {
     const ccy = await loadCurrency();
-    this.products.forEach(
-      (product) => (product.convertedPrice = product.price * ccy)
+    this.products.forEach((product) => (product.convertedPrice = product.price * ccy)
     );
   },
 
@@ -85,7 +85,7 @@ const model = {
     }
   },
 
-  filtrateProducts(priceFrom = 0, priceTo = 99999) {
+  filtrateProducts(priceFrom = this.minPrice, priceTo = this.maxPrice) {
     this.filtrateProductsBySpecs();
     this.filtrateProductsByPrice(priceFrom, priceTo);
   },
@@ -116,10 +116,18 @@ const model = {
     this.filteredProducts.sort((a, b) => b.price - a.price);
   },
   sortByCaption() {
-    this.filteredProducts.sort();
+    this.filteredProducts.sort((a, b) =>
+      a.caption.localeCompare(b.caption, undefined, {
+        sensitivity: "accent",
+      })
+    );
   },
   sortByCaptionReverse() {
-    this.filteredProducts.sort().reverse();
+    this.filteredProducts.sort((a, b) =>
+      b.caption.localeCompare(a.caption, undefined, {
+        sensitivity: "accent",
+      })
+    );
   },
   sortByNew() {
     console.log("sort by new");
