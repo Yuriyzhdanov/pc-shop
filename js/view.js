@@ -16,9 +16,6 @@ function onChangeSelectSort() {
     case 4:
       model.sortByCaptionReverse()
       break
-    case 5:
-      model.sortByNew()
-      break
     default:
       break
   }
@@ -407,12 +404,11 @@ function onLoadPage() {
     const id = new URLSearchParams(location.search).get('id')
     if (!id) return
 
-    
     const productPromise = loadComputers(id)
     productPromise.then(product => {
       renderProductInfo(product)
       renderLeft(product)
-      loadComputers().then(recommendation => {     
+      loadComputers().then(recommendation => {
         renderRecomendProd(recommendation[1])
         renderRecomendProd(recommendation[2])
         renderRecomendProd(recommendation[3])
@@ -421,11 +417,12 @@ function onLoadPage() {
     })
   }
 }
-  function onLoadPrice() {
+function onLoadPrice() {
   model.addProducts(products => {
-    console.log(products[1].convertedPrice);
-    return products.convertedPrice})
-  }
+    console.log(products[1].convertedPrice)
+    return products.convertedPrice
+  })
+}
 
 // onLoadPrice().then(prod => console.log(prod[0]))
 
@@ -434,7 +431,7 @@ function onLoadPage() {
 //   model.products = [product],
 //   model.convertPrice().then(() => {
 //     model.products[0]})
-//   )    
+//   )
 
 // model.addProducts(product => {
 //   console.log(product).then(product => {

@@ -1,139 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Computers shop</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Computers shop</title>
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-  <div class="wrapper">
-    <div class="header row">
-      <div class="left">
-        <div class="wrap-img">
-          <!-- <a href=""> -->
-          <img src="../img/bg/logo.png" alt="logo">
-          <!-- </a> -->
-        </div>
-      </div>
-      <div class="center">
-        <div class="wrap-search">
-          <form action="">
-            <input type="hidden" name="page" value="search">
-            <div class="row">
-              <div class="left">
-                <input type="text" name="query" placeholder="Что ищем ?">
-              </div>
-              <div class="right">
-                <input type="submit" value="">
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="right">
-        <div class="wrap-account">
-          <div class="top">
-            <span>Нажмите кнопку</span>
-          </div>
-          <div class="middle">
-            <a href="?page=login">
-              <button class="btn">Войти</button>
-            </a>
-          </div>
-          <div class="bottom">
-            <span>Либо</span>
-            <a href="?page=register">зарегистрируйтесь</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="main">
-      <div class="top">
-        <div class="wrap-navigation">
-          <a href="">Каталог</a>
-          <a href="">Электроника</a>
-          <a href="">Компьютерная техника</a>
-          <a href="">Собранные компьютеры</a>
-
-        </div>
-      </div>
-      <div class="bottom row">
+  <body>
+    <div class="wrapper">
+      <div class="header row">
         <div class="left">
-          <div class="wrap-filter">
-            <div class="wrap-props">
-              <p>Соритирвка</p>
-              <select name="sort" class="sort">
-                <option value="1">От дешевых к дорогим</option>
-                <option value="2">От дорогиx к дешевым</option>
-                <option value="3">A - Я</option>
-                <option value="4">Я - А</option>
-                <option value="5">Новинки</option>
-              </select>
-            </div>
-            <div class="wrap-props">
-              <div>
-                <button class=" btn filter"> Фильтровать </button>
-              </div>
-            </div>
-
+          <div class="wrap-img">
+            <!-- <a href=""> -->
+            <img src="../img/bg/logo.png" alt="logo" />
+            <!-- </a> -->
           </div>
-
+        </div>
+        <div class="center">
+          <div class="wrap-search">
+            <form action="">
+              <input type="hidden" name="page" value="search" />
+              <div class="row">
+                <div class="left">
+                  <input type="text" name="query" placeholder="Что ищем ?" />
+                </div>
+                <div class="right">
+                  <input type="submit" value="" />
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div class="right">
-          <div class="container-products pave">
-
+          <div class="wrap-account">
+            <div class="top">
+              <span>Нажмите кнопку</span>
+            </div>
+            <div class="middle">
+              <a href="?page=login">
+                <button class="btn">Войти</button>
+              </a>
+            </div>
+            <div class="bottom">
+              <span>Либо</span>
+              <a href="?page=register">зарегистрируйтесь</a>
+            </div>
           </div>
-          <div class="paginator">
-            <span> [ 1 ] </span>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <a href="">7</a>
-            <a href="">8</a>
-            <a href="">9</a>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="top">
+          <div class="wrap-navigation">
+            <a href="">Каталог</a>
+            <a href="">Электроника</a>
+            <a href="">Компьютерная техника</a>
+            <a href="">Собранные компьютеры</a>
+          </div>
+        </div>
+        <div class="bottom row">
+          <div class="left">
+            <div class="wrap-filter">
+              <div class="wrap-props">
+                <p>Соритирвка</p>
+                <select name="sort" class="sort">
+                  <option value="1">От дешевых к дорогим</option>
+                  <option value="2">От дорогиx к дешевым</option>
+                  <option value="3">A - Я</option>
+                  <option value="4">Я - А</option>
+                </select>
+              </div>
+              <div class="wrap-props">
+                <div>
+                  <button class="btn filter">Фильтровать</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="container-products pave"></div>
+            <div class="paginator">
+              <span> [ 1 ] </span>
+              <a href="">2</a>
+              <a href="">3</a>
+              <a href="">4</a>
+              <a href="">5</a>
+              <a href="">6</a>
+              <a href="">7</a>
+              <a href="">8</a>
+              <a href="">9</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="top row">
+          <div class="wrap-menu">
+            <div><a href="">О нас</a></div>
+            <div><a href="">Контакты</a></div>
+            <div><a href="">Новости</a></div>
+            <div><a href="">Отзывы</a></div>
+            <div><a href="">Акции</a></div>
+          </div>
+          <div class="wrap-links">
+            <div><a href="">Гарантия</a></div>
+            <div><a href="">Возврат товара</a></div>
+            <div><a href="">Кредит</a></div>
+            <div><a href="">Подарочные сертификаты</a></div>
+            <div><a href="">Стать партнером</a></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wrap-copyrights">
+            <span>Lorem Ipsum &#0169; 2024 Все права защищены</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      <div class="top row">
-        <div class="wrap-menu">
-          <div><a href="">О нас</a></div>
-          <div><a href="">Контакты</a></div>
-          <div><a href="">Новости</a></div>
-          <div><a href="">Отзывы</a></div>
-          <div><a href="">Акции</a></div>
-        </div>
-        <div class="wrap-links">
-          <div><a href="">Гарантия</a></div>
-          <div><a href="">Возврат товара</a></div>
-          <div><a href="">Кредит</a></div>
-          <div><a href="">Подарочные сертификаты</a></div>
-          <div><a href="">Стать партнером</a></div>
-        </div>
-      </div>
-      <div class="bottom">
-        <div class="wrap-copyrights">
-          <span>Lorem Ipsum &#0169; 2024 Все права защищены</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <script src="../js/api.js"></script>
-  <script src="../js/model.js"></script>
-  <script src="../js/controller.js"></script>
-  <script src="../js/view.js"></script>
-  <script src="../js/utils.js"></script>
-
-</body>
-
+    <script src="../js/api.js"></script>
+    <script src="../js/model.js"></script>
+    <script src="../js/controller.js"></script>
+    <script src="../js/view.js"></script>
+    <script src="../js/utils.js"></script>
+  </body>
 </html>
