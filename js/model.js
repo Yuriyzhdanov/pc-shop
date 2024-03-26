@@ -109,24 +109,31 @@ const model = {
         priceFrom < product.convertedPrice && product.convertedPrice < priceTo
     )
   },
-  sortByPrice() {
-    this.filteredProducts.sort((a, b) => a.price - b.price)
-  },
-  sortByPriceReverse() {
-    this.filteredProducts.sort((a, b) => b.price - a.price)
-  },
-  sortByCaption() {
-    this.filteredProducts.sort((a, b) =>
-      a.caption.localeCompare(b.caption, undefined, {
-        sensitivity: 'accent',
-      })
-    )
-  },
-  sortByCaptionReverse() {
-    this.filteredProducts.sort((a, b) =>
-      b.caption.localeCompare(a.caption, undefined, {
-        sensitivity: 'accent',
-      })
-    )
+
+  sortCatalog(type) {
+    switch (type) {
+      case 'byPriceASC':
+        this.filteredProducts.sort((a, b) => a.price - b.price)
+        break
+      case 'byPriceDESC':
+        this.filteredProducts.sort((a, b) => b.price - a.price)
+        break
+      case 'byCaptionASC':
+        this.filteredProducts.sort((a, b) => {
+          return a.caption.localeCompare(b.caption, undefined, {
+            sensitivity: 'accent',
+          })
+        })
+        break
+      case 'byCaptionDESC':
+        this.filteredProducts.sort((a, b) => {
+          return b.caption.localeCompare(a.caption, undefined, {
+            sensitivity: 'accent',
+          })
+        })
+        break
+      default:
+        break
+    }
   },
 }

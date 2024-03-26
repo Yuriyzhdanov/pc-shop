@@ -1,25 +1,8 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 
-function onChangeSelectSort() {
-  const selectedValue = parseInt(this.value)
-  switch (selectedValue) {
-    case 1:
-      model.sortByPrice()
-      break
-    case 2:
-      model.sortByPriceReverse()
-      break
-    case 3:
-      model.sortByCaption()
-      break
-    case 4:
-      model.sortByCaptionReverse()
-      break
-    default:
-      break
-  }
-  renderContainerProducts(model.filteredProducts)
+function onChangeSelectSort(e) {
+  handleSort(e.target.value)
 }
 
 function generateFilterProp(caption) {
