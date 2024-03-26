@@ -1,8 +1,51 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 
+document.addEventListener('DOMContentLoaded', onLoadPage)
+
 function onChangeSelectSort(e) {
   handleSort(e.target.value)
+}
+
+function onClickButtonFilter() {
+  const checkboxes = document.querySelectorAll(
+    '.wrap-checkbox input[type="checkbox"]:checked'
+  )
+  const elInputFrom = document.querySelector('#price_from')
+  const elInputTo = document.querySelector('#price_to')
+  const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
+  handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
+}
+
+function onLoadPage() {
+  const pageName = getPageName()
+  if (pageName === 'catalog') {
+    sortSelect.addEventListener('change', onChangeSelectSort)
+    model.addProducts(products => {
+      renderContainerProducts(products)
+      renderWrapFilter(model.filter)
+    })
+    document
+      .querySelector('button.filter')
+      .addEventListener('click', onClickButtonFilter)
+  }
+
+  if (pageName === 'product') {
+    const id = new URLSearchParams(location.search).get('id')
+    if (!id) return
+
+    const productPromise = loadComputers(id)
+    productPromise.then(product => {
+      renderProductInfo(product)
+      renderLeft(product)
+      loadComputers().then(recommendation => {
+        renderRecomendProd(recommendation[1])
+        renderRecomendProd(recommendation[2])
+        renderRecomendProd(recommendation[3])
+        renderRecomendProd(recommendation[4])
+      })
+    })
+  }
 }
 
 function renderContainerProducts(products) {
@@ -38,21 +81,6 @@ function renderWrapFilter(modelFilter) {
   elWrapFilter.appendChild(elForm)
 }
 
-function onClickButtonFilter() {
-  const checkboxes = document.querySelectorAll(
-    '.wrap-checkbox input[type="checkbox"]:checked'
-  )
-  const elInputFrom = document.querySelector('#price_from')
-  const elInputTo = document.querySelector('#price_to')
-  const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
-  handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
-}
-
-const elCart = document.querySelector('.cart')
-const elFavorites = document.querySelectorAll('.favorite')
-const elCompares = document.querySelectorAll('.compare')
-const elPaginator = document.querySelector('.paginator')
-
 function renderLeft(product) {
   const elLeft = document.querySelector('#left')
   const elSlider = generateLeft(product)
@@ -70,58 +98,3 @@ function renderRecomendProd(product) {
   const elPave = generateRecomendProd(product)
   containerPave.appendChild(elPave)
 }
-
-document.addEventListener('DOMContentLoaded', onLoadPage)
-
-function onLoadPage() {
-  const pageName = getPageName()
-  if (pageName === 'catalog') {
-    sortSelect.addEventListener('change', onChangeSelectSort)
-    model.addProducts(products => {
-      renderContainerProducts(products)
-      renderWrapFilter(model.filter)
-    })
-    document
-      .querySelector('button.filter')
-      .addEventListener('click', onClickButtonFilter)
-  }
-
-  if (pageName === 'product') {
-    const id = new URLSearchParams(location.search).get('id')
-    if (!id) return
-
-    const productPromise = loadComputers(id)
-    productPromise.then(product => {
-      renderProductInfo(product)
-      renderLeft(product)
-      loadComputers().then(recommendation => {
-        renderRecomendProd(recommendation[1])
-        renderRecomendProd(recommendation[2])
-        renderRecomendProd(recommendation[3])
-        renderRecomendProd(recommendation[4])
-      })
-    })
-  }
-}
-function onLoadPrice() {
-  model.addProducts(products => {
-    console.log(products[1].convertedPrice)
-    return products.convertedPrice
-  })
-}
-
-// onLoadPrice().then(prod => console.log(prod[0]))
-
-// const productPromise = loadComputers(id)
-// productPromise.then(product =>
-//   model.products = [product],
-//   model.convertPrice().then(() => {
-//     model.products[0]})
-//   )
-
-// model.addProducts(product => {
-//   console.log(product).then(product => {
-//   renderProductInfo(product)
-//   renderLeft(product)}).then (
-//     console.log('hello')
-//   )
