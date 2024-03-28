@@ -31,19 +31,16 @@ function onLoadPage() {
   }
 
   if (pageName === 'product') {
-    const id = new URLSearchParams(location.search).get('id')
+    const id = model.getProductById()
     if (!id) return
-
-    const productPromise = loadComputers(id)
-    productPromise.then(product => {
+    model.addProducts(products => {
+      const product = products.find(prod => prod.id === id);
       renderProductInfo(product)
-      renderLeft(product)
-      loadComputers().then(recommendation => {
-        renderRecomendProd(recommendation[1])
-        renderRecomendProd(recommendation[2])
-        renderRecomendProd(recommendation[3])
-        renderRecomendProd(recommendation[4])
-      })
+      renderProductSidebar(product)
+      renderRecomendProd(products[1])
+      renderRecomendProd(products[2])
+      renderRecomendProd(products[3])
+      renderRecomendProd(products[4])
     })
   }
 }
@@ -81,9 +78,9 @@ function renderWrapFilter(modelFilter) {
   elWrapFilter.appendChild(elForm)
 }
 
-function renderLeft(product) {
+function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
-  const elSlider = generateLeft(product)
+  const elSlider = generateProductSidebar(product)
   elLeft.appendChild(elSlider)
 }
 

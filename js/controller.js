@@ -8,3 +8,4 @@ function handleSort(sortType) {
   model.sortCatalog(sortType)
   renderContainerProducts(model.filteredProducts)
 }
+

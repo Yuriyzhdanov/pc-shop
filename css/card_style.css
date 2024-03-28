@@ -235,7 +235,7 @@ a {
 .recomend > a > img:hover {
   box-shadow: 0 0 30px rgb(0, 187, 255);
 }
-.recomend > p{
+.recomend > p {
   padding: 10px;
 }
 
@@ -432,6 +432,7 @@ a {
   cursor: pointer;
   border-radius: 30px;
 }
+
 #slider-r1:checked ~ .navigation > label:nth-child(1) {
   width: 100%;
 }

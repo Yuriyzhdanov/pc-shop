@@ -166,7 +166,7 @@ function generateProduct(product) {
   return divContainterProduct
 }
 
-function generateLeft(product) {
+function generateProductSidebar(product) {
   const slider = document.createElement('div')
   const navigation = document.createElement('div')
   const URI = 'http://34.71.150.163:8181'
@@ -261,7 +261,7 @@ function generateProductInfo(product) {
   wrapInfo.appendChild(wrapInfoPrice)
   wrapInfoPrice.appendChild(price)
   price.appendChild(priceParagraph)
-  priceParagraph.textContent = `${product.price} `
+  priceParagraph.textContent = `${product.convertedPrice.toFixed(2)}`
   priceParagraph.appendChild(span)
   span.textContent = 'грн'
   wrapInfo.appendChild(wrapInfoCart)
