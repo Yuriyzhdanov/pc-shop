@@ -18,30 +18,19 @@ function onClickButtonFilter() {
 }
 
 function onLoadPage() {
-  const pageName = getPageName()
+  const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
+    handleLoadPageCatalog()
     sortSelect.addEventListener('change', onChangeSelectSort)
-    model.addProducts(products => {
-      renderContainerProducts(products)
-      renderWrapFilter(model.filter)
-    })
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
   }
 
   if (pageName === 'product') {
-    const id = model.getProductById()
+    const id = new URLSearchParams(location.search).get('id')
     if (!id) return
-    model.addProducts(products => {
-      const product = products.find(prod => prod.id === id);
-      renderProductInfo(product)
-      renderProductSidebar(product)
-      renderRecomendProd(products[1])
-      renderRecomendProd(products[2])
-      renderRecomendProd(products[3])
-      renderRecomendProd(products[4])
-    })
+    handleLoadPageProduct(id)
   }
 }
 
@@ -54,10 +43,10 @@ function renderContainerProducts(products) {
   })
 }
 
-function renderWrapFilter(modelFilter) {
+function renderWrapFilter(modelFilter, minPrice, maxPrice) {
   const elWrapFilter = document.querySelector('.wrap-filter')
   const elForm = document.createElement('form')
-  const elPrice = generateFilterPrice()
+  const elPrice = generateFilterPrice(minPrice, maxPrice)
   elForm.setAttribute('action', '')
   for (const key in modelFilter) {
     if (typeof modelFilter[key] === 'object') {

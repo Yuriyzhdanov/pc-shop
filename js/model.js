@@ -7,14 +7,9 @@ const model = {
   maxPrice: 0,
   minPrice: 0,
 
-  getProductById(){
-    const id = new URLSearchParams(location.search).get('id')
-    return id
-  },
-
   calcMaxMinPrice() {
     const prices = this.products.map(product => product.convertedPrice)
-    console.log(prices);
+    console.log(prices)
     this.maxPrice = Math.floor(Math.max(...prices))
     this.minPrice = Math.ceil(Math.min(...prices))
   },
@@ -25,7 +20,6 @@ const model = {
       product => (product.convertedPrice = product.price * ccy)
     )
   },
-
 
   async addProducts(callback) {
     const computers = await loadComputers()

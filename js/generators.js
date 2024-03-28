@@ -55,7 +55,7 @@ function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   return wrap
 }
 
-function generateFilterPrice() {
+function generateFilterPrice(minPrice, maxPrice) {
   const wrapProps = document.createElement('div')
   const h3 = document.createElement('h3')
   const wrapRangeFrom = generateFilterRange(
@@ -141,7 +141,7 @@ function generateProduct(product) {
   img.src = URI + product.photos.dir + '/' + product.photos.files[0]
   img.alt = product.caption
   h3.textContent = product.caption
-  b.textContent = product.convertedPrice.toFixed()
+  b.textContent = product.convertedPrice.toFixed(2)
 
   divContainterProduct.appendChild(divWrapA)
   divContainterProduct.appendChild(divLabels)

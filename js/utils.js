@@ -25,8 +25,7 @@ function toCaptalize(str) {
   return str.slice(0, 1).toUpperCase() + str.slice(1)
 }
 
-function getPageName() {
-  const str = location.pathname
+function getPageName(str) {
   const startWord = '/html/'
   const endWord = '.html'
   const startIndex = str.indexOf(startWord) + startWord.length
