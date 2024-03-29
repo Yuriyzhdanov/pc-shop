@@ -17,6 +17,25 @@ function onClickButtonFilter() {
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
+// const elPriceFrom = document.getElementById('price_from');
+// const elPriceTo = document.getElementById('price_to');
+// elPriceFrom.addEventListener('input', onInputChangePrice);
+// elPriceTo.addEventListener('input', onInputChangePrice);
+
+function onInputChangePrice(e) {
+  const currentPrice = +e.target.value
+  const elPriceFrom = document.querySelector('#price_from');
+  const elPriceTo = document.querySelector('#price_to');
+  console.log(currentPrice, +elPriceFrom.value, +elPriceTo.value);
+  const priceFromValue = +elPriceFrom.value
+  const priceToValue = +elPriceTo.value
+  
+  if (currentPrice === +elPriceTo.value) {
+    elPriceFrom.value = +elPriceTo.value
+  }
+
+}
+
 function onLoadPage() {
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {

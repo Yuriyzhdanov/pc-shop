@@ -51,7 +51,7 @@ function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   input.addEventListener('input', function () {
     label.textContent = labelText + ' ' + input.value
   })
-
+  input.oninput = onInputChangePrice
   return wrap
 }
 
@@ -61,20 +61,15 @@ function generateFilterPrice(minPrice, maxPrice) {
   const wrapRangeFrom = generateFilterRange(
     'price_from',
     'От:',
-    model.minPrice,
-    model.minPrice,
-    model.maxPrice
-  )
-
+    minPrice, minPrice, maxPrice
+    )
+    
   const wrapRangeTo = generateFilterRange(
     'price_to',
     'До:',
-    model.maxPrice,
-    model.minPrice,
-    model.maxPrice
+    maxPrice, minPrice, maxPrice
   )
-  console.log(wrapRangeTo)
-  wrapProps.appendChild(h3)
+ wrapProps.appendChild(h3)
   wrapProps.appendChild(wrapRangeFrom)
   wrapProps.appendChild(wrapRangeTo)
   wrapProps.classList.add('wrap-props')
