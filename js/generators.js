@@ -80,8 +80,8 @@ function generateFilterPrice(minPrice, maxPrice) {
   wrapProps.classList.add('wrap-props')
   h3.textContent = 'Цена'
 
-  wrapRangeFrom.addEventListener('input', onInputChangePriceFrom);
-  wrapRangeTo.addEventListener('input', onInputChangePriceTo);
+  wrapRangeFrom.addEventListener('input', onInputChangePriceFrom)
+  wrapRangeTo.addEventListener('input', onInputChangePriceTo)
   return wrapProps
 }
 
@@ -126,7 +126,7 @@ function generateProduct(product) {
   const buttonCompare = document.createElement('button')
   const p = document.createElement('p')
   const b = document.createElement('b')
-  const URI = 'http://34.71.150.163:8181'
+  const URI = 'http://35.225.111.193:8181'
 
   divContainterProduct.classList.add('wrap-product')
   divContainterProduct.dataset.productId = product.id
@@ -174,7 +174,7 @@ function generateProduct(product) {
 function generateProductSidebar(product) {
   const slider = document.createElement('div')
   const navigation = document.createElement('div')
-  const URI = 'http://34.71.150.163:8181'
+  const URI = 'http://35.225.111.193:8181'
   slider.classList.add('slider')
   navigation.classList.add('navigation')
   product.photos.files.forEach((file, index) => {
@@ -277,7 +277,7 @@ function generateProductInfo(product) {
 }
 
 function generateRecomendProd(product) {
-  const URI = 'http://34.71.150.163:8181'
+  const URI = 'http://35.225.111.193:8181'
   const elPave = document.createElement('div')
   const recomendDiv = document.createElement('div')
   const elLink = document.createElement('a')
