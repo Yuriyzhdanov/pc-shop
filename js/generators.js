@@ -51,7 +51,7 @@ function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   wrap.appendChild(label)
   wrap.appendChild(input)
   label.appendChild(span)
-  input.addEventListener('input', handleChangeInputPrice)
+  input.addEventListener('input', onInputRangePrice)
 
   return wrap
 }

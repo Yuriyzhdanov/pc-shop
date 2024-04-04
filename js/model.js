@@ -7,6 +7,8 @@ const model = {
   maxPrice: 0,
   minPrice: 0,
   favorites: [],
+  recomdndedProducts: [],
+  reviews: [],
 
   // addToFavorites(productId) {
   //   const productToAdd = this.products.find(product => product.id === productId);
@@ -30,8 +32,8 @@ const model = {
 
   async addProducts(callback) {
     const computers = await loadComputers()
-    console.log(computers);
-    
+    console.log(computers)
+
     this.products = computers
     await this.convertPrice()
     this.calcMaxMinPrice()

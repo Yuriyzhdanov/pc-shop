@@ -90,19 +90,12 @@ function renderWrapFilter(modelFilter, minPrice, maxPrice) {
 function renderLabelPrice() {
   const elPriceFrom = document.querySelector('#price_from')
   const elPriceTo = document.querySelector('#price_to')
-
-  const labelFrom = document
-    .querySelector('label[for="price_from"] span')
-
-    
-  const labelTo = document
-    .querySelector('label[for="price_to"] span')
-    
+  const labelFrom = document.querySelector('label[for="price_from"] span')
+  const labelTo = document.querySelector('label[for="price_to"] span')
 
   labelFrom.textContent = elPriceFrom.value
   labelTo.textContent = elPriceTo.value
 }
-
 
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
@@ -122,3 +115,10 @@ function renderRecomendProd(product) {
   containerPave.appendChild(elPave)
 }
 
+function onInputRangePrice(e) {
+  const input = e.target
+  const label = input.parentNode
+  const span = label.querySelector('span')
+  const spanValue = input.value
+  span.textContent = spanValue
+}

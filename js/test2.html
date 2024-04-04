@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .wrap-rating .rating {
+        text-align: center;
+      }
+
+      .wrap-rating input {
+        display: none;
+      }
+
+      .wrap-rating label:after {
+        cursor: pointer;
+        transition: all 0.3s;
+        content: '★';
+        font-size: 42px;
+        color: #f9bf3b;
+        text-shadow: 0 0 20px #f9bf3b;
+      }
+
+      .wrap-rating #r0:checked ~ .rating > label::after,
+      .wrap-rating #r1:checked ~ .rating > [for='r1'] ~ label::after,
+      .wrap-rating #r2:checked ~ .rating > [for='r2'] ~ label::after,
+      .wrap-rating #r3:checked ~ .rating > [for='r3'] ~ label::after,
+      .wrap-rating #r4:checked ~ .rating > [for='r4'] ~ label::after,
+      .wrap-rating #r5:checked ~ .rating > [for='r5'] ~ label::after {
+        content: '☆';
+        color: #444;
+        text-shadow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap-rating">
+      <input type="radio" name="rating" id="r0" checked />
+      <input type="radio" name="rating" id="r1" />
+      <input type="radio" name="rating" id="r2" />
+      <input type="radio" name="rating" id="r3" />
+      <input type="radio" name="rating" id="r4" />
+      <input type="radio" name="rating" id="r5" />
+      <div class="rating">
+        <label for="r1"></label>
+        <label for="r2"></label>
+        <label for="r3"></label>
+        <label for="r4"></label>
+        <label for="r5"></label>
+      </div>
+    </div>
+  </body>
+</html>
