@@ -17,23 +17,24 @@ function onClickButtonFilter() {
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
-// const elPriceFrom = document.getElementById('price_from');
-// const elPriceTo = document.getElementById('price_to');
-// elPriceFrom.addEventListener('input', onInputChangePrice);
-// elPriceTo.addEventListener('input', onInputChangePrice);
+function onInputChangePriceFrom() {
+  const elPriceFrom = document.querySelector('#price_from')
+  const elPriceTo = document.querySelector('#price_to')
 
-function onInputChangePrice(e) {
-  const currentPrice = +e.target.value
-  const elPriceFrom = document.querySelector('#price_from');
-  const elPriceTo = document.querySelector('#price_to');
-  console.log(currentPrice, +elPriceFrom.value, +elPriceTo.value);
-  const priceFromValue = +elPriceFrom.value
-  const priceToValue = +elPriceTo.value
-  
-  if (currentPrice === +elPriceTo.value) {
-    elPriceFrom.value = +elPriceTo.value
+  if (+elPriceTo.value < +elPriceFrom.value) {
+    elPriceTo.value = elPriceFrom.value
   }
+  renderLabelPrice()
+}
 
+function onInputChangePriceTo() {
+  const elPriceFrom = document.querySelector('#price_from')
+  const elPriceTo = document.querySelector('#price_to')
+
+  if (+elPriceFrom.value > +elPriceTo.value) {
+    elPriceFrom.value = elPriceTo.value
+  }
+  renderLabelPrice()
 }
 
 function onLoadPage() {
@@ -86,6 +87,23 @@ function renderWrapFilter(modelFilter, minPrice, maxPrice) {
   elWrapFilter.appendChild(elForm)
 }
 
+function renderLabelPrice() {
+  const elPriceFrom = document.querySelector('#price_from')
+  const elPriceTo = document.querySelector('#price_to')
+
+  const labelFrom = document
+    .querySelector('label[for="price_from"] span')
+
+    
+  const labelTo = document
+    .querySelector('label[for="price_to"] span')
+    
+
+  labelFrom.textContent = elPriceFrom.value
+  labelTo.textContent = elPriceTo.value
+}
+
+
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
   const elSlider = generateProductSidebar(product)
@@ -103,3 +121,4 @@ function renderRecomendProd(product) {
   const elPave = generateRecomendProd(product)
   containerPave.appendChild(elPave)
 }
+

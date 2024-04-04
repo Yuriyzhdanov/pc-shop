@@ -6,10 +6,17 @@ const model = {
   currencyUSD: 0,
   maxPrice: 0,
   minPrice: 0,
+  favorites: [],
+
+  // addToFavorites(productId) {
+  //   const productToAdd = this.products.find(product => product.id === productId);
+  //   if (productToAdd) {
+  //     this.favorites.push(productToAdd);
+  //   }
+  // },
 
   calcMaxMinPrice() {
     const prices = this.products.map(product => product.convertedPrice)
-    console.log(prices)
     this.maxPrice = Math.floor(Math.max(...prices))
     this.minPrice = Math.ceil(Math.min(...prices))
   },
@@ -23,6 +30,8 @@ const model = {
 
   async addProducts(callback) {
     const computers = await loadComputers()
+    console.log(computers);
+    
     this.products = computers
     await this.convertPrice()
     this.calcMaxMinPrice()

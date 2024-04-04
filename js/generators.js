@@ -37,10 +37,10 @@ function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   const wrap = document.createElement('div')
   const label = document.createElement('label')
   const input = document.createElement('input')
-  wrap.appendChild(label)
-  wrap.appendChild(input)
+  const span = document.createElement('span')
   wrap.classList.add('wrap-range')
-  label.textContent = labelText + ' ' + value
+  label.textContent = labelText
+  span.textContent = value
   label.setAttribute('for', id)
   input.setAttribute('type', 'range')
   input.setAttribute('min', minPrice)
@@ -48,10 +48,11 @@ function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
   input.setAttribute('value', value)
   input.setAttribute('name', id)
   input.setAttribute('id', id)
-  input.addEventListener('input', function () {
-    label.textContent = labelText + ' ' + input.value
-  })
-  input.oninput = onInputChangePrice
+  wrap.appendChild(label)
+  wrap.appendChild(input)
+  label.appendChild(span)
+  input.addEventListener('input', handleChangeInputPrice)
+
   return wrap
 }
 
@@ -61,19 +62,26 @@ function generateFilterPrice(minPrice, maxPrice) {
   const wrapRangeFrom = generateFilterRange(
     'price_from',
     'От:',
-    minPrice, minPrice, maxPrice
-    )
-    
+    minPrice,
+    minPrice,
+    maxPrice
+  )
+
   const wrapRangeTo = generateFilterRange(
     'price_to',
     'До:',
-    maxPrice, minPrice, maxPrice
+    maxPrice,
+    minPrice,
+    maxPrice
   )
- wrapProps.appendChild(h3)
+  wrapProps.appendChild(h3)
   wrapProps.appendChild(wrapRangeFrom)
   wrapProps.appendChild(wrapRangeTo)
   wrapProps.classList.add('wrap-props')
   h3.textContent = 'Цена'
+
+  wrapRangeFrom.addEventListener('input', onInputChangePriceFrom);
+  wrapRangeTo.addEventListener('input', onInputChangePriceTo);
   return wrapProps
 }
 
@@ -133,7 +141,8 @@ function generateProduct(product) {
   aLink.setAttribute('class', 'a-link')
   divH3.setAttribute('class', 'wrap-h3')
 
-  img.src = URI + product.photos.dir + '/' + product.photos.files[0]
+  img.src =
+    'https://web-app.click/photos/products/computers/' + product.photos.files[0]
   img.alt = product.caption
   h3.textContent = product.caption
   b.textContent = product.convertedPrice.toFixed(2)
@@ -158,6 +167,7 @@ function generateProduct(product) {
   divButtonCompare.appendChild(buttonCompare)
   p.innerHTML += ' грн'
 
+  // buttonFavorite.addEventListener('click', handleLoadPageFavotites);
   return divContainterProduct
 }
 

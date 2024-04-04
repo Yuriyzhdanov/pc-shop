@@ -14,6 +14,7 @@ function handleLoadPageCatalog() {
     renderContainerProducts(products)
     renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
   })
+  
 }
 
 function handleLoadPageProduct(id) {
@@ -27,3 +28,16 @@ function handleLoadPageProduct(id) {
     renderRecomendProd(products[4])
   })
 }
+
+function handleChangeInputPrice(e) {
+  const input = e.target
+  const label = input.parentNode
+  const span = label.querySelector('span')
+  const spanValue = input.value
+  span.textContent = spanValue
+}
+
+// function handleLoadPageFavotites(e) {
+//   const productId = e.target.closest('.wrap-product').dataset.productId
+//   model.addToFavorites(productId)
+// }
