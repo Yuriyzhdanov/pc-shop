@@ -144,7 +144,6 @@ a {
   padding: 5px;
 }
 .wrap-account button {
-  /* width: 50%; */
   cursor: pointer;
 }
 
@@ -158,7 +157,6 @@ a {
 }
 .main > .bottom > .right {
   width: calc(100% - 250px);
-  width: 60%;
 }
 
 .wrap-navigation {

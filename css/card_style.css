@@ -365,57 +365,37 @@ a {
   background: linear-gradient(45deg, hsl(255, 85%, 65%), hsl(180, 85%, 65%));
   box-shadow: 0 0 5px 0 #789;
 }
-
-/* div {
-  border: 1px solid black;
-  padding: 10px;
-} */
 .slider > img {
   width: 300px;
 }
 
 /* RATING */
-.rating {
-  /* width: 500px; */
-  height: 70px;
-  /* text-align: center; */
+.wrap-rating .rating {
+  text-align: center;
 }
-.rating > * {
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  float: right;
-}
-.rating label {
-  height: 10px;
-  width: 6%;
-  position: relative;
-  cursor: pointer;
-}
-.rating input {
+.wrap-rating input {
   display: none;
 }
-.rating label:after {
-  transition: all 0.4s ease-out;
-  -webkit-font-smoothing: antialiased;
-  position: absolute;
-  content: '☆';
-  color: #444;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  font-size: 30px;
-}
-.rating label:hover:after {
-  color: lighten(#444, 10%);
-  text-shadow: 0 0 15px lighten(#444, 10%);
-}
-.rating input:checked + label:after,
-.rating input:checked ~ label:after {
+.wrap-rating label:after {
+  cursor: pointer;
+  transition: all 0.3s;
   content: '★';
+  font-size: 32px;
   color: #f9bf3b;
   text-shadow: 0 0 20px #f9bf3b;
+  opacity: 1; 
+}
+.wrap-rating #r0:checked ~ .rating > label::after,
+.wrap-rating #r1:checked ~ .rating > [for='r1'] ~ label::after,
+.wrap-rating #r2:checked ~ .rating > [for='r2'] ~ label::after,
+.wrap-rating #r3:checked ~ .rating > [for='r3'] ~ label::after,
+.wrap-rating #r4:checked ~ .rating > [for='r4'] ~ label::after,
+.wrap-rating #r5:checked ~ .rating > [for='r5'] ~ label::after {
+  content: '☆';
+  color: #444;
+  text-shadow: none;
+  opacity: 0.5;
+  color: rgba(68, 68, 68, 0.5);
 }
 
 /* SLIDER */

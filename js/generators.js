@@ -219,7 +219,9 @@ function generateProductInfo(product) {
   const wrapInfo = document.createElement('div')
   const caption = document.createElement('div')
   const h3 = document.createElement('h3')
-  const rating = document.createElement('div')
+  // const wrapRating = document.createElement('div')
+  const rating = generateRating()
+
   const wrapInfoButtons = document.createElement('div')
   const buttons = document.createElement('div')
   const btnFavorite = document.createElement('button')
@@ -233,7 +235,6 @@ function generateProductInfo(product) {
   const btnCart = document.createElement('button')
   wrapInfo.classList.add('wrap-info')
   caption.classList.add('caption')
-  rating.classList.add('rating')
   wrapInfoButtons.classList.add('wrap-info-buttons')
   buttons.classList.add('buttons')
   btnFavorite.classList.add('btn')
@@ -243,20 +244,11 @@ function generateProductInfo(product) {
   wrapInfoCart.classList.add('wrap-info-cart')
   cartButton.classList.add('cart-button')
   btnCart.classList.add('btn')
+
   h3.textContent = product.caption
   wrapInfo.appendChild(caption)
   caption.appendChild(h3)
   wrapInfo.appendChild(rating)
-  for (let i = 1; i <= 5; i++) {
-    const input = document.createElement('input')
-    const label = document.createElement('label')
-    input.type = 'radio'
-    input.name = 'rating'
-    input.id = `r${i}`
-    label.htmlFor = `r${i}`
-    rating.appendChild(input)
-    rating.appendChild(label)
-  }
   wrapInfo.appendChild(wrapInfoButtons)
   wrapInfoButtons.appendChild(buttons)
   buttons.appendChild(btnFavorite)
@@ -274,6 +266,31 @@ function generateProductInfo(product) {
   cartButton.appendChild(btnCart)
   btnCart.textContent = 'В корзину'
   return wrapInfo
+}
+
+function generateRating() {
+  const wrapDiv = document.createElement('div')
+  wrapDiv.classList.add('wrap-rating')
+  const ratingDiv = document.createElement('div')
+  for (let i = 0; i <= 5; i++) {
+    const radioInput = document.createElement('input')
+    radioInput.setAttribute('type', 'radio')
+    radioInput.setAttribute('name', 'rating')
+    radioInput.setAttribute('id', 'r' + i)
+    if (i === 0) {
+      radioInput.setAttribute('checked', 'checked')
+    }
+    wrapDiv.appendChild(radioInput)
+  }
+  ratingDiv.classList.add('rating')
+  for (let i = 1; i <= 5; i++) {
+    const label = document.createElement('label')
+    label.setAttribute('for', 'r' + i)
+    ratingDiv.appendChild(label)
+  }
+  wrapDiv.appendChild(ratingDiv)
+
+  return wrapDiv
 }
 
 function generateRecomendProd(product) {

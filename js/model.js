@@ -7,7 +7,7 @@ const model = {
   maxPrice: 0,
   minPrice: 0,
   favorites: [],
-  recomdndedProducts: [],
+  recomendedProducts: [],
   reviews: [],
 
   // addToFavorites(productId) {
