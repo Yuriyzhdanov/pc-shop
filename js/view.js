@@ -122,3 +122,11 @@ function onInputRangePrice(e) {
   const spanValue = input.value
   span.textContent = spanValue
 }
+
+function renderFilterRangeFrom(val, min, max) {
+  // body
+}
+
+function renderFilterRangeTo(val, min, max) {
+  // body
+}

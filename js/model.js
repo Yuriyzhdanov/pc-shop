@@ -15,9 +15,9 @@ const model = {
   },
 
   calcMaxMinPrice() {
-    const prices = this.products.map(product => product.convertedPrice)
-    this.maxPrice = Math.floor(Math.max(...prices))
-    this.minPrice = Math.ceil(Math.min(...prices))
+    const prices = this.filteredProducts.map(product => product.convertedPrice)
+    this.maxPrice = Math.ceil(Math.max(...prices))
+    this.minPrice = Math.floor(Math.min(...prices))
   },
 
   async convertPrice() {
@@ -27,16 +27,11 @@ const model = {
     )
   },
 
-  async addProducts(callback) {
-    const computers = await loadComputers()
-    console.log(computers)
-
-    this.products = computers
+  async addProducts() {
+    this.products = await loadComputers()
     await this.convertPrice()
-    this.calcMaxMinPrice()
-    this.filteredProducts = computers
+    this.filtrateProducts()
     this.createFilter()
-    callback(computers)
   },
 
   createCheckedFilters(filterDataIds) {
@@ -94,8 +89,9 @@ const model = {
     }
   },
 
-  filtrateProducts(priceFrom = this.minPrice, priceTo = this.maxPrice) {
+  filtrateProducts(priceFrom, priceTo) {
     this.filtrateProductsBySpecs()
+    this.calcMaxMinPrice()
     this.filtrateProductsByPrice(priceFrom, priceTo)
   },
 
@@ -112,10 +108,10 @@ const model = {
     })
   },
 
-  filtrateProductsByPrice(priceFrom, priceTo) {
+  filtrateProductsByPrice(priceFrom = this.minPrice, priceTo = this.maxPrice) {
     this.filteredProducts = this.filteredProducts.filter(
       product =>
-        priceFrom < product.convertedPrice && product.convertedPrice < priceTo
+        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
     )
   },
 
