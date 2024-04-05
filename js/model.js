@@ -10,12 +10,9 @@ const model = {
   recomendedProducts: [],
   reviews: [],
 
-  // addToFavorites(productId) {
-  //   const productToAdd = this.products.find(product => product.id === productId);
-  //   if (productToAdd) {
-  //     this.favorites.push(productToAdd);
-  //   }
-  // },
+  addToFavorites(productId) {
+    this.favorites = this.products.filter(product => product.id === productId)
+  },
 
   calcMaxMinPrice() {
     const prices = this.products.map(product => product.convertedPrice)
