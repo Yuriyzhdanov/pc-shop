@@ -117,7 +117,6 @@ function generateProduct(product) {
 function generateProductSidebar(product) {
   const slider = document.createElement('div')
   const navigation = document.createElement('div')
-  const URI = 'http://35.225.111.193:8181'
   slider.classList.add('slider')
   navigation.classList.add('navigation')
   product.photos.files.forEach((file, index) => {
@@ -133,7 +132,7 @@ function generateProductSidebar(product) {
     let len = product.photos.files.length
     let idx = index + 2 === len ? 1 : index + 2
     label.htmlFor = `slider-r${idx}`
-    img.src = URI + product.photos.dir + '/' + file
+    img.src = 'https://web-app.click/photos/products/computers/' + file
     img.alt = `img${index + 1}`
     label.appendChild(img)
     navigation.appendChild(label)
