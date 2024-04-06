@@ -232,7 +232,6 @@ function generateRating() {
 }
 
 function generateRecomendProd(product) {
-  const URI = 'http://35.225.111.193:8181'
   const elPave = document.createElement('div')
   const recomendDiv = document.createElement('div')
   const elLink = document.createElement('a')
@@ -242,7 +241,8 @@ function generateRecomendProd(product) {
   const pElement = document.createElement('p')
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')
-  img.src = URI + product.photos.dir + '/' + product.photos.files[0]
+  img.src =
+    'https://web-app.click/photos/products/computers/' + product.photos.files[0]
   img.alt = product.caption
   pElement.textContent = product.caption
   recomendDiv.appendChild(elLink)
