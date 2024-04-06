@@ -22,7 +22,12 @@
               <input type="hidden" name="page" value="search" />
               <div class="row">
                 <div class="left">
-                  <input type="text" name="query" id="query" placeholder="Что ищем ?" />
+                  <input
+                    type="text"
+                    name="query"
+                    id="query"
+                    placeholder="Что ищем ?"
+                  />
                 </div>
                 <div class="right">
                   <input type="submit" value="" />
@@ -68,7 +73,6 @@
                 <option value="byCaptionDESC">Я - А</option>
               </select>
             </div>
-
           </div>
           <!-- <div class="wrap-navigation">
             <a href=""> Избранные</a>
@@ -80,6 +84,31 @@
               <div class="wrap-props">
                 <div>
                   <button class="btn filter">Фильтровать</button>
+                </div>
+              </div>
+              <div class="wrap-props">
+                <h3>Цена</h3>
+                <div class="wrap-range">
+                  <label for="price_from">От:<span>0</span></label
+                  ><input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="80"
+                    name="price_from"
+                    id="price_from"
+                  />
+                </div>
+                <div class="wrap-range">
+                  <label for="price_to">До:<span>10</span></label
+                  ><input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="80"
+                    name="price_to"
+                    id="price_to"
+                  />
                 </div>
               </div>
             </div>

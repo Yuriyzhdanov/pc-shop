@@ -33,57 +33,57 @@ function generateFilterCheckbox(value, caption, key) {
   return elDiv
 }
 
-function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
-  const wrap = document.createElement('div')
-  const label = document.createElement('label')
-  const input = document.createElement('input')
-  const span = document.createElement('span')
-  wrap.classList.add('wrap-range')
-  label.textContent = labelText
-  span.textContent = value
-  label.setAttribute('for', id)
-  input.setAttribute('type', 'range')
-  input.setAttribute('min', minPrice)
-  input.setAttribute('max', maxPrice)
-  input.setAttribute('value', value)
-  input.setAttribute('name', id)
-  input.setAttribute('id', id)
-  wrap.appendChild(label)
-  wrap.appendChild(input)
-  label.appendChild(span)
-  input.addEventListener('input', onInputRangePrice)
+// function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
+//   const wrap = document.createElement('div')
+//   const label = document.createElement('label')
+//   const input = document.createElement('input')
+//   const span = document.createElement('span')
+//   wrap.classList.add('wrap-range')
+//   label.textContent = labelText
+//   span.textContent = value
+//   label.setAttribute('for', id)
+//   input.setAttribute('type', 'range')
+//   input.setAttribute('min', minPrice)
+//   input.setAttribute('max', maxPrice)
+//   input.setAttribute('value', value)
+//   input.setAttribute('name', id)
+//   input.setAttribute('id', id)
+//   wrap.appendChild(label)
+//   wrap.appendChild(input)
+//   label.appendChild(span)
+//   input.addEventListener('input', onInputRangePrice)
 
-  return wrap
-}
+//   return wrap
+// }
 
-function generateFilterPrice(minPrice, maxPrice) {
-  const wrapProps = document.createElement('div')
-  const h3 = document.createElement('h3')
-  const wrapRangeFrom = generateFilterRange(
-    'price_from',
-    'От:',
-    minPrice,
-    minPrice,
-    maxPrice
-  )
+// function generateFilterPrice(minPrice, maxPrice) {
+//   const wrapProps = document.createElement('div')
+//   const h3 = document.createElement('h3')
+//   const wrapRangeFrom = generateFilterRange(
+//     'price_from',
+//     'От:',
+//     minPrice,
+//     minPrice,
+//     maxPrice
+//   )
 
-  const wrapRangeTo = generateFilterRange(
-    'price_to',
-    'До:',
-    maxPrice,
-    minPrice,
-    maxPrice
-  )
-  wrapProps.appendChild(h3)
-  wrapProps.appendChild(wrapRangeFrom)
-  wrapProps.appendChild(wrapRangeTo)
-  wrapProps.classList.add('wrap-props')
-  h3.textContent = 'Цена'
+//   const wrapRangeTo = generateFilterRange(
+//     'price_to',
+//     'До:',
+//     maxPrice,
+//     minPrice,
+//     maxPrice
+//   )
+//   wrapProps.appendChild(h3)
+//   wrapProps.appendChild(wrapRangeFrom)
+//   wrapProps.appendChild(wrapRangeTo)
+//   wrapProps.classList.add('wrap-props')
+//   h3.textContent = 'Цена'
 
-  wrapRangeFrom.addEventListener('input', onInputChangePriceFrom)
-  wrapRangeTo.addEventListener('input', onInputChangePriceTo)
-  return wrapProps
-}
+//   wrapRangeFrom.addEventListener('input', onInputChangePriceFrom)
+//   wrapRangeTo.addEventListener('input', onInputChangePriceTo)
+//   return wrapProps
+// }
 
 function generateLabels(specs) {
   let i = 0

@@ -2,6 +2,8 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts(+priceFrom, +priceTo)
   renderContainerProducts(model.filteredProducts)
+  renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
 }
 
 function handleSort(sortType) {
