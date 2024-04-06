@@ -126,8 +126,6 @@ function generateProduct(product) {
   const buttonCompare = document.createElement('button')
   const p = document.createElement('p')
   const b = document.createElement('b')
-  const URI = 'http://35.225.111.193:8181'
-
   divContainterProduct.classList.add('wrap-product')
   divContainterProduct.dataset.productId = product.id
   divWrapImg.classList.add('wrap-img')
@@ -167,7 +165,6 @@ function generateProduct(product) {
   divButtonCompare.appendChild(buttonCompare)
   p.innerHTML += ' грн'
 
-  // buttonFavorite.addEventListener('click', handleLoadPageFavotites);
   return divContainterProduct
 }
 
@@ -219,9 +216,7 @@ function generateProductInfo(product) {
   const wrapInfo = document.createElement('div')
   const caption = document.createElement('div')
   const h3 = document.createElement('h3')
-  // const wrapRating = document.createElement('div')
   const rating = generateRating()
-
   const wrapInfoButtons = document.createElement('div')
   const buttons = document.createElement('div')
   const btnFavorite = document.createElement('button')

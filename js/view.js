@@ -65,13 +65,11 @@ function renderContainerProducts(products) {
 
 function renderWrapFilter(modelFilter, minPrice, maxPrice) {
   const elWrapFilter = document.querySelector('.wrap-filter')
-  const elForm = document.createElement('form')
   const elPrice = generateFilterPrice(minPrice, maxPrice)
-  elForm.setAttribute('action', '')
   for (const key in modelFilter) {
     if (typeof modelFilter[key] === 'object') {
       const elProp = generateFilterProp(key)
-      elForm.appendChild(elProp)
+      elWrapFilter.appendChild(elProp)
       for (const subKey in modelFilter[key]) {
         const elSubHeading = generateFilterSubHeading(subKey)
         for (const itemKey in modelFilter[key][subKey]) {
@@ -84,7 +82,6 @@ function renderWrapFilter(modelFilter, minPrice, maxPrice) {
     }
   }
   elWrapFilter.appendChild(elPrice)
-  elWrapFilter.appendChild(elForm)
 }
 
 function renderLabelPrice() {
@@ -125,11 +122,6 @@ function onInputRangePrice(e) {
 function renderFilterRangeFrom(val, min, max) {
   const elPriceFrom = document.querySelector('#price_from')
   const labelFrom = document.querySelector('label[for="price_from"] span')
-
 }
 
-function renderFilterRangeTo(val, min, max) {
-
-  
-}
-
+function renderFilterRangeTo(val, min, max) {}
