@@ -63,7 +63,7 @@ function renderContainerProducts(products) {
   })
 }
 
-function renderWrapFilter(modelFilter, minPrice, maxPrice) {
+function renderWrapFilter(modelFilter) {
   const elWrapFilter = document.querySelector('.wrap-filter')
   // const elPrice = generateFilterPrice(minPrice, maxPrice)
   for (const key in modelFilter) {
@@ -93,12 +93,6 @@ function renderWrapFilter(modelFilter, minPrice, maxPrice) {
 //   labelTo.textContent = elPriceTo.value
 // }
 
-function renderLabelTo() {
-  const elPriceTo = document.querySelector('#price_to')
-  const labelTo = document.querySelector('label[for="price_to"] span')
-  labelTo.textContent = elPriceTo.value
-}
-
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
   const elSlider = generateProductSidebar(product)
@@ -127,38 +121,35 @@ function renderRecomendProd(product) {
 
 function renderFilterRangeFrom(val, min, max) {
   const elPriceFrom = document.querySelector('#price_from')
-  elPriceFrom.value = val
   elPriceFrom.min = min
   elPriceFrom.max = max
+  elPriceFrom.value = val
   elPriceFrom.oninput = onInputRangeFrom
 }
 
 function renderFilterRangeTo(val, min, max) {
   const elPriceTo = document.querySelector('#price_to')
-  elPriceTo.value = val
   elPriceTo.min = min
   elPriceTo.max = max
+  elPriceTo.value = val
   elPriceTo.oninput = onInputRangeTo
 }
 
 function onInputRangeFrom(e) {
   const rangeFrom = e.target.value
-  // console.log(rangeFrom);
   renderLabelFrom(rangeFrom)
 }
 
 function onInputRangeTo(e) {
   const rangeTo = e.target.value
-  renderLabelFrom(rangeTo)
+  renderLabelTo(rangeTo)
 }
 
 function renderLabelFrom(val) {
   const labelFrom = document.querySelector('label[for="price_from"] span')
-  console.log(labelFrom);
-  
   labelFrom.textContent = val
 }
-function renderLabelFrom(val) {
+function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val
 }

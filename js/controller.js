@@ -15,6 +15,10 @@ async function handleLoadPageCatalog() {
   await model.addProducts()
   renderContainerProducts(model.filteredProducts)
   renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderLabelFrom(model.minPrice)
+  renderLabelTo(model.maxPrice)
 }
 
 function handleLoadPageProduct(id) {
