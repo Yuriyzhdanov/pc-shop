@@ -17,26 +17,6 @@ function onClickButtonFilter() {
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
-// function onInputChangePriceFrom() {
-//   const elPriceFrom = document.querySelector('#price_from')
-//   const elPriceTo = document.querySelector('#price_to')
-
-//   if (+elPriceTo.value < +elPriceFrom.value) {
-//     elPriceTo.value = elPriceFrom.value
-//   }
-//   renderLabelPrice()
-// }
-
-// function onInputChangePriceTo() {
-//   const elPriceFrom = document.querySelector('#price_from')
-//   const elPriceTo = document.querySelector('#price_to')
-
-//   if (+elPriceFrom.value > +elPriceTo.value) {
-//     elPriceFrom.value = elPriceTo.value
-//   }
-//   renderLabelPrice()
-// }
-
 function onLoadPage() {
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
@@ -46,7 +26,6 @@ function onLoadPage() {
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
   }
-
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
     if (!id) return
@@ -65,7 +44,6 @@ function renderContainerProducts(products) {
 
 function renderWrapFilter(modelFilter) {
   const elWrapFilter = document.querySelector('.wrap-filter')
-  // const elPrice = generateFilterPrice(minPrice, maxPrice)
   for (const key in modelFilter) {
     if (typeof modelFilter[key] === 'object') {
       const elProp = generateFilterProp(key)
@@ -81,17 +59,16 @@ function renderWrapFilter(modelFilter) {
       }
     }
   }
-  // elWrapFilter.appendChild(elPrice)
 }
 
-// function renderLabelPrice() {
-//   const elPriceFrom = document.querySelector('#price_from')
-//   const elPriceTo = document.querySelector('#price_to')
-//   const labelFrom = document.querySelector('label[for="price_from"] span')
-//   const labelTo = document.querySelector('label[for="price_to"] span')
-//   labelFrom.textContent = elPriceFrom.value
-//   labelTo.textContent = elPriceTo.value
-// }
+function onInputRangeFrom(e) {
+  const rangeFrom = e.target.value
+  renderLabelFrom(rangeFrom)
+}
+function onInputRangeTo(e) {
+  const rangeTo = e.target.value
+  renderLabelTo(rangeTo)
+}
 
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
@@ -111,14 +88,6 @@ function renderRecomendProd(product) {
   containerPave.appendChild(elPave)
 }
 
-// function onInputRangePrice(e) {
-//   const input = e.target
-//   const label = input.parentNode
-//   const span = label.querySelector('span')
-//   const spanValue = input.value
-//   span.textContent = spanValue
-// }
-
 function renderFilterRangeFrom(val, min, max) {
   const elPriceFrom = document.querySelector('#price_from')
   elPriceFrom.min = min
@@ -135,20 +104,11 @@ function renderFilterRangeTo(val, min, max) {
   elPriceTo.oninput = onInputRangeTo
 }
 
-function onInputRangeFrom(e) {
-  const rangeFrom = e.target.value
-  renderLabelFrom(rangeFrom)
-}
-
-function onInputRangeTo(e) {
-  const rangeTo = e.target.value
-  renderLabelTo(rangeTo)
-}
-
 function renderLabelFrom(val) {
   const labelFrom = document.querySelector('label[for="price_from"] span')
   labelFrom.textContent = val
 }
+
 function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val

@@ -33,59 +33,8 @@ function generateFilterCheckbox(value, caption, key) {
   return elDiv
 }
 
-// function generateFilterRange(id, labelText, value, minPrice, maxPrice) {
-//   const wrap = document.createElement('div')
-//   const label = document.createElement('label')
-//   const input = document.createElement('input')
-//   const span = document.createElement('span')
-//   wrap.classList.add('wrap-range')
-//   label.textContent = labelText
-//   span.textContent = value
-//   label.setAttribute('for', id)
-//   input.setAttribute('type', 'range')
-//   input.setAttribute('min', minPrice)
-//   input.setAttribute('max', maxPrice)
-//   input.setAttribute('value', value)
-//   input.setAttribute('name', id)
-//   input.setAttribute('id', id)
-//   wrap.appendChild(label)
-//   wrap.appendChild(input)
-//   label.appendChild(span)
-//   input.addEventListener('input', onInputRangePrice)
 
-//   return wrap
-// }
-
-// function generateFilterPrice(minPrice, maxPrice) {
-//   const wrapProps = document.createElement('div')
-//   const h3 = document.createElement('h3')
-//   const wrapRangeFrom = generateFilterRange(
-//     'price_from',
-//     'От:',
-//     minPrice,
-//     minPrice,
-//     maxPrice
-//   )
-
-//   const wrapRangeTo = generateFilterRange(
-//     'price_to',
-//     'До:',
-//     maxPrice,
-//     minPrice,
-//     maxPrice
-//   )
-//   wrapProps.appendChild(h3)
-//   wrapProps.appendChild(wrapRangeFrom)
-//   wrapProps.appendChild(wrapRangeTo)
-//   wrapProps.classList.add('wrap-props')
-//   h3.textContent = 'Цена'
-
-//   wrapRangeFrom.addEventListener('input', onInputChangePriceFrom)
-//   wrapRangeTo.addEventListener('input', onInputChangePriceTo)
-//   return wrapProps
-// }
-
-function generateLabels(specs) {
+function generateLabelSpecs(specs) {
   let i = 0
   const divLabels = document.createElement('div')
   for (const spec in specs) {
@@ -112,12 +61,12 @@ function generateProduct(product) {
   const divWrapImg = document.createElement('div')
   const divH3 = document.createElement('div')
   const divP = document.createElement('div')
-  const divLabels = generateLabels(product.specs)
   const divRow = document.createElement('div')
   const divNew = document.createElement('div')
   const divButtonCart = document.createElement('div')
   const divButtonFavorite = document.createElement('div')
   const divButtonCompare = document.createElement('div')
+  const divLabels = generateLabelSpecs(product.specs)
   const aLink = document.createElement('a')
   const img = document.createElement('img')
   const h3 = document.createElement('h3')
@@ -138,13 +87,11 @@ function generateProduct(product) {
   aLink.setAttribute('target', '_blank')
   aLink.setAttribute('class', 'a-link')
   divH3.setAttribute('class', 'wrap-h3')
-
   img.src =
     'https://web-app.click/photos/products/computers/' + product.photos.files[0]
   img.alt = product.caption
   h3.textContent = product.caption
   b.textContent = product.convertedPrice.toFixed(2)
-
   divContainterProduct.appendChild(divWrapA)
   divContainterProduct.appendChild(divLabels)
   divContainterProduct.appendChild(divP)
@@ -164,7 +111,6 @@ function generateProduct(product) {
   divButtonFavorite.appendChild(buttonFavorite)
   divButtonCompare.appendChild(buttonCompare)
   p.innerHTML += ' грн'
-
   return divContainterProduct
 }
 
@@ -239,7 +185,6 @@ function generateProductInfo(product) {
   wrapInfoCart.classList.add('wrap-info-cart')
   cartButton.classList.add('cart-button')
   btnCart.classList.add('btn')
-
   h3.textContent = product.caption
   wrapInfo.appendChild(caption)
   caption.appendChild(h3)
@@ -284,7 +229,6 @@ function generateRating() {
     ratingDiv.appendChild(label)
   }
   wrapDiv.appendChild(ratingDiv)
-
   return wrapDiv
 }
 
@@ -297,14 +241,11 @@ function generateRecomendProd(product) {
   elPave.classList.add('tile')
   recomendDiv.classList.add('recomend')
   const pElement = document.createElement('p')
-
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')
-
   img.src = URI + product.photos.dir + '/' + product.photos.files[0]
   img.alt = product.caption
   pElement.textContent = product.caption
-
   recomendDiv.appendChild(elLink)
   elLink.appendChild(img)
   recomendDiv.appendChild(pElement)
