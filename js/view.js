@@ -92,7 +92,6 @@ function renderLabelPrice() {
   const elPriceTo = document.querySelector('#price_to')
   const labelFrom = document.querySelector('label[for="price_from"] span')
   const labelTo = document.querySelector('label[for="price_to"] span')
-
   labelFrom.textContent = elPriceFrom.value
   labelTo.textContent = elPriceTo.value
 }
@@ -124,9 +123,13 @@ function onInputRangePrice(e) {
 }
 
 function renderFilterRangeFrom(val, min, max) {
-  // body
+  const elPriceFrom = document.querySelector('#price_from')
+  const labelFrom = document.querySelector('label[for="price_from"] span')
+
 }
 
 function renderFilterRangeTo(val, min, max) {
-  // body
+
+  
 }
+
