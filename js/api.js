@@ -16,3 +16,7 @@ async function loadCurrency() {
 async function loadComputers(id = '') {
   return sendRequest(API_COMPUTERS + id)
 }
+
+async function loadReviews(id = '') {
+  return sendRequest('API_test' + id)
+}

@@ -14,6 +14,11 @@ const model = {
     this.favorites = this.products.filter(product => product.id === productId)
   },
 
+  addProdToReviews(productId){
+    const reviews = await loadReviews(productId);
+    this.reviews.push(...reviews);
+  },
+
   calcMaxMinPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
     this.maxPrice = Math.ceil(Math.max(...prices))
