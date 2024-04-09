@@ -114,7 +114,9 @@ const model = {
         priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
     )
   },
-
+  getProductById(id) {
+    return this.products.find(prod => prod.id === id)
+  },
   sortCatalog(type) {
     switch (type) {
       case 'byPriceASC':

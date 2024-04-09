@@ -23,16 +23,26 @@ async function handleLoadPageCatalog() {
   renderLabelTo(model.maxPrice)
 }
 
-function handleLoadPageProduct(id) {
-  model.addProducts(async products => {
-    const product = products.find(prod => prod.id === id)
-    renderProductInfo(product)
-    renderProductSidebar(product)
-    renderRecomendProd(products[1])
-    renderRecomendProd(products[2])
-    renderRecomendProd(products[3])
-    renderRecomendProd(products[4])
-  })
+async function handleLoadPageProduct(id) {
+  console.log('handleLoadPageProduct');
+  
+  // model.addProducts(async products => {
+  //   const product = products.find(prod => prod.id === id)
+  //   renderProductInfo(product)
+  //   renderProductSidebar(product)
+  //   renderRecomendProd(products[1])
+  //   renderRecomendProd(products[2])
+  //   renderRecomendProd(products[3])
+  //   renderRecomendProd(products[4])
+  // })
+  await model.addProducts()
+  const product = model.getProductById(id)
+  renderProductInfo(product)
+  renderProductSidebar(product)
+  renderRecomendProd(model.products[1])
+  renderRecomendProd(model.products[1])
+  renderRecomendProd(model.products[1])
+
 }
 
 // function handleLoadPageFavotites(e) {

@@ -32,7 +32,3 @@ function getPageName(str) {
   const endIndex = str.indexOf(endWord)
   return str.slice(startIndex, endIndex)
 }
-
-function getProductById(id) {
-  return this.products.find(prod => prod.id === id);
-}
