@@ -28,8 +28,8 @@ function onLoadPage() {
   }
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
-    if (!id) return
-    handleLoadPageProduct(id)
+    if (!id) 
+    return handleLoadPageProduct(id)
   }
 }
 

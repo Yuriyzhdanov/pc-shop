@@ -24,7 +24,7 @@ async function handleLoadPageCatalog() {
 }
 
 function handleLoadPageProduct(id) {
-  model.addProducts(products => {
+  model.addProducts(async products => {
     const product = products.find(prod => prod.id === id)
     renderProductInfo(product)
     renderProductSidebar(product)

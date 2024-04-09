@@ -132,7 +132,9 @@ function generateProductSidebar(product) {
     let len = product.photos.files.length
     let idx = index + 2 === len ? 1 : index + 2
     label.htmlFor = `slider-r${idx}`
-    img.src = 'https://web-app.click/photos/products/computers/' + file
+    img.src = 'https://web-app.click' + product.photos.dir + '/' + file;
+    console.log(img.src);
+    
     img.alt = `img${index + 1}`
     label.appendChild(img)
     navigation.appendChild(label)
