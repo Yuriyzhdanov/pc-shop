@@ -1,5 +1,8 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
+const paginator = document.querySelector('.paginator');
+
+paginator.onclick = onClickPaginatorHandler
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
@@ -16,6 +19,7 @@ function onClickButtonFilter() {
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
+
 
 function onLoadPage() {
   const pageName = getPageName(location.pathname)
@@ -70,6 +74,15 @@ function onInputRangeTo(e) {
   const rangeTo = e.target.value
   renderLabelTo(rangeTo)
 }
+
+
+function onClickPaginatorHandler() {
+const paginatorLinks = paginator.querySelectorAll('a');
+console.log(paginatorLinks);
+
+}
+
+
 
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')

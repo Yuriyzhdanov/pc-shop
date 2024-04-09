@@ -1,11 +1,11 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts(+priceFrom, +priceTo)
-  renderContainerProducts(model.paginatedProducts)
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
+  renderContainerProducts(model.filteredProducts)
 }
 
 function handleSort(sortType) {

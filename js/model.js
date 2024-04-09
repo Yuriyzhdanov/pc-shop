@@ -10,7 +10,7 @@ const model = {
   recomendedProducts: [],
   reviews: [],
   paginatedProducts: [],
-  startFrom: 0, 
+  startFrom: 0,
 
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
@@ -158,7 +158,7 @@ const model = {
   paginator() {
     const itemsOnPage = 10
     this.paginatedProducts = this.filteredProducts.slice(
-     this.startFrom,
+      this.startFrom,
       this.startFrom + itemsOnPage
     )
     this.startFrom += itemsOnPage
