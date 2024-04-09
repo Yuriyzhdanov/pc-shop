@@ -9,14 +9,20 @@ const model = {
   favorites: [],
   recomendedProducts: [],
   reviews: [],
+  paginatedProducts: [],
+  startFrom: 0, 
 
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
   },
 
-  addProdToReviews(productId){
-    const reviews = await loadReviews(productId);
-    this.reviews.push(...reviews);
+  // addProdToReviews(productId){
+  //   const reviews = await loadReviews(productId);
+  //   this.reviews.push(...reviews);
+  // },
+
+  addToRecomendProd() {
+    this.recomendedProducts = this.products
   },
 
   calcMaxMinPrice() {
@@ -37,6 +43,7 @@ const model = {
     await this.convertPrice()
     this.filtrateProducts()
     this.createFilter()
+    this.paginator()
   },
 
   createCheckedFilters(filterDataIds) {
@@ -147,5 +154,13 @@ const model = {
       default:
         break
     }
+  },
+  paginator() {
+    const itemsOnPage = 10
+    this.paginatedProducts = this.filteredProducts.slice(
+     this.startFrom,
+      this.startFrom + itemsOnPage
+    )
+    this.startFrom += itemsOnPage
   },
 }

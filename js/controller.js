@@ -1,7 +1,7 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts(+priceFrom, +priceTo)
-  renderContainerProducts(model.filteredProducts)
+  renderContainerProducts(model.paginatedProducts)
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
@@ -15,7 +15,7 @@ function handleSort(sortType) {
 
 async function handleLoadPageCatalog() {
   await model.addProducts()
-  renderContainerProducts(model.filteredProducts)
+  renderContainerProducts(model.paginatedProducts)
   renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
