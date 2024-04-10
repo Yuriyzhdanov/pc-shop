@@ -66,22 +66,13 @@ function renderWrapFilter(modelFilter) {
   }
 }
 
-function onInputRangeFrom(e) {
-  const rangeFrom = e.target.value
-  renderLabelFrom(rangeFrom)
-}
-function onInputRangeTo(e) {
-  const rangeTo = e.target.value
-  renderLabelTo(rangeTo)
-}
+
 
 
 function onClickPaginatorHandler() {
-const paginatorLinks = paginator.querySelectorAll('a');
-console.log(paginatorLinks);
-
+// const paginatorLinks = paginator.querySelectorAll('a');
+  // model.paginator()
 }
-
 
 
 function renderProductSidebar(product) {
@@ -102,6 +93,28 @@ function renderRecomendProd(product) {
   containerPave.appendChild(elPave)
 }
 
+function onInputRangeFrom(e) {
+  const rangeFrom = e.target.value
+  renderLabelFrom(rangeFrom)
+  checkingRangeTo(rangeFrom)
+}
+function renderLabelFrom(val) {
+  const labelFrom = document.querySelector('label[for="price_from"] span')
+  labelFrom.textContent = val
+}
+
+
+function renderLabelTo(val) {
+  const labelTo = document.querySelector('label[for="price_to"] span')
+  labelTo.textContent = val
+}
+function onInputRangeTo(e) {
+  const rangeTo = e.target.value
+  renderLabelTo(rangeTo)
+  checkingRangeFrom(rangeTo)
+}
+
+
 function renderFilterRangeFrom(val, min, max) {
   const elPriceFrom = document.querySelector('#price_from')
   elPriceFrom.min = min
@@ -118,12 +131,20 @@ function renderFilterRangeTo(val, min, max) {
   elPriceTo.oninput = onInputRangeTo
 }
 
-function renderLabelFrom(val) {
-  const labelFrom = document.querySelector('label[for="price_from"] span')
-  labelFrom.textContent = val
-}
 
-function renderLabelTo(val) {
-  const labelTo = document.querySelector('label[for="price_to"] span')
-  labelTo.textContent = val
+
+
+function checkingRangeTo(rangeFrom) {
+  const elInputTo = document.querySelector('#price_to')
+  if (+elInputTo.value <= +rangeFrom) {
+    elInputTo.value = rangeFrom
+    renderLabelTo(rangeFrom)
+  }
+}
+function checkingRangeFrom(rangeTo) {
+  const elInputFrom = document.querySelector('#price_from')
+  if (+elInputFrom.value >= +rangeTo) {
+    elInputFrom.value = rangeTo
+    renderLabelFrom(rangeTo)
+  }
 }
