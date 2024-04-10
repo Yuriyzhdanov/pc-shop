@@ -1,8 +1,10 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
-const paginator = document.querySelector('.paginator');
+// const paginator = document.querySelector('.paginator')
+// console.log(paginator);
 
-paginator.onclick = onClickPaginatorHandler
+
+// paginator.onclick = onClickPaginatorHandler
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
@@ -19,7 +21,6 @@ function onClickButtonFilter() {
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
-
 
 function onLoadPage() {
   const pageName = getPageName(location.pathname)
@@ -66,14 +67,11 @@ function renderWrapFilter(modelFilter) {
   }
 }
 
-
-
-
 function onClickPaginatorHandler() {
-// const paginatorLinks = paginator.querySelectorAll('a');
-  // model.paginator()
+  const paginatorLinks = paginator.querySelectorAll('a');
+  console.log(paginatorLinks);
+  
 }
-
 
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
@@ -103,7 +101,6 @@ function renderLabelFrom(val) {
   labelFrom.textContent = val
 }
 
-
 function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val
@@ -113,7 +110,6 @@ function onInputRangeTo(e) {
   renderLabelTo(rangeTo)
   checkingRangeFrom(rangeTo)
 }
-
 
 function renderFilterRangeFrom(val, min, max) {
   const elPriceFrom = document.querySelector('#price_from')
@@ -130,9 +126,6 @@ function renderFilterRangeTo(val, min, max) {
   elPriceTo.value = val
   elPriceTo.oninput = onInputRangeTo
 }
-
-
-
 
 function checkingRangeTo(rangeFrom) {
   const elInputTo = document.querySelector('#price_to')

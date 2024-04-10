@@ -5,7 +5,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
-  renderContainerProducts(model.filteredProducts)
+  renderContainerProducts(model.filteredProducts) // не працюе
 }
 
 function handleSort(sortType) {
@@ -31,8 +31,22 @@ async function handleLoadPageProduct(id) {
   renderRecomendProd(model.products[1])
   renderRecomendProd(model.products[1])
   renderRecomendProd(model.products[1])
-
 }
+
+// paginator handler
+const pages = document.querySelectorAll('.page')
+function handlePageClick(e) {
+  e.preventDefault()
+  pages.forEach(page => page.classList.remove('active'))
+  e.target.classList.add('active')
+  const pageNumber = +e.target.textContent
+  console.log('work', pageNumber)
+  model.paginator()
+  renderContainerProducts(model.paginatedProducts)
+}
+pages.forEach(page => {
+  page.addEventListener('click', handlePageClick)
+})
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
