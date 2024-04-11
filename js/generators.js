@@ -87,7 +87,7 @@ function generateProduct(product) {
   aLink.setAttribute('class', 'a-link')
   divH3.setAttribute('class', 'wrap-h3')
   img.src =
-    'https://web-app.click/photos/products/computers/' + product.photos.files[0]
+    'https://web-app.click/pc-shop/photos/products/computers/' + product.photos.files[0]
   img.alt = product.caption
   h3.textContent = product.caption
   b.textContent = product.convertedPrice.toFixed(2)
@@ -131,7 +131,7 @@ function generateProductSidebar(product) {
     let len = product.photos.files.length
     let idx = index + 2 === len ? 1 : index + 2
     label.htmlFor = `slider-r${idx}`
-    img.src = `https://web-app.click/photos/products/computers/${file}`
+    img.src = `https://web-app.click/pc-shop/photos/products/computers/${file}`
     img.alt = `img${index + 1}`
     label.appendChild(img)
     navigation.appendChild(label)
@@ -241,7 +241,7 @@ function generateRecomendProd(product) {
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')
   img.src =
-    'https://web-app.click/photos/products/computers/' + product.photos.files[0]
+    'https://web-app.click/pc-shop/photos/products/computers/' + product.photos.files[0]
   img.alt = product.caption
   pElement.textContent = product.caption
   recomendDiv.appendChild(elLink)

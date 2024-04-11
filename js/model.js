@@ -40,6 +40,8 @@ const model = {
 
   async addProducts() {
     this.products = await loadComputers()
+    console.log(this.products);
+    
     await this.convertPrice()
     this.filtrateProducts()
     this.createFilter()
