@@ -87,7 +87,8 @@ function generateProduct(product) {
   aLink.setAttribute('class', 'a-link')
   divH3.setAttribute('class', 'wrap-h3')
   img.src =
-    'https://web-app.click/pc-shop/photos/products/computers/' + product.photos.files[0]
+    'https://web-app.click/pc-shop/photos/products/computers/' +
+    product.photos.files[0]
   img.alt = product.caption
   h3.textContent = product.caption
   b.textContent = product.convertedPrice.toFixed(2)
@@ -241,7 +242,8 @@ function generateRecomendProd(product) {
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')
   img.src =
-    'https://web-app.click/pc-shop/photos/products/computers/' + product.photos.files[0]
+    'https://web-app.click/pc-shop/photos/products/computers/' +
+    product.photos.files[0]
   img.alt = product.caption
   pElement.textContent = product.caption
   recomendDiv.appendChild(elLink)
@@ -249,4 +251,26 @@ function generateRecomendProd(product) {
   recomendDiv.appendChild(pElement)
   elPave.appendChild(recomendDiv)
   return elPave
+}
+
+function generateSwitchPage(totalProducts) {
+  const paginatorContainer = document.createElement('div')
+  paginatorContainer.classList.add('paginator')
+  let paginatorHTML = ''
+  for (let i = 1; i <= totalProducts; i++) {
+    paginatorHTML += `<a href="#" class="page">${i}</a>`
+  }
+  paginatorContainer.innerHTML = paginatorHTML
+  return paginatorContainer
+}
+
+function renderSwichPage(totalProducts) {
+  const elRightContainer = document.querySelector('#pageNumberContainer')
+  const elSwitchPage = generateSwitchPage(totalProducts)
+  elRightContainer.appendChild(elSwitchPage)
+  const pages = document.querySelectorAll('.page')
+  pages.forEach(page => {
+    page.addEventListener('click', handlePageClick)
+  })
+  // pages[0].classList.add('active')
 }

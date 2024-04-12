@@ -88,6 +88,9 @@ function renderProductInfo(product) {
 function renderRecomendProd(product) {
   const containerPave = document.querySelector('.container-pave')
   const elPave = generateRecomendProd(product)
+  for(let i = 0; i <= 4; i++){
+    
+  }
   containerPave.appendChild(elPave)
 }
 

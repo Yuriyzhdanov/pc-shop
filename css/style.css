@@ -237,13 +237,17 @@ a {
   background: white;
   border: 1px solid #fff;
 }
+.a-link {
+  height: 100%;
+  text-align: center;
+}
 .wrap-product .new {
   position: absolute;
   top: 5px;
   left: 5px;
   width: 55px;
   height: 55px;
-  background: white url(../img/bg/new.png) center / contain no-repeat;
+  background: url(../img/bg/new.png) center / contain no-repeat;
 }
 .wrap-product > div:nth-child(-n + 2) {
   cursor: pointer;
@@ -335,6 +339,28 @@ a {
   background: #f0f3f5 url(../img/bg/tocompare-hover.png) center / 70% no-repeat;
 }
 
+.paginator {
+  font-size: 15px;
+  text-align: center;
+  padding-top: 20px;
+}
+.page {
+  padding: 6px 14px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2391ff;
+  color: #fff;
+  cursor: pointer;
+}
+.page:hover{
+  background-color: #0056b3;
+} 
+.active {
+  background-color: #0056b3;
+} 
+
+
 .footer {
   margin: 5px;
 }
@@ -382,13 +408,4 @@ a {
   color: #fff;
   background: linear-gradient(45deg, hsl(255, 85%, 65%), hsl(180, 85%, 65%));
   box-shadow: 0 0 5px 0 #789;
-}
-
-.a-link {
-  height: 100%;
-  text-align: center;
-}
-
-.active{
-  background-color: rgb(120, 239, 255);
 }

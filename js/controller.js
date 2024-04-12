@@ -21,6 +21,8 @@ async function handleLoadPageCatalog() {
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
+  renderSwichPage(9)
+  console.log('renderSwichPage(9)')
 }
 
 async function handleLoadPageProduct(id) {
@@ -28,24 +30,26 @@ async function handleLoadPageProduct(id) {
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)
-  renderRecomendProd(model.products[1])
-  renderRecomendProd(model.products[1])
-  renderRecomendProd(model.products[1])
+  // model.recomendedProducts.forEach(prod => {
+  //   for (let i = 0; i < 4; i++) {
+  //     renderRecomendProd(prod)
+  //   }
+  // })
+ const recomendation = model.recomendedProducts 
+  for(let i = 0; i < 4; i++){
+    renderRecomendProd(recomendation[i])
+  }
 }
 
-// paginator handler
-const pages = document.querySelectorAll('.page')
 function handlePageClick(e) {
+  const pageNum = +e.target.textContent
+  const pages = e.target.parentNode.querySelectorAll('.page')
   e.preventDefault()
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')
-  model.paginator()
+  model.switchPage(pageNum)
   renderContainerProducts(model.paginatedProducts)
 }
-pages.forEach(page => {
-  page.addEventListener('click', handlePageClick)
-})
-pages[0].classList.add('active');
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId

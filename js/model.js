@@ -10,7 +10,6 @@ const model = {
   recomendedProducts: [],
   reviews: [],
   paginatedProducts: [],
-  startFrom: 0,
 
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
@@ -40,12 +39,13 @@ const model = {
 
   async addProducts() {
     this.products = await loadComputers()
-    console.log(this.products);
-    
     await this.convertPrice()
     this.filtrateProducts()
     this.createFilter()
-    this.paginator()
+    this.switchPage(1)
+    console.log('switchPage(1)')
+    this.addToRecomendProd()
+    console.log(model.recomendedProducts)
   },
 
   createCheckedFilters(filterDataIds) {
@@ -157,12 +157,13 @@ const model = {
         break
     }
   },
-  paginator() {
+  switchPage(pageNum) {
     const itemsOnPage = 10
+    const startFrom = itemsOnPage * (pageNum - 1)
+    const totalProducts = this.products.length
     this.paginatedProducts = this.filteredProducts.slice(
-      this.startFrom,
-      this.startFrom + itemsOnPage
+      startFrom,
+      startFrom + itemsOnPage
     )
-    this.startFrom += itemsOnPage
   },
 }
