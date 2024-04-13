@@ -5,7 +5,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
-  renderContainerProducts(model.filteredProducts) // не працює
+  renderContainerProducts(model.filteredProducts)
 }
 
 function handleSort(sortType) {
@@ -15,14 +15,13 @@ function handleSort(sortType) {
 
 async function handleLoadPageCatalog() {
   await model.addProducts()
-  renderContainerProducts(model.paginatedProducts)
   renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
-  renderSwichPage(9)
-  console.log('renderSwichPage(9)')
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
 }
 
 async function handleLoadPageProduct(id) {
@@ -30,14 +29,11 @@ async function handleLoadPageProduct(id) {
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)
-  // model.recomendedProducts.forEach(prod => {
-  //   for (let i = 0; i < 4; i++) {
-  //     renderRecomendProd(prod)
-  //   }
-  // })
- const recomendation = model.recomendedProducts 
-  for(let i = 0; i < 4; i++){
-    renderRecomendProd(recomendation[i])
+  const recomendation = model.recomendedProducts
+  for (let i = 0; i < 4; i++) {
+    const randomIdx = Math.floor(Math.random() * recomendation.length)
+    const randomProd = recomendation[randomIdx]
+    renderRecomendProd(randomProd)
   }
 }
 

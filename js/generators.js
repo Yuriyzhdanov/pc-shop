@@ -253,24 +253,27 @@ function generateRecomendProd(product) {
   return elPave
 }
 
-function generateSwitchPage(totalProducts) {
+function generateSwitchPage(pagesCount) {
   const paginatorContainer = document.createElement('div')
   paginatorContainer.classList.add('paginator')
-  let paginatorHTML = ''
-  for (let i = 1; i <= totalProducts; i++) {
-    paginatorHTML += `<a href="#" class="page">${i}</a>`
+  paginatorContainer.innerHTML = ""
+  for (let i = 1; i <= pagesCount; i++) {
+    const pageLink = document.createElement('a')
+    pageLink.href = '#'
+    pageLink.classList.add('page')
+    pageLink.textContent = i
+    paginatorContainer.appendChild(pageLink)
   }
-  paginatorContainer.innerHTML = paginatorHTML
   return paginatorContainer
 }
 
-function renderSwichPage(totalProducts) {
+function renderSwitchPage(pagesCount) {
   const elRightContainer = document.querySelector('#pageNumberContainer')
-  const elSwitchPage = generateSwitchPage(totalProducts)
+  const elSwitchPage = generateSwitchPage(pagesCount)
   elRightContainer.appendChild(elSwitchPage)
   const pages = document.querySelectorAll('.page')
   pages.forEach(page => {
     page.addEventListener('click', handlePageClick)
   })
-  // pages[0].classList.add('active')
+  pages[0].classList.add('active')
 }

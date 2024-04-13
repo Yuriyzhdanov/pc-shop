@@ -10,15 +10,20 @@ const model = {
   recomendedProducts: [],
   reviews: [],
   paginatedProducts: [],
-
+  countProducts: 0,
+  countPages: 0,
+  perCountPages: 10,
+  searchResult: [],
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
   },
-
   // addProdToReviews(productId){
   //   const reviews = await loadReviews(productId);
   //   this.reviews.push(...reviews);
   // },
+  calcCountPages() {
+    this.countPages = Math.trunc(this.products.length / this.perCountPages)
+  },
 
   addToRecomendProd() {
     this.recomendedProducts = this.products
@@ -42,10 +47,9 @@ const model = {
     await this.convertPrice()
     this.filtrateProducts()
     this.createFilter()
-    this.switchPage(1)
-    console.log('switchPage(1)')
     this.addToRecomendProd()
-    console.log(model.recomendedProducts)
+    this.calcCountPages()
+    this.switchPage(1)
   },
 
   createCheckedFilters(filterDataIds) {
@@ -158,12 +162,23 @@ const model = {
     }
   },
   switchPage(pageNum) {
-    const itemsOnPage = 10
-    const startFrom = itemsOnPage * (pageNum - 1)
-    const totalProducts = this.products.length
+    const startFrom = this.perCountPages * (pageNum - 1)
     this.paginatedProducts = this.filteredProducts.slice(
       startFrom,
-      startFrom + itemsOnPage
+      startFrom + this.perCountPages
     )
   },
+  search(query){
+      const searchResult = this.products.filter(prod => {
+      const productValues = Object.values(prod);
+      for (const val of productValues) {
+        if(typeof val === 'string' && val.includes(query)){
+          return true;
+        }
+      }
+      return false
+    })
+    return searchResult.id
+  }
 }
+

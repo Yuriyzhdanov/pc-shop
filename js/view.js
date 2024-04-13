@@ -1,10 +1,5 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
-// const paginator = document.querySelector('.paginator')
-// console.log(paginator);
-
-
-// paginator.onclick = onClickPaginatorHandler
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
@@ -30,6 +25,7 @@ function onLoadPage() {
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
+      
   }
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
@@ -67,12 +63,6 @@ function renderWrapFilter(modelFilter) {
   }
 }
 
-function onClickPaginatorHandler() {
-  const paginatorLinks = paginator.querySelectorAll('a');
-  console.log(paginatorLinks);
-  
-}
-
 function renderProductSidebar(product) {
   const elLeft = document.querySelector('#left')
   const elSlider = generateProductSidebar(product)
@@ -89,7 +79,7 @@ function renderRecomendProd(product) {
   const containerPave = document.querySelector('.container-pave')
   const elPave = generateRecomendProd(product)
   for(let i = 0; i <= 4; i++){
-    
+
   }
   containerPave.appendChild(elPave)
 }
