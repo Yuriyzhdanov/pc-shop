@@ -134,3 +134,15 @@ function checkingRangeFrom(rangeTo) {
     renderLabelFrom(rangeTo)
   }
 }
+
+function renderSwitchPage(pagesCount) {
+  const elPaginatorContainer = document.querySelector('.container-paginator')
+  elPaginatorContainer.innerHTML = ''; 
+  const elPaginator = generateSwitchPage(pagesCount)
+  elPaginatorContainer.appendChild(elPaginator)
+  const pages = document.querySelectorAll('.page')
+  pages.forEach(page => {
+    page.addEventListener('click', handlePageClick)
+  })
+  pages[0].classList.add('active')
+}

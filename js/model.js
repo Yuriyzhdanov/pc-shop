@@ -13,6 +13,7 @@ const model = {
   countProducts: 0,
   countPages: 0,
   perCountPages: 10,
+  currentPage: 0, 
   searchResult: [],
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
@@ -22,7 +23,7 @@ const model = {
   //   this.reviews.push(...reviews);
   // },
   calcCountPages() {
-    this.countPages = Math.trunc(this.products.length / this.perCountPages)
+    this.countPages = Math.trunc(this.filteredProducts.length / this.perCountPages)
   },
 
   addToRecomendProd() {
@@ -48,8 +49,7 @@ const model = {
     this.filtrateProducts()
     this.createFilter()
     this.addToRecomendProd()
-    this.calcCountPages()
-    this.switchPage(1)
+    this.switchPage(0)
   },
 
   createCheckedFilters(filterDataIds) {
@@ -111,6 +111,7 @@ const model = {
     this.filtrateProductsBySpecs()
     this.calcMaxMinPrice()
     this.filtrateProductsByPrice(priceFrom, priceTo)
+    this.switchPage(0)
   },
 
   filtrateProductsBySpecs() {
@@ -162,10 +163,12 @@ const model = {
     }
   },
   switchPage(pageNum) {
-    const startFrom = this.perCountPages * (pageNum - 1)
+    this.calcCountPages()
+    this.currentPage = pageNum
+    const startFrom = this.currentPage * this.perCountPages
+    const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(
-      startFrom,
-      startFrom + this.perCountPages
+      startFrom, endTo
     )
   },
   search(query){

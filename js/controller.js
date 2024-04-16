@@ -5,12 +5,15 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
-  renderContainerProducts(model.filteredProducts)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
 }
 
 function handleSort(sortType) {
   model.sortCatalog(sortType)
-  renderContainerProducts(model.filteredProducts)
+  model.switchPage(model.countPages)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
 }
 
 async function handleLoadPageCatalog() {

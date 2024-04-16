@@ -254,26 +254,16 @@ function generateRecomendProd(product) {
 }
 
 function generateSwitchPage(pagesCount) {
-  const paginatorContainer = document.createElement('div')
-  paginatorContainer.classList.add('paginator')
-  paginatorContainer.innerHTML = ""
-  for (let i = 1; i <= pagesCount; i++) {
+  const elPaginator = document.createElement('div')
+  elPaginator.classList.add('paginator')
+  for (let i = 0; i <= pagesCount; i++) {
     const pageLink = document.createElement('a')
     pageLink.href = '#'
     pageLink.classList.add('page')
     pageLink.textContent = i
-    paginatorContainer.appendChild(pageLink)
+    elPaginator.appendChild(pageLink)
   }
-  return paginatorContainer
+  return elPaginator
 }
 
-function renderSwitchPage(pagesCount) {
-  const elRightContainer = document.querySelector('#pageNumberContainer')
-  const elSwitchPage = generateSwitchPage(pagesCount)
-  elRightContainer.appendChild(elSwitchPage)
-  const pages = document.querySelectorAll('.page')
-  pages.forEach(page => {
-    page.addEventListener('click', handlePageClick)
-  })
-  pages[0].classList.add('active')
-}
+
