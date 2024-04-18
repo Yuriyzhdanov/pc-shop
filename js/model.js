@@ -1,19 +1,19 @@
 const model = {
-  products: [],
-  filteredProducts: [],
   checkedFilters: [],
-  filter: {},
+  countPages: 0,
+  countProducts: 0,
   currencyUSD: 0,
+  currentPage: 0, 
+  favorites: [],
+  filter: {},
+  filteredProducts: [],
   maxPrice: 0,
   minPrice: 0,
-  favorites: [],
+  paginatedProducts: [],
+  perCountPages: 10,
+  products: [],
   recomendedProducts: [],
   reviews: [],
-  paginatedProducts: [],
-  countProducts: 0,
-  countPages: 0,
-  perCountPages: 10,
-  currentPage: 0, 
   searchResult: [],
   addToFavorites(productId) {
     this.favorites = this.products.filter(product => product.id === productId)
@@ -108,6 +108,7 @@ const model = {
   },
 
   filtrateProducts(priceFrom, priceTo) {
+    // console.log('filtrateProducts', priceFrom, priceTo);
     this.filtrateProductsBySpecs()
     this.calcMaxMinPrice()
     this.filtrateProductsByPrice(priceFrom, priceTo)
@@ -175,13 +176,15 @@ const model = {
       const searchResult = this.products.filter(prod => {
       const productValues = Object.values(prod);
       for (const val of productValues) {
-        if(typeof val === 'string' && val.includes(query)){
+        if(typeof val === 'string' && containsIgnoreCase((val), query)){
           return true;
         }
       }
       return false
     })
-    return searchResult.id
+    
+    console.log(searchResult);
+    this.filteredProducts = searchResult 
   }
 }
 

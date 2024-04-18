@@ -14,6 +14,7 @@ function onClickButtonFilter() {
   const elInputFrom = document.querySelector('#price_from')
   const elInputTo = document.querySelector('#price_to')
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
+  console.log('onClickButtonFilter',elInputFrom.value, elInputTo.value);
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
@@ -25,7 +26,6 @@ function onLoadPage() {
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
-      
   }
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
@@ -79,7 +79,6 @@ function renderRecomendProd(product) {
   const containerPave = document.querySelector('.container-pave')
   const elPave = generateRecomendProd(product)
   for(let i = 0; i <= 4; i++){
-
   }
   containerPave.appendChild(elPave)
 }
@@ -98,6 +97,7 @@ function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val
 }
+
 function onInputRangeTo(e) {
   const rangeTo = e.target.value
   renderLabelTo(rangeTo)
