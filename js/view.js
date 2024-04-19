@@ -15,11 +15,12 @@ function onClickButtonFilter() {
   const elInputFrom = document.querySelector('#price_from')
   const elInputTo = document.querySelector('#price_to')
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
-  console.log('onClickButtonFilter',elInputFrom.value, elInputTo.value);
+  console.log('onClickButtonFilter', elInputFrom.value, elInputTo.value)
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
-  function onLoadPage() {
+function onLoadPage() {
+  console.log('foobar')
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
@@ -79,8 +80,7 @@ function renderProductInfo(product) {
 function renderRecomendProd(product) {
   const containerPave = document.querySelector('.container-pave')
   const elPave = generateRecomendProd(product)
-  for(let i = 0; i <= 4; i++){
-  }
+  for (let i = 0; i <= 4; i++) {}
   containerPave.appendChild(elPave)
 }
 
@@ -138,7 +138,7 @@ function checkingRangeFrom(rangeTo) {
 
 function renderSwitchPage(pagesCount) {
   const elPaginatorContainer = document.querySelector('.container-paginator')
-  elPaginatorContainer.innerHTML = ''; 
+  elPaginatorContainer.innerHTML = ''
   const elPaginator = generateSwitchPage(pagesCount)
   elPaginatorContainer.appendChild(elPaginator)
   const pages = document.querySelectorAll('.page')

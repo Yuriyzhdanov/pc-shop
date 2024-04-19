@@ -3,12 +3,12 @@ const model = {
   countPages: 0,
   countProducts: 0,
   currencyUSD: 0,
-  currentPage: 0, 
+  currentPage: 0,
   favorites: [],
   filter: {},
   filteredProducts: [],
-  maxPrice: 0,
   minPrice: 0,
+  maxPrice: 0,
   priceFrom: 0,
   priceTo: 0,
   paginatedProducts: [],
@@ -25,7 +25,9 @@ const model = {
   //   this.reviews.push(...reviews);
   // },
   calcCountPages() {
-    this.countPages = Math.trunc(this.filteredProducts.length / this.perCountPages)
+    this.countPages = Math.trunc(
+      this.filteredProducts.length / this.perCountPages
+    )
   },
 
   addToRecomendProd() {
@@ -34,8 +36,13 @@ const model = {
 
   calcMaxMinPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
-    this.maxPrice = Math.ceil(Math.max(...prices))
     this.minPrice = Math.floor(Math.min(...prices))
+    this.maxPrice = Math.ceil(Math.max(...prices))
+  },
+
+  calcFromToPrice() {
+    this.priceFrom = this.minPrice
+    this.priceTo = this.maxPrice
   },
 
   async convertPrice() {
@@ -112,6 +119,9 @@ const model = {
   filtrateProducts() {
     this.filtrateProductsBySpecs()
     this.calcMaxMinPrice()
+
+    // вычисление фром и ту
+
     this.filtrateProductsByPrice()
     this.switchPage(0)
   },
@@ -130,9 +140,12 @@ const model = {
   },
 
   filtrateProductsByPrice() {
+    console.log(this.priceFrom, this.priceTo)
+
     this.filteredProducts = this.filteredProducts.filter(
       product =>
-      this.priceFrom <= product.convertedPrice && product.convertedPrice <= this.priceTo
+        this.priceFrom <= product.convertedPrice &&
+        product.convertedPrice <= this.priceTo
     )
   },
   getProductById(id) {
@@ -169,23 +182,20 @@ const model = {
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
-    this.paginatedProducts = this.filteredProducts.slice(
-      startFrom, endTo
-    )
+    this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
   },
-  search(query){
-      const searchResult = this.products.filter(prod => {
-      const productValues = Object.values(prod);
+  search(query) {
+    const searchResult = this.products.filter(prod => {
+      const productValues = Object.values(prod)
       for (const val of productValues) {
-        if(typeof val === 'string' && containsIgnoreCase((val), query)){
-          return true;
+        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
+          return true
         }
       }
       return false
     })
-    
-    console.log(searchResult);
-    this.filteredProducts = searchResult 
-  }
-}
 
+    console.log(searchResult)
+    this.filteredProducts = searchResult
+  },
+}

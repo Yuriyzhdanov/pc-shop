@@ -22,14 +22,19 @@ function handleSort(sortType) {
 
 async function handleLoadPageCatalog() {
   await model.addProducts()
+  console.log(model.minPrice, model.maxPrice)
+  console.log(model.priceFrom, model.priceTo)
   handlerUpdatePriceFrom(model.minPrice)
   handlerUpdatePriceTo(model.maxPrice)
+  console.log(model.priceFrom, model.priceTo)
+
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
   renderSwitchPage(model.countPages)
+  // console.log(model.paginatedProducts)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -57,15 +62,15 @@ function handlePageClick(e) {
 }
 
 const queryInput = document.querySelector('#query')
-function oninputQueryInput(e){
-    // const query = e.target.value.trim().toLowerCase();
-    const query = e.target.value
-    query.innerHTML = '';
-    console.log(query);
-    model.search(query)
-    renderContainerProducts(model.filteredProducts)
-  }
-  queryInput.oninput = oninputQueryInput
+function oninputQueryInput(e) {
+  // const query = e.target.value.trim().toLowerCase();
+  const query = e.target.value
+  query.innerHTML = ''
+  console.log(query)
+  model.search(query)
+  renderContainerProducts(model.filteredProducts)
+}
+queryInput.oninput = oninputQueryInput
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
