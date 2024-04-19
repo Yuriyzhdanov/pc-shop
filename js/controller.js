@@ -1,14 +1,17 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log('handleFiltrate',priceFrom,priceTo)
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts(+priceFrom, +priceTo)
-  renderLabelFrom(model.minPrice)
-  renderLabelTo(model.maxPrice)
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   model.switchPage(model.countPages)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
+}
+function handlerUpdatePriceFrom(price) {
+  model.priceFrom = +price
+}
+function handlerUpdatePriceTo(price) {
+  model.priceTo = +price
 }
 
 function handleSort(sortType) {
@@ -19,14 +22,15 @@ function handleSort(sortType) {
 
 async function handleLoadPageCatalog() {
   await model.addProducts()
-  renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
+  handlerUpdatePriceFrom(model.minPrice)
+  handlerUpdatePriceTo(model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderLabelTo(model.maxPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderWrapFilter(model.filter, model.minPrice, model.maxPrice)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
-
 }
 
 async function handleLoadPageProduct(id) {

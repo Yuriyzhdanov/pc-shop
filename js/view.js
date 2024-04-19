@@ -2,6 +2,7 @@ const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
+// document.addEventListener('DOMContentLoaded', test = {1:1,2:2})
 
 function onChangeSelectSort(e) {
   handleSort(e.target.value)
@@ -18,7 +19,7 @@ function onClickButtonFilter() {
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
-function onLoadPage() {
+  function onLoadPage() {
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
@@ -87,21 +88,21 @@ function onInputRangeFrom(e) {
   const rangeFrom = e.target.value
   renderLabelFrom(rangeFrom)
   checkingRangeTo(rangeFrom)
+  handlerUpdatePriceFrom(rangeFrom)
+}
+function onInputRangeTo(e) {
+  const rangeTo = e.target.value
+  renderLabelTo(rangeTo)
+  checkingRangeFrom(rangeTo)
+  handlerUpdatePriceTo(rangeTo)
 }
 function renderLabelFrom(val) {
   const labelFrom = document.querySelector('label[for="price_from"] span')
   labelFrom.textContent = val
 }
-
 function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val
-}
-
-function onInputRangeTo(e) {
-  const rangeTo = e.target.value
-  renderLabelTo(rangeTo)
-  checkingRangeFrom(rangeTo)
 }
 
 function renderFilterRangeFrom(val, min, max) {

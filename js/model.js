@@ -9,6 +9,8 @@ const model = {
   filteredProducts: [],
   maxPrice: 0,
   minPrice: 0,
+  priceFrom: 0,
+  priceTo: 0,
   paginatedProducts: [],
   perCountPages: 10,
   products: [],
@@ -107,11 +109,10 @@ const model = {
     }
   },
 
-  filtrateProducts(priceFrom, priceTo) {
-    // console.log('filtrateProducts', priceFrom, priceTo);
+  filtrateProducts() {
     this.filtrateProductsBySpecs()
     this.calcMaxMinPrice()
-    this.filtrateProductsByPrice(priceFrom, priceTo)
+    this.filtrateProductsByPrice()
     this.switchPage(0)
   },
 
@@ -128,10 +129,10 @@ const model = {
     })
   },
 
-  filtrateProductsByPrice(priceFrom = this.minPrice, priceTo = this.maxPrice) {
+  filtrateProductsByPrice() {
     this.filteredProducts = this.filteredProducts.filter(
       product =>
-        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
+      this.priceFrom <= product.convertedPrice && product.convertedPrice <= this.priceTo
     )
   },
   getProductById(id) {
