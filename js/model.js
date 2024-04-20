@@ -29,6 +29,7 @@ const model = {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
     )
+
   },
 
   addToRecomendProd() {
@@ -138,7 +139,7 @@ const model = {
   },
 
   filtrateProductsByPrice() {
-    console.log('до', this.priceFrom, this.priceTo)
+    console.log('filtrateProductsByPrice', 'до', this.priceFrom, this.priceTo)
     this.filteredProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
@@ -184,6 +185,9 @@ const model = {
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
+    console.log(this.perCountPages);
+    console.log(this.currentPage);
+    console.log(this.paginatedProducts);
   },
 
   search(query) {

@@ -5,8 +5,6 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   handlerUpdatePriceFrom(+priceFrom)
   handlerUpdatePriceTo(+priceTo)
-  console.log('handlerUpdatePriceFrom',+priceFrom );
-  
   model.switchPage(model.countPages)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
