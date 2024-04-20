@@ -17,13 +17,14 @@ const model = {
   recomendedProducts: [],
   reviews: [],
   searchResult: [],
-  addToFavorites(productId) {
-    this.favorites = this.products.filter(product => product.id === productId)
-  },
   // addProdToReviews(productId){
   //   const reviews = await loadReviews(productId);
   //   this.reviews.push(...reviews);
   // },
+  addToFavorites(productId) {
+    this.favorites = this.products.filter(product => product.id === productId)
+  },
+
   calcCountPages() {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
@@ -34,7 +35,7 @@ const model = {
     this.recomendedProducts = this.products
   },
 
-  calcMaxMinPrice() {
+  calcMinMaxPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
     this.minPrice = Math.floor(Math.min(...prices))
     this.maxPrice = Math.ceil(Math.max(...prices))
@@ -86,7 +87,6 @@ const model = {
     if (options['frequency'].includes('*')) {
       options['frequency'] = options['frequency'].replace(/\s/g, '')
       options['frequency'] = options['frequency'].replace(/\?/g, '')
-      ;``
       options['frequency'] =
         options['frequency'].split('*')[1].replace('Ghz', '').trim() + 'Ghz'
     }
@@ -118,10 +118,8 @@ const model = {
 
   filtrateProducts() {
     this.filtrateProductsBySpecs()
-    this.calcMaxMinPrice()
-
-    // вычисление фром и ту
-
+    this.calcMinMaxPrice()
+    this.calcFromToPrice()
     this.filtrateProductsByPrice()
     this.switchPage(0)
   },
@@ -140,17 +138,19 @@ const model = {
   },
 
   filtrateProductsByPrice() {
-    console.log(this.priceFrom, this.priceTo)
-
+    console.log('до', this.priceFrom, this.priceTo)
     this.filteredProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
         product.convertedPrice <= this.priceTo
     )
+    console.log('после', this.priceFrom, this.priceTo)
   },
+
   getProductById(id) {
     return this.products.find(prod => prod.id === id)
   },
+
   sortCatalog(type) {
     switch (type) {
       case 'byPriceASC':
@@ -177,6 +177,7 @@ const model = {
         break
     }
   },
+
   switchPage(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
@@ -184,6 +185,7 @@ const model = {
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
   },
+
   search(query) {
     const searchResult = this.products.filter(prod => {
       const productValues = Object.values(prod)
@@ -194,8 +196,6 @@ const model = {
       }
       return false
     })
-
-    console.log(searchResult)
     this.filteredProducts = searchResult
   },
 }

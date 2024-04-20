@@ -265,5 +265,3 @@ function generateSwitchPage(pagesCount) {
   }
   return elPaginator
 }
-
-

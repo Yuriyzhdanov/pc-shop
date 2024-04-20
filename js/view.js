@@ -2,7 +2,6 @@ const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
-// document.addEventListener('DOMContentLoaded', test = {1:1,2:2})
 
 function onChangeSelectSort(e) {
   handleSort(e.target.value)
@@ -15,12 +14,10 @@ function onClickButtonFilter() {
   const elInputFrom = document.querySelector('#price_from')
   const elInputTo = document.querySelector('#price_to')
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
-  console.log('onClickButtonFilter', elInputFrom.value, elInputTo.value)
   handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
 }
 
 function onLoadPage() {
-  console.log('foobar')
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
@@ -90,16 +87,19 @@ function onInputRangeFrom(e) {
   checkingRangeTo(rangeFrom)
   handlerUpdatePriceFrom(rangeFrom)
 }
+
 function onInputRangeTo(e) {
   const rangeTo = e.target.value
   renderLabelTo(rangeTo)
   checkingRangeFrom(rangeTo)
   handlerUpdatePriceTo(rangeTo)
 }
+
 function renderLabelFrom(val) {
   const labelFrom = document.querySelector('label[for="price_from"] span')
   labelFrom.textContent = val
 }
+
 function renderLabelTo(val) {
   const labelTo = document.querySelector('label[for="price_to"] span')
   labelTo.textContent = val
