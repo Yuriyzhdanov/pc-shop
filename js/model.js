@@ -91,6 +91,12 @@ const model = {
     }
   },
 
+  filtrateProducts() {
+    this.filtrateProductsBySpecs()
+    this.calcMinMaxPrice()
+    this.calcFromToPrice()
+    this.filtrateProductsByPrice()
+  },
   createFilter() {
     const specs = this.products.map(product => product.specs)
     for (const spec of specs) {
@@ -156,7 +162,6 @@ const model = {
         this.priceFrom <= product.convertedPrice &&
         product.convertedPrice <= this.priceTo
     )
-    console.log('после', this.priceFrom, this.priceTo)
   },
 
   sortCatalog(type) {
