@@ -1,35 +1,33 @@
 const model = {
-  checkedFilters: [],
-  countPages: 0,
-  countProducts: 0,
-  currencyUSD: 0,
-  currentPage: 0,
-  favorites: [],
   filter: {},
+
+  products: [],
+  searchedProducts: [],
   filteredProducts: [],
-  minPrice: 0,
-  maxPrice: 0,
+  pricedProducts: [],
+  sortedProducts: [],
+  paginatedProducts: [],
+
+  searchQuery: '',
+  checkedFilters: [],
   priceFrom: 0,
   priceTo: 0,
-  paginatedProducts: [],
+  currentPage: 0,
+
+  minPrice: 0,
+  maxPrice: 0,
+  currencyUSD: 0,
+
+  countPages: 0,
+  countProducts: 0,
   perCountPages: 10,
-  products: [],
+
   recomendedProducts: [],
-  reviews: [],
-  searchResult: [],
-  // addProdToReviews(productId){
-  //   const reviews = await loadReviews(productId);
-  //   this.reviews.push(...reviews);
-  // },
-  addToFavorites(productId) {
-    this.favorites = this.products.filter(product => product.id === productId)
-  },
 
   calcCountPages() {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
     )
-
   },
 
   addToRecomendProd() {
@@ -125,8 +123,21 @@ const model = {
     this.switchPage(0)
   },
 
+  search(query) {
+    const searchedProducts = this.products.filter(prod => {
+      const productValues = Object.values(prod)
+      for (const val of productValues) {
+        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
+          return true
+        }
+      }
+      return false
+    })
+    this.filteredProducts = searchedProducts
+  },
+
   filtrateProductsBySpecs() {
-    this.filteredProducts = this.products.filter(product => {
+    this.filteredProducts = this.searchedProducts.filter(product => {
       let matchedCount = 0
       this.checkedFilters.forEach(filter => {
         let { category, key, values } = filter
@@ -140,16 +151,12 @@ const model = {
 
   filtrateProductsByPrice() {
     console.log('filtrateProductsByPrice', 'до', this.priceFrom, this.priceTo)
-    this.filteredProducts = this.filteredProducts.filter(
+    this.pricedProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
         product.convertedPrice <= this.priceTo
     )
     console.log('после', this.priceFrom, this.priceTo)
-  },
-
-  getProductById(id) {
-    return this.products.find(prod => prod.id === id)
   },
 
   sortCatalog(type) {
@@ -179,27 +186,18 @@ const model = {
     }
   },
 
+  getProductById(id) {
+    return this.products.find(prod => prod.id === id)
+  },
+
   switchPage(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
-    console.log(this.perCountPages);
-    console.log(this.currentPage);
-    console.log(this.paginatedProducts);
-  },
-
-  search(query) {
-    const searchResult = this.products.filter(prod => {
-      const productValues = Object.values(prod)
-      for (const val of productValues) {
-        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
-          return true
-        }
-      }
-      return false
-    })
-    this.filteredProducts = searchResult
+    console.log(this.perCountPages)
+    console.log(this.currentPage)
+    console.log(this.paginatedProducts)
   },
 }
