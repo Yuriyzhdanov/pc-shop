@@ -13,8 +13,10 @@ function onClickButtonFilter() {
   )
   const elInputFrom = document.querySelector('#price_from')
   const elInputTo = document.querySelector('#price_to')
+  const rangeFrom = elInputFrom.value
+  const rangeTo = elInputTo.value
   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
-  handleFiltrate(filterDataIds, elInputFrom.value, elInputTo.value)
+  handleFiltrate(filterDataIds, +rangeFrom, +rangeTo)
 }
 
 function onLoadPage() {
@@ -125,14 +127,12 @@ function checkingRangeTo(rangeFrom) {
   const elInputTo = document.querySelector('#price_to')
   if (+elInputTo.value <= +rangeFrom) {
     elInputTo.value = rangeFrom
-    renderLabelTo(rangeFrom)
   }
 }
 function checkingRangeFrom(rangeTo) {
   const elInputFrom = document.querySelector('#price_from')
   if (+elInputFrom.value >= +rangeTo) {
     elInputFrom.value = rangeTo
-    renderLabelFrom(rangeTo)
   }
 }
 

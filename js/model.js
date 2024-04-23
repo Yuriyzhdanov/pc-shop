@@ -29,7 +29,6 @@ const model = {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
     )
-
   },
 
   addToRecomendProd() {
@@ -93,6 +92,13 @@ const model = {
     }
   },
 
+  filtrateProducts() {
+    this.filtrateProductsBySpecs()
+    this.calcMinMaxPrice()
+    this.calcFromToPrice()
+    this.filtrateProductsByPrice()
+
+  },
   createFilter() {
     const specs = this.products.map(product => product.specs)
     for (const spec of specs) {
@@ -117,14 +123,6 @@ const model = {
     }
   },
 
-  filtrateProducts() {
-    this.filtrateProductsBySpecs()
-    this.calcMinMaxPrice()
-    this.calcFromToPrice()
-    this.filtrateProductsByPrice()
-    this.switchPage(0)
-  },
-
   filtrateProductsBySpecs() {
     this.filteredProducts = this.products.filter(product => {
       let matchedCount = 0
@@ -139,13 +137,11 @@ const model = {
   },
 
   filtrateProductsByPrice() {
-    console.log('filtrateProductsByPrice', 'до', this.priceFrom, this.priceTo)
     this.filteredProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
         product.convertedPrice <= this.priceTo
     )
-    console.log('после', this.priceFrom, this.priceTo)
   },
 
   getProductById(id) {
@@ -185,9 +181,6 @@ const model = {
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
-    console.log(this.perCountPages);
-    console.log(this.currentPage);
-    console.log(this.paginatedProducts);
   },
 
   search(query) {

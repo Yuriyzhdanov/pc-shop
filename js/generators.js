@@ -66,6 +66,7 @@ function generateProduct(product) {
   const divButtonFavorite = document.createElement('div')
   const divButtonCompare = document.createElement('div')
   const divLabels = generateLabelSpecs(product.specs)
+  // const divLabels = generateLabelSpecs(product.attributes);
   const aLink = document.createElement('a')
   const img = document.createElement('img')
   const h3 = document.createElement('h3')
