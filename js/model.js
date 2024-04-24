@@ -50,70 +50,6 @@ const model = {
     this.searchedProducts = searchProducts
   },
 
-  calcCountPages() {
-    this.countPages = Math.trunc(
-      this.filteredProducts.length / this.perCountPages
-    )
-  },
-
-  addToRecomendProd() {
-    this.recomendedProducts = this.products
-  },
-
-  calcMinMaxPrice() {
-    const prices = this.filteredProducts.map(product => product.convertedPrice)
-    this.minPrice = Math.floor(Math.min(...prices))
-    this.maxPrice = Math.ceil(Math.max(...prices))
-  },
-
-  calcFromToPrice() {
-    this.priceFrom = this.minPrice
-    this.priceTo = this.maxPrice
-  },
-
-  async convertPrice() {
-    const ccy = await loadCurrency()
-    this.products.forEach(
-      product => (product.convertedPrice = product.price * ccy)
-    )
-  },
-
-  createCheckedFilters(filterDataIds) {
-    this.checkedFilters = []
-    filterDataIds.forEach(filterDataId => {
-      const idParts = filterDataId.split('-')
-      const category = idParts[0]
-      const key = idParts[1]
-      const value = idParts[2]
-      const isExistFilter = this.checkedFilters.find(
-        filter => filter.category === category && filter.key === key
-      )
-      if (isExistFilter) {
-        isExistFilter.values.push(value)
-      } else {
-        this.checkedFilters.push({ category, key, values: [value] })
-      }
-    })
-  },
-
-  replaceSpecs(options) {
-    if (!this.filter['Процессор']['cores']) {
-      this.filter['Процессор']['cores'] = []
-    }
-    if (options['frequency'].includes('*')) {
-      options['frequency'] = options['frequency'].replace(/\s/g, '')
-      options['frequency'] = options['frequency'].replace(/\?/g, '')
-      options['frequency'] =
-        options['frequency'].split('*')[1].replace('Ghz', '').trim() + 'Ghz'
-    }
-  },
-
-  filtrateProducts() {
-    this.filtrateProductsBySpecs()
-    this.calcMinMaxPrice()
-    this.calcFromToPrice()
-    this.filtrateProductsByPrice()
-  },
   createFilter() {
     const specs = this.products.map(product => product.specs)
     for (const spec of specs) {
@@ -138,12 +74,22 @@ const model = {
     }
   },
 
-  filtrateProducts() {
-    this.filtrateProductsBySpecs()
-    this.calcMinMaxPrice()
-    this.calcFromToPrice()
-    this.filtrateProductsByPrice()
-    this.switchPage(0)
+  createCheckedFilters(filterDataIds) {
+    this.checkedFilters = []
+    filterDataIds.forEach(filterDataId => {
+      const idParts = filterDataId.split('-')
+      const category = idParts[0]
+      const key = idParts[1]
+      const value = idParts[2]
+      const isExistFilter = this.checkedFilters.find(
+        filter => filter.category === category && filter.key === key
+      )
+      if (isExistFilter) {
+        isExistFilter.values.push(value)
+      } else {
+        this.checkedFilters.push({ category, key, values: [value] })
+      }
+    })
   },
 
   filtrateProductsBySpecs() {
@@ -165,6 +111,53 @@ const model = {
         this.priceFrom <= product.convertedPrice &&
         product.convertedPrice <= this.priceTo
     )
+  },
+
+  calcMinMaxPrice() {
+    const prices = this.filteredProducts.map(product => product.convertedPrice)
+    this.minPrice = Math.floor(Math.min(...prices))
+    this.maxPrice = Math.ceil(Math.max(...prices))
+  },
+
+  filtrateProducts() {
+    this.filtrateProductsBySpecs()
+    this.calcMinMaxPrice()
+    this.calcFromToPrice()
+    this.filtrateProductsByPrice()
+  },
+
+  calcCountPages() {
+    this.countPages = Math.trunc(
+      this.filteredProducts.length / this.perCountPages
+    )
+  },
+
+  addToRecomendProd() {
+    this.recomendedProducts = this.products
+  },
+
+  calcFromToPrice() {
+    this.priceFrom = this.minPrice
+    this.priceTo = this.maxPrice
+  },
+
+  async convertPrice() {
+    const ccy = await loadCurrency()
+    this.products.forEach(
+      product => (product.convertedPrice = product.price * ccy)
+    )
+  },
+
+  replaceSpecs(options) {
+    if (!this.filter['Процессор']['cores']) {
+      this.filter['Процессор']['cores'] = []
+    }
+    if (options['frequency'].includes('*')) {
+      options['frequency'] = options['frequency'].replace(/\s/g, '')
+      options['frequency'] = options['frequency'].replace(/\?/g, '')
+      options['frequency'] =
+        options['frequency'].split('*')[1].replace('Ghz', '').trim() + 'Ghz'
+    }
   },
 
   sortCatalog(type) {
