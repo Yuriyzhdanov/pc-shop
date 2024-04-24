@@ -105,7 +105,7 @@ const model = {
     })
   },
 
-  priceRangeFilter() {
+  priceFilteredProducts() {
     this.pricedProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
@@ -118,7 +118,7 @@ const model = {
     this.minPrice = Math.floor(Math.min(...prices))
     this.maxPrice = Math.ceil(Math.max(...prices))
   },
-  
+
   calcFromToPrice() {
     this.priceFrom = this.minPrice
     this.priceTo = this.maxPrice
@@ -128,9 +128,37 @@ const model = {
     this.filtrateProductsBySpecs()
     this.calcMinMaxPrice()
     this.calcFromToPrice()
-    this.priceRangeFilter()
+    this.priceFilteredProducts()
   },
-  
+
+  sortingProducts(type) {
+    this.sortedProducts = this.pricedProducts
+    switch (type) {
+      case 'byPriceASC':
+        this.sortedProducts.sort((a, b) => a.price - b.price)
+        break
+      case 'byPriceDESC':
+        this.sortedProducts.sort((a, b) => b.price - a.price)
+        break
+      case 'byCaptionASC':
+        this.sortedProducts.sort((a, b) => {
+          return a.caption.localeCompare(b.caption, undefined, {
+            sensitivity: 'accent',
+          })
+        })
+        break
+      case 'byCaptionDESC':
+        this.sortedProducts.sort((a, b) => {
+          return b.caption.localeCompare(a.caption, undefined, {
+            sensitivity: 'accent',
+          })
+        })
+        break
+      default:
+        break
+    }
+  },
+
   calcCountPages() {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
@@ -140,7 +168,6 @@ const model = {
   addToRecomendProd() {
     this.recomendedProducts = this.products
   },
-
 
   async convertPrice() {
     const ccy = await loadCurrency()
@@ -158,33 +185,6 @@ const model = {
       options['frequency'] = options['frequency'].replace(/\?/g, '')
       options['frequency'] =
         options['frequency'].split('*')[1].replace('Ghz', '').trim() + 'Ghz'
-    }
-  },
-
-  sortCatalog(type) {
-    switch (type) {
-      case 'byPriceASC':
-        this.filteredProducts.sort((a, b) => a.price - b.price)
-        break
-      case 'byPriceDESC':
-        this.filteredProducts.sort((a, b) => b.price - a.price)
-        break
-      case 'byCaptionASC':
-        this.filteredProducts.sort((a, b) => {
-          return a.caption.localeCompare(b.caption, undefined, {
-            sensitivity: 'accent',
-          })
-        })
-        break
-      case 'byCaptionDESC':
-        this.filteredProducts.sort((a, b) => {
-          return b.caption.localeCompare(a.caption, undefined, {
-            sensitivity: 'accent',
-          })
-        })
-        break
-      default:
-        break
     }
   },
 

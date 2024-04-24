@@ -18,7 +18,7 @@ function handlerUpdatePriceTo(price) {
 }
 
 function handleSort(sortType) {
-  model.sortCatalog(sortType)
+  model.sortingProducts(sortType)
   model.switchPage(0)
   renderContainerProducts(model.paginatedProducts)
 }
