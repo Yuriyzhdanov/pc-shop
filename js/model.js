@@ -27,14 +27,14 @@ const model = {
   async addProducts() {
     this.products = await loadComputers()
     await this.convertPrice()
-    this.searchProduct('')
+    this.searchProducts('')
     this.filtrateProducts()
     this.createFilter()
     this.addToRecomendProd()
     this.switchPage(0)
   },
 
-  searchProduct(query) {
+  searchProducts(query) {
     const searchProducts = this.products.filter(prod => {
       if (query.trim() === '') {
         return true
@@ -105,7 +105,7 @@ const model = {
     })
   },
 
-  filtrateProductsByPrice() {
+  priceRangeFilter() {
     this.pricedProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
@@ -118,14 +118,19 @@ const model = {
     this.minPrice = Math.floor(Math.min(...prices))
     this.maxPrice = Math.ceil(Math.max(...prices))
   },
+  
+  calcFromToPrice() {
+    this.priceFrom = this.minPrice
+    this.priceTo = this.maxPrice
+  },
 
   filtrateProducts() {
     this.filtrateProductsBySpecs()
     this.calcMinMaxPrice()
     this.calcFromToPrice()
-    this.filtrateProductsByPrice()
+    this.priceRangeFilter()
   },
-
+  
   calcCountPages() {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
@@ -136,10 +141,6 @@ const model = {
     this.recomendedProducts = this.products
   },
 
-  calcFromToPrice() {
-    this.priceFrom = this.minPrice
-    this.priceTo = this.maxPrice
-  },
 
   async convertPrice() {
     const ccy = await loadCurrency()

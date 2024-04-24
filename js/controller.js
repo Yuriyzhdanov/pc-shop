@@ -1,6 +1,4 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log(filterDataIds)
-
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts()
   handlerUpdatePriceFrom(+priceFrom)
@@ -65,7 +63,7 @@ function oninputQueryInput(e) {
   const query = e.target.value
   query.innerHTML = ''
   console.log(query)
-  model.searchProduct(query)
+  model.searchProducts(query)
   renderContainerProducts(model.filteredProducts)
 }
 
