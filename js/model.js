@@ -27,9 +27,10 @@ const model = {
   async addProducts() {
     this.products = await loadComputers()
     await this.convertPrice()
+    this.createFilter()
     this.searchProducts('')
     this.filtrateProducts()
-    this.createFilter()
+    this.sortingProducts('byPriceASC')
     this.addToRecomendProd()
     this.switchPage(0)
   },
@@ -113,6 +114,13 @@ const model = {
     )
   },
 
+  async convertPrice() {
+    const ccy = await loadCurrency()
+    this.products.forEach(
+      product => (product.convertedPrice = product.price * ccy)
+    )
+  },
+
   calcMinMaxPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
     this.minPrice = Math.floor(Math.min(...prices))
@@ -161,19 +169,20 @@ const model = {
 
   calcCountPages() {
     this.countPages = Math.trunc(
-      this.filteredProducts.length / this.perCountPages
+      this.sortedProducts.length / this.perCountPages
     )
+  },
+
+  switchPage(pageNum) {
+    this.calcCountPages()
+    this.currentPage = pageNum
+    const startFrom = this.currentPage * this.perCountPages
+    const endTo = startFrom + this.perCountPages
+    this.paginatedProducts = this.sortedProducts.slice(startFrom, endTo)
   },
 
   addToRecomendProd() {
     this.recomendedProducts = this.products
-  },
-
-  async convertPrice() {
-    const ccy = await loadCurrency()
-    this.products.forEach(
-      product => (product.convertedPrice = product.price * ccy)
-    )
   },
 
   replaceSpecs(options) {
@@ -191,12 +200,6 @@ const model = {
   getProductById(id) {
     return this.products.find(prod => prod.id === id)
   },
-
-  switchPage(pageNum) {
-    this.calcCountPages()
-    this.currentPage = pageNum
-    const startFrom = this.currentPage * this.perCountPages
-    const endTo = startFrom + this.perCountPages
-    this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
-  },
 }
+
+
