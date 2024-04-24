@@ -1,6 +1,6 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log(filterDataIds);
-  
+  console.log(filterDataIds)
+
   model.createCheckedFilters(filterDataIds)
   model.filtrateProducts()
   handlerUpdatePriceFrom(+priceFrom)
@@ -22,7 +22,7 @@ function handlerUpdatePriceTo(price) {
 function handleSort(sortType) {
   model.sortCatalog(sortType)
   model.switchPage(0)
-  renderContainerProducts(model.paginatedProducts) 
+  renderContainerProducts(model.paginatedProducts)
 }
 
 async function handleLoadPageCatalog() {
@@ -65,7 +65,7 @@ function oninputQueryInput(e) {
   const query = e.target.value
   query.innerHTML = ''
   console.log(query)
-  model.search(query)
+  model.searchProduct(query)
   renderContainerProducts(model.filteredProducts)
 }
 

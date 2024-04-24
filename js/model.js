@@ -24,6 +24,32 @@ const model = {
 
   recomendedProducts: [],
 
+  async addProducts() {
+    this.products = await loadComputers()
+    await this.convertPrice()
+    this.searchProduct('')
+    this.filtrateProducts()
+    this.createFilter()
+    this.addToRecomendProd()
+    this.switchPage(0)
+  },
+
+  searchProduct(query) {
+    const searchProducts = this.products.filter(prod => {
+      if (query.trim() === '') {
+        return true
+      }
+      const productValues = Object.values(prod)
+      for (const val of productValues) {
+        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
+          return true
+        }
+      }
+      return false
+    })
+    this.searchedProducts = searchProducts
+  },
+
   calcCountPages() {
     this.countPages = Math.trunc(
       this.filteredProducts.length / this.perCountPages
@@ -50,15 +76,6 @@ const model = {
     this.products.forEach(
       product => (product.convertedPrice = product.price * ccy)
     )
-  },
-
-  async addProducts() {
-    this.products = await loadComputers()
-    await this.convertPrice()
-    this.filtrateProducts()
-    this.createFilter()
-    this.addToRecomendProd()
-    this.switchPage(0)
   },
 
   createCheckedFilters(filterDataIds) {
@@ -129,19 +146,6 @@ const model = {
     this.switchPage(0)
   },
 
-  search(query) {
-    const searchedProducts = this.products.filter(prod => {
-      const productValues = Object.values(prod)
-      for (const val of productValues) {
-        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
-          return true
-        }
-      }
-      return false
-    })
-    this.filteredProducts = searchedProducts
-  },
-
   filtrateProductsBySpecs() {
     this.filteredProducts = this.searchedProducts.filter(product => {
       let matchedCount = 0
@@ -156,7 +160,6 @@ const model = {
   },
 
   filtrateProductsByPrice() {
-    console.log('filtrateProductsByPrice', 'до', this.priceFrom, this.priceTo)
     this.pricedProducts = this.filteredProducts.filter(
       product =>
         this.priceFrom <= product.convertedPrice &&
@@ -201,8 +204,5 @@ const model = {
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.filteredProducts.slice(startFrom, endTo)
-    console.log(this.perCountPages)
-    console.log(this.currentPage)
-    console.log(this.paginatedProducts)
   },
 }
