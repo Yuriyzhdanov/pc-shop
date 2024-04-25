@@ -32,6 +32,9 @@ function getPageName(str) {
   const endIndex = str.indexOf(endWord)
   return str.slice(startIndex, endIndex)
 }
-function containsIgnoreCase(str, query) {
-  return str.toLowerCase().includes(query.toLowerCase());
+
+function isContainsIgnoreCase(text, query) {
+  return (
+    typeof text === 'string' && text.toLowerCase().includes(query.toLowerCase())
+  )
 }

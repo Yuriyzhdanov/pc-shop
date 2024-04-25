@@ -28,28 +28,18 @@ const model = {
     this.products = await loadComputers()
     await this.convertPrice()
     this.createFilter()
-    this.searchProducts('')
-    this.filtrateProducts()
-    this.priceFilteredProducts(this.minPrice, this.maxPrice)
-    this.sortingProducts('byPriceASC')
-    this.addToRecomendProd()
-    this.switchingPageProducts(0)
+    // this.searchProducts('')
+    // this.filtrateProducts()
+    // this.priceFilteredProducts(this.minPrice, this.maxPrice)
+    // this.sortingProducts('byPriceASC')
+    // this.addToRecomendProd()
+    // this.switchingPageProducts(0)
   },
 
-  searchProducts(query) {
-    const searchProducts = this.products.filter(prod => {
-      if (query.trim() === '') {
-        return true
-      }
-      const productValues = Object.values(prod)
-      for (const val of productValues) {
-        if (typeof val === 'string' && containsIgnoreCase(val, query)) {
-          return true
-        }
-      }
-      return false
-    })
-    this.searchedProducts = searchProducts
+  searchProducts($pre = '', query = $pre.trim()) {
+    this.searchedProducts = this.products.filter(product =>
+      Object.values(product).some(text => isContainsIgnoreCase(text, query))
+    )
   },
 
   createFilter() {
