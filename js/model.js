@@ -93,8 +93,8 @@ const model = {
       }
     })
   },
-  
-  clearCheckedFilters(){
+
+  clearCheckedFilters() {
     this.checkedFilters = []
   },
 
@@ -114,8 +114,7 @@ const model = {
   priceFilteredProducts(priceFrom, priceTo) {
     this.pricedProducts = this.filteredProducts.filter(
       product =>
-        priceFrom <= product.convertedPrice &&
-        product.convertedPrice <= priceTo
+        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
     )
   },
 
@@ -140,10 +139,10 @@ const model = {
   filtrateProducts() {
     this.filtrateProductsBySpecs()
     this.calcMinMaxPrice()
-    this.calcFromToPrice()//^^
+    this.calcFromToPrice() //^^
     // this.priceFilteredProducts()
   },
-//filtrateProducts() в конце сбрасывает значения priceFrom и priceTo на минимальное и максимальное значение цены
+  //filtrateProducts() в конце сбрасывает значения priceFrom и priceTo на минимальное и максимальное значение цены
 
   sortingProducts(type) {
     this.sortedProducts = this.pricedProducts.slice()

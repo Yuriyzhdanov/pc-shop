@@ -7,7 +7,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.priceFilteredProducts(priceFrom, priceTo)
   model.filtrateProducts()
   model.switchingPageProducts(0)
-  model.sortingProducts('byPriceASC',model.filteredProducts)
+  model.sortingProducts('byPriceASC', model.filteredProducts)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
@@ -78,4 +78,3 @@ queryInput.oninput = oninputQueryInput
 //   const productId = e.target.closest('.wrap-product').dataset.productId
 //   model.addToFavorites(productId)
 // }
-  
