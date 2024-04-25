@@ -28,12 +28,12 @@ const model = {
     this.products = await loadComputers()
     await this.convertPrice()
     this.createFilter()
-    // this.searchProducts('')
-    // this.filtrateProducts()
-    // this.priceFilteredProducts(this.minPrice, this.maxPrice)
-    // this.sortingProducts('byPriceASC')
-    // this.addToRecomendProd()
-    // this.switchingPageProducts(0)
+    this.searchProducts('')
+    this.filtrateProducts()
+    this.priceFilteredProducts(this.minPrice, this.maxPrice)
+    this.sortingProducts('byPriceASC')
+    this.addToRecomendProd()
+    this.switchingPageProducts(0)
   },
 
   searchProducts($pre = '', query = $pre.trim()) {

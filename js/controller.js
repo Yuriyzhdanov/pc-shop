@@ -72,7 +72,7 @@ function oninputQueryInput(e) {
   renderContainerProducts(model.filteredProducts)
 }
 
-queryInput.oninput = oninputQueryInput
+// queryInput.oninput = oninputQueryInput
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
