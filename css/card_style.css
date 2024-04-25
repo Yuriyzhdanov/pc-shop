@@ -366,7 +366,6 @@ a {
   box-shadow: 0 0 5px 0 #789;
 }
 
-
 /* RATING */
 .wrap-rating .rating {
   text-align: center;
@@ -381,7 +380,7 @@ a {
   font-size: 32px;
   color: #f9bf3b;
   text-shadow: 0 0 20px #f9bf3b;
-  opacity: 1; 
+  opacity: 1;
 }
 .wrap-rating #r0:checked ~ .rating > label::after,
 .wrap-rating #r1:checked ~ .rating > [for='r1'] ~ label::after,
@@ -397,18 +396,17 @@ a {
 }
 
 /* SLIDER */
- .bottom > .left {
+.bottom > .left {
   max-height: 600px;
   /* background-color: #ccc; */
 }
 .slider {
-  
 }
 .navigation > label > img {
   max-height: 400px;
   width: auto;
 }
-.slider > .specs{
+.slider > .specs {
   /* background-color: red; */
 }
 .navigation {
