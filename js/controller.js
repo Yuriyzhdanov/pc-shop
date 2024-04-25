@@ -1,11 +1,14 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
-  model.filtrateProducts()
-  handlerUpdatePriceFrom(+priceFrom)
-  handlerUpdatePriceTo(+priceTo)
-  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
-  // renderSwitchPage(model.countPages)
+  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
+  handlerUpdatePriceFrom(priceFrom)
+  handlerUpdatePriceTo(priceTo)
+  model.priceFilteredProducts(priceFrom, priceTo)
+  model.filtrateProducts()
+  model.switchingPageProducts(0)
+  model.sortingProducts('byPriceASC',model.filteredProducts)
+  renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -19,7 +22,8 @@ function handlerUpdatePriceTo(price) {
 
 function handleSort(sortType) {
   model.sortingProducts(sortType)
-  model.switchPage(0)
+  model.switchingPageProducts(0)
+  renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -30,7 +34,8 @@ async function handleLoadPageCatalog() {
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  // renderSwitchPage(model.countPages)
+  model.switchingPageProducts(0)
+  renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -50,7 +55,7 @@ async function handleLoadPageProduct(id) {
 function handlePageClick(e) {
   const pageNum = +e.target.textContent
   const pages = e.target.parentNode.querySelectorAll('.page')
-  model.switchPage(pageNum)
+  model.switchingPageProducts(pageNum)
   e.preventDefault()
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')
@@ -73,3 +78,4 @@ queryInput.oninput = oninputQueryInput
 //   const productId = e.target.closest('.wrap-product').dataset.productId
 //   model.addToFavorites(productId)
 // }
+  

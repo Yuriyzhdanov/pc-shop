@@ -30,9 +30,10 @@ const model = {
     this.createFilter()
     this.searchProducts('')
     this.filtrateProducts()
+    this.priceFilteredProducts(this.minPrice, this.maxPrice)
     this.sortingProducts('byPriceASC')
     this.addToRecomendProd()
-    this.switchPage(0)
+    this.switchingPageProducts(0)
   },
 
   searchProducts(query) {
@@ -92,6 +93,10 @@ const model = {
       }
     })
   },
+  
+  clearCheckedFilters(){
+    this.checkedFilters = []
+  },
 
   filtrateProductsBySpecs() {
     this.filteredProducts = this.searchedProducts.filter(product => {
@@ -106,11 +111,11 @@ const model = {
     })
   },
 
-  priceFilteredProducts() {
+  priceFilteredProducts(priceFrom, priceTo) {
     this.pricedProducts = this.filteredProducts.filter(
       product =>
-        this.priceFrom <= product.convertedPrice &&
-        product.convertedPrice <= this.priceTo
+        priceFrom <= product.convertedPrice &&
+        product.convertedPrice <= priceTo
     )
   },
 
@@ -135,12 +140,13 @@ const model = {
   filtrateProducts() {
     this.filtrateProductsBySpecs()
     this.calcMinMaxPrice()
-    this.calcFromToPrice()
-    this.priceFilteredProducts()
+    this.calcFromToPrice()//^^
+    // this.priceFilteredProducts()
   },
+//filtrateProducts() в конце сбрасывает значения priceFrom и priceTo на минимальное и максимальное значение цены
 
   sortingProducts(type) {
-    this.sortedProducts = this.pricedProducts
+    this.sortedProducts = this.pricedProducts.slice()
     switch (type) {
       case 'byPriceASC':
         this.sortedProducts.sort((a, b) => a.price - b.price)
@@ -173,7 +179,7 @@ const model = {
     )
   },
 
-  switchPage(pageNum) {
+  switchingPageProducts(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
@@ -201,5 +207,3 @@ const model = {
     return this.products.find(prod => prod.id === id)
   },
 }
-
-
