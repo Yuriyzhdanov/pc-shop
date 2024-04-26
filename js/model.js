@@ -172,7 +172,7 @@ const model = {
     )
   },
 
-  switchingPageProducts(pageNum) {
+  switchPageProducts(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages

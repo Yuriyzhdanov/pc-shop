@@ -21,16 +21,17 @@
           key: 'brand',
           values: ['Kingston', 'GoodRAM'],
         })
-        model.checkedFilters.push({
-          category: 'Оперативная память',
-          key: 'capacity',
-          values: ['16Gb'],
-        })
+        // model.checkedFilters.push({
+        //   category: 'Оперативная память',
+        //   key: 'capacity',
+        //   values: ['16Gb'],
+        // })
 
         model.filtrateProductsBySpecs()
 
-        model.priceFilteredProducts(10,30000)
+        model.priceFilteredProducts(28000,70000)
 
+        model.sortingProducts('byPriceASC')
         for (const key in model) {
           if (typeof model[key] !== 'function') {
             console.log(key, model[key])
