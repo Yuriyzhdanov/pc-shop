@@ -15,23 +15,30 @@
     <script>
       async function test() {
         await model.addProducts()
-        model.searchProducts()
-        // this.filtrateProducts()
-        console.log('products:', model.products)
-        console.log('searchedProducts:', model.searchedProducts)
-        console.log(model.filteredProducts)
-        console.log(model.pricedProducts)
-        console.log(model.sortedProducts)
-        console.log(model.paginatedProducts)
+        model.searchProducts('ге')
+        model.checkedFilters.push({
+          category: 'Накопитель SSD',
+          key: 'brand',
+          values: ['Kingston', 'GoodRAM'],
+        })
+        model.checkedFilters.push({
+          category: 'Оперативная память',
+          key: 'capacity',
+          values: ['16Gb'],
+        })
+
+        model.filtrateProductsBySpecs()
+
+        model.priceFilteredProducts(50000, 75000)
+
+        for (const key in model) {
+          if (typeof model[key] !== 'function') {
+            console.log(key, model[key])
+          }
+        }
       }
 
       test()
-
-      let result = isContainsIgnoreCase('text', '')
-
-      console.log(result)
-
-      // for (const key in model) { if (typeof model[key] !== 'function') { console.log(key, model[key])} }
     </script>
   </body>
 </html>

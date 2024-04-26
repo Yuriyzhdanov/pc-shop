@@ -28,12 +28,12 @@ const model = {
     this.products = await loadComputers()
     await this.convertPrice()
     this.createFilter()
-    this.searchProducts()
-    this.filtrateProducts()
-    this.priceFilteredProducts(this.minPrice, this.maxPrice)
-    this.sortingProducts('byPriceASC')
-    this.addToRecomendProd()
-    this.switchingPageProducts(0)
+    // this.searchProducts()
+    // this.filtrateProducts()
+    // this.priceFilteredProducts(this.minPrice, this.maxPrice)
+    // this.sortingProducts('byPriceASC')
+    // this.switchingPageProducts(0)
+    // this.addToRecomendProd()
   },
 
   searchProducts($pre = '', query = $pre.trim()) {
@@ -99,6 +99,8 @@ const model = {
       })
       return matchedCount === this.checkedFilters.length
     })
+    this.calcMinMaxPrice()
+    this.calcFromToPrice()
   },
 
   priceFilteredProducts(priceFrom, priceTo) {
@@ -117,22 +119,30 @@ const model = {
 
   calcMinMaxPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
-    this.minPrice = Math.floor(Math.min(...prices))
-    this.maxPrice = Math.ceil(Math.max(...prices))
+    // console.log('>>', ...prices)
+
+    // console.log(Math.min())
+    // console.log(Math.max())
+
+    // console.log(isFinite(Infinity))
+    // console.log(isFinite(-Infinity))
+
+    // console.log(isFinite(1))
+    // console.log(isFinite(-1))
+
+    this.minPrice = 2
+    this.maxPrice = 3
+
+    if (prices.length) {
+      this.minPrice = Math.floor(Math.min(...prices))
+      this.maxPrice = Math.ceil(Math.max(...prices))
+    }
   },
 
   calcFromToPrice() {
     this.priceFrom = this.minPrice
     this.priceTo = this.maxPrice
   },
-
-  filtrateProducts() {
-    this.filtrateProductsBySpecs()
-    this.calcMinMaxPrice()
-    this.calcFromToPrice() //^^
-    // this.priceFilteredProducts()
-  },
-  //filtrateProducts() в конце сбрасывает значения priceFrom и priceTo на минимальное и максимальное значение цены
 
   sortingProducts(type) {
     this.sortedProducts = this.pricedProducts.slice()
