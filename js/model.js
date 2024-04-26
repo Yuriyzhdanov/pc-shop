@@ -104,15 +104,15 @@ const model = {
   },
 
   priceFilteredProducts(priceFrom, priceTo) {
-    if (typeof priceFrom !== 'undefined' && typeof priceTo !== 'undefined') {
-      this.minPrice = priceFrom
-      this.maxPrice = priceTo
+    if (typeof priceFrom === 'undefined') {
+      priceFrom = this.minPrice;
+    }
+    if (typeof priceTo === 'undefined') {
+      priceTo = this.maxPrice;
     }
     this.pricedProducts = this.filteredProducts.filter(
       product =>
-        (typeof priceFrom === 'undefined' ||
-          priceFrom <= product.convertedPrice) &&
-        (typeof priceTo === 'undefined' || product.convertedPrice <= priceTo)
+        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
     )
   },
 
@@ -172,7 +172,7 @@ const model = {
     )
   },
 
-  switchPageProducts(pageNum) {
+  switchingPageProducts(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
