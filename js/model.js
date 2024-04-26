@@ -104,9 +104,15 @@ const model = {
   },
 
   priceFilteredProducts(priceFrom, priceTo) {
+    if (typeof priceFrom !== 'undefined' && typeof priceTo !== 'undefined') {
+      this.minPrice = priceFrom
+      this.maxPrice = priceTo
+    }
     this.pricedProducts = this.filteredProducts.filter(
       product =>
-        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
+        (typeof priceFrom === 'undefined' ||
+          priceFrom <= product.convertedPrice) &&
+        (typeof priceTo === 'undefined' || product.convertedPrice <= priceTo)
     )
   },
 
@@ -119,20 +125,8 @@ const model = {
 
   calcMinMaxPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
-    // console.log('>>', ...prices)
-
-    // console.log(Math.min())
-    // console.log(Math.max())
-
-    // console.log(isFinite(Infinity))
-    // console.log(isFinite(-Infinity))
-
-    // console.log(isFinite(1))
-    // console.log(isFinite(-1))
-
     this.minPrice = 2
     this.maxPrice = 3
-
     if (prices.length) {
       this.minPrice = Math.floor(Math.min(...prices))
       this.maxPrice = Math.ceil(Math.max(...prices))
@@ -178,7 +172,7 @@ const model = {
     )
   },
 
-  switchingPageProducts(pageNum) {
+  switchPageProducts(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
