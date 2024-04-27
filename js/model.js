@@ -24,68 +24,27 @@ const model = {
 
   recomendedProducts: [],
 
-  async addProducts() {
-    this.products = await loadComputers()
-    await this.convertPrice()
-    this.createFilter()
+  async looksLikeHandleLoadPage() {
+    await updateProducts()
+    await updateCurrencyUSD()
+
     this.searchProducts()
     this.filtrateProductsBySpecs()
     this.priceFilteredProducts()
     this.sortingProducts('byPriceASC')
     this.switchPageProducts(0)
+
+    this.convertPrice()
+
     this.addToRecomendProd()
   },
 
-  searchProducts($pre = '', query = $pre.trim()) {
+  searchProducts(_ = '', query = _.trim()) {
     this.searchedProducts = this.products.filter(product =>
       Object.values(product).some(text => isContainsIgnoreCase(text, query))
     )
-  },
-
-  createFilter() {
-    const specs = this.products.map(product => product.specs)
-    for (const spec of specs) {
-      for (const key in spec) {
-        const options = spec[key]
-        for (const option in options) {
-          if (key === 'Процессор' && option === 'frequency') {
-            this.replaceSpecs(options)
-          }
-          const value = options[option]
-          if (!this.filter[key]) {
-            this.filter[key] = {}
-          }
-          if (!this.filter[key][option]) {
-            this.filter[key][option] = []
-          }
-          if (!this.filter[key][option].includes(value)) {
-            this.filter[key][option].push(value)
-          }
-        }
-      }
-    }
-  },
-
-  createCheckedFilters(filterDataIds) {
-    this.checkedFilters = []
-    filterDataIds.forEach(filterDataId => {
-      const idParts = filterDataId.split('-')
-      const category = idParts[0]
-      const key = idParts[1]
-      const value = idParts[2]
-      const isExistFilter = this.checkedFilters.find(
-        filter => filter.category === category && filter.key === key
-      )
-      if (isExistFilter) {
-        isExistFilter.values.push(value)
-      } else {
-        this.checkedFilters.push({ category, key, values: [value] })
-      }
-    })
-  },
-
-  clearCheckedFilters() {
-    this.checkedFilters = []
+    this.clearFilter()
+    this.createFilter()
   },
 
   filtrateProductsBySpecs() {
@@ -116,28 +75,6 @@ const model = {
     )
   },
 
-  async convertPrice() {
-    const ccy = await loadCurrency()
-    this.products.forEach(
-      product => (product.convertedPrice = product.price * ccy)
-    )
-  },
-
-  calcMinMaxPrice() {
-    const prices = this.filteredProducts.map(product => product.convertedPrice)
-    this.minPrice = 2
-    this.maxPrice = 3
-    if (prices.length) {
-      this.minPrice = Math.floor(Math.min(...prices))
-      this.maxPrice = Math.ceil(Math.max(...prices))
-    }
-  },
-
-  calcFromToPrice() {
-    this.priceFrom = this.minPrice
-    this.priceTo = this.maxPrice
-  },
-
   sortingProducts(type) {
     this.sortedProducts = this.pricedProducts.slice()
     switch (type) {
@@ -166,18 +103,93 @@ const model = {
     }
   },
 
-  calcCountPages() {
-    this.countPages = Math.trunc(
-      this.sortedProducts.length / this.perCountPages
-    )
-  },
-
   switchPageProducts(pageNum) {
     this.calcCountPages()
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.sortedProducts.slice(startFrom, endTo)
+  },
+
+  createFilter() {
+    const specs = this.searchedProducts.map(product => product.specs)
+    for (const spec of specs) {
+      for (const key in spec) {
+        const options = spec[key]
+        for (const option in options) {
+          if (key === 'Процессор' && option === 'frequency') {
+            this.replaceSpecs(options)
+          }
+          const value = options[option]
+          if (!this.filter[key]) {
+            this.filter[key] = {}
+          }
+          if (!this.filter[key][option]) {
+            this.filter[key][option] = []
+          }
+          if (!this.filter[key][option].includes(value)) {
+            this.filter[key][option].push(value)
+          }
+        }
+      }
+    }
+  },
+
+  createCheckedFilters(filterDataIds) {
+    filterDataIds.forEach(filterDataId => {
+      const idParts = filterDataId.split('-')
+      const category = idParts[0]
+      const key = idParts[1]
+      const value = idParts[2]
+      const isExistFilter = this.checkedFilters.find(
+        filter => filter.category === category && filter.key === key
+      )
+      if (isExistFilter) {
+        isExistFilter.values.push(value)
+      } else {
+        this.checkedFilters.push({ category, key, values: [value] })
+      }
+    })
+  },
+
+  clearCheckedFilter() {
+    this.checkedFilters = []
+  },
+
+  clearFilter() {
+    this.filter = {}
+    this.clearCheckedFilter()
+  },
+
+  async updateProducts() {
+    this.products = await loadComputers()
+  },
+
+  async updateCurrencyUSD() {
+    this.currencyUSD = await loadCurrency()
+  },
+
+  convertPrice() {
+    this.products.forEach(
+      product => (product.convertedPrice = product.price * this.currencyUSD)
+    )
+  },
+
+  calcMinMaxPrice() {
+    const prices = this.filteredProducts.map(product => product.convertedPrice)
+    this.minPrice = Math.floor(prices.length ? Math.min(...prices) : 2)
+    this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
+  },
+
+  calcFromToPrice() {
+    this.priceFrom = this.minPrice
+    this.priceTo = this.maxPrice
+  },
+
+  calcCountPages() {
+    this.countPages = Math.trunc(
+      this.sortedProducts.length / this.perCountPages
+    )
   },
 
   addToRecomendProd() {

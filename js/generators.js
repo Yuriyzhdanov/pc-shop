@@ -129,13 +129,13 @@ function generateNavigation(product, slider) {
   navigation.classList.add('navigation')
   product.photos.files.forEach((file, index) => {
     const input = document.createElement('input')
+    const label = generateLabel(file, index, product)
     input.type = 'radio'
     input.name = 'r'
     input.id = `slider-r${index + 1}`
     if (index === 0) {
       input.checked = true
     }
-    const label = generateLabel(file, index, product)
     navigation.appendChild(label)
     slider.appendChild(input)
   })
