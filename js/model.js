@@ -105,10 +105,10 @@ const model = {
 
   priceFilteredProducts(priceFrom, priceTo) {
     if (typeof priceFrom === 'undefined') {
-      priceFrom = this.minPrice;
+      priceFrom = this.minPrice
     }
     if (typeof priceTo === 'undefined') {
-      priceTo = this.maxPrice;
+      priceTo = this.maxPrice
     }
     this.pricedProducts = this.filteredProducts.filter(
       product =>
