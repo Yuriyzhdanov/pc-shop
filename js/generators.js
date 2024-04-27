@@ -116,114 +116,64 @@ function generateProduct(product) {
 
 function generateProductSidebar(product) {
   const slider = document.createElement('div')
-  const navigation = document.createElement('div')
+  const navigation = generateNavigation(product, slider)
+  const specsContainer = generateSpecsContainer(product)
   slider.classList.add('slider')
+  slider.appendChild(navigation)
+  slider.appendChild(specsContainer)
+  return slider
+}
+
+function generateNavigation(product, slider) {
+  const navigation = document.createElement('div')
   navigation.classList.add('navigation')
   product.photos.files.forEach((file, index) => {
     const input = document.createElement('input')
-    const label = document.createElement('label')
-    const img = document.createElement('img')
     input.type = 'radio'
     input.name = 'r'
     input.id = `slider-r${index + 1}`
     if (index === 0) {
       input.checked = true
     }
-    let len = product.photos.files.length
-    let idx = index + 2 === len ? 1 : index + 2
-    label.htmlFor = `slider-r${idx}`
-    img.src = `https://web-app.click/pc-shop/photos/products/computers/${file}`
-    img.alt = `img${index + 1}`
-    label.appendChild(img)
+    const label = generateLabel(file, index, product)
     navigation.appendChild(label)
     slider.appendChild(input)
   })
+  return navigation
+}
+
+function generateLabel(file, index, product) {
+  const label = document.createElement('label')
+  const img = document.createElement('img')
+  img.src = `https://web-app.click/pc-shop/photos/products/computers/${file}`
+  img.alt = `img${index + 1}`
+  const idx = index + 2 === product.photos.files.length ? 1 : index + 2
+  label.htmlFor = `slider-r${idx}`
+  label.appendChild(img)
+  return label
+}
+
+function generateSpecsContainer(product) {
   const specsContainer = document.createElement('div')
   specsContainer.classList.add('specs')
   Object.entries(product.specs).forEach(([spec, prop]) => {
     const elP = document.createElement('p')
     const span = document.createElement('span')
     elP.innerHTML = `${spec}: `
-    span.textContent =
-      prop.brand +
-      (prop.power ? ` (${prop.power})` : '') +
-      (prop.capacity ? ` (${prop.capacity})` : '') +
-      (prop.type && prop.frequency ? ` (${prop.type}, ${prop.frequency})` : '')
+    span.textContent = getSpecText(prop)
     elP.appendChild(span)
     specsContainer.appendChild(elP)
   })
-  slider.appendChild(navigation)
-  slider.appendChild(specsContainer)
-  console.log(slider);
-  
-  return slider
+  return specsContainer
 }
 
-// function createSlider(product) {
-//   const slider = document.createElement('div')
-//   slider.classList.add('slider')
-//   const navigation = createNavigation(product)
-//   slider.appendChild(navigation)
-//   const specsContainer = createSpecsContainer(product)
-//   slider.appendChild(specsContainer)
-//   console.log(slider);
-  
-//   return slider
-// }
-
-// function createNavigation(product) {
-//   const slider = document.querySelector('.slider')
-//   const navigation = document.createElement('div')
-//   navigation.classList.add('navigation')
-//   product.photos.files.forEach((file, index) => {
-//     const input = document.createElement('input')
-//     input.type = 'radio'
-//     input.name = 'r'
-//     input.id = `slider-r${index + 1}`
-//     input.classList.add('slider');
-//     if (index === 0) {
-//       input.checked = true
-//     }
-//     const label = createLabel(file, index, product)
-//     navigation.appendChild(label)
-//     navigation.appendChild(input)
-//   })
-//   return navigation
-// }
-
-// function createLabel(file, index, product) {
-//   const label = document.createElement('label')
-//   const img = document.createElement('img')
-//   img.src = `https://web-app.click/pc-shop/photos/products/computers/${file}`
-//   img.alt = `img${index + 1}`
-//   const idx = index + 2 === product.photos.files.length ? 1 : index + 2
-//   label.htmlFor = `slider-r${idx}`
-//   label.appendChild(img)
-//   return label
-// }
-
-// function createSpecsContainer(product) {
-//   const specsContainer = document.createElement('div')
-//   specsContainer.classList.add('specs')
-//   Object.entries(product.specs).forEach(([spec, prop]) => {
-//     const elP = document.createElement('p')
-//     elP.innerHTML = `${spec}: `
-//     const span = createSpecSpan(prop)
-//     elP.appendChild(span)
-//     specsContainer.appendChild(elP)
-//   })
-//   return specsContainer
-// }
-
-// function createSpecSpan(prop) {
-//   const span = document.createElement('span')
-//   span.textContent =
-//     prop.brand +
-//     (prop.power ? ` (${prop.power})` : '') +
-//     (prop.capacity ? ` (${prop.capacity})` : '') +
-//     (prop.type && prop.frequency ? ` (${prop.type}, ${prop.frequency})` : '')
-//   return span
-// }
+function getSpecText(prop) {
+  let text = prop.brand
+  if (prop.power) text += ` (${prop.power})`
+  if (prop.capacity) text += ` (${prop.capacity})`
+  if (prop.type && prop.frequency) text += ` (${prop.type}, ${prop.frequency})`
+  return text
+}
 
 function generateProductInfo(product) {
   const wrapInfo = document.createElement('div')
