@@ -28,13 +28,17 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
 
+    this.convertPrice()
+
     this.searchProducts()
     this.filtrateProductsBySpecs()
     this.priceFilteredProducts()
+    console.log('pricing');
+    
     this.sortingProducts('byPriceASC')
+    console.log('sorting');
+    
     this.switchPageProducts(0)
-
-    this.convertPrice()
 
     this.addToRecomendProd()
   },
@@ -164,7 +168,6 @@ const model = {
   async updateProducts() {
     this.products = await loadComputers()
   },
-
   async updateCurrencyUSD() {
     this.currencyUSD = await loadCurrency()
   },
@@ -176,31 +179,9 @@ const model = {
   },
 
   calcMinMaxPrice() {
-    // const prices = this.filteredProducts.map(product =>
-    //   {
-    //     console.log(product.convertedPrice);
-    //     product.convertedPrice } )
-    // this.minPrice = Math.floor(prices.length ? Math.min(...prices) : 2)
-    // console.log(this.minPrice);
-    // this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
-    // console.log(this.maxPrice);
-    console.log(this.minPrice)
-
-    if (typeof this.minPrice === 'undefined') {
-      this.minPrice = 2
-      console.log(this.minPrice)
-    }
-    if (typeof this.maxPrice === 'undefined') {
-      this.maxPrice = 3
-    }
     const prices = this.filteredProducts.map(product => product.convertedPrice)
-    if (prices.length) {
-      this.minPrice = Math.floor(Math.min(...prices))
-      console.log(this.minPrice)
-      this.maxPrice = Math.ceil(Math.max(...prices))
-      console.log(this.maxPrice)
-    }
-    console.log(this.minPrice)
+    this.minPrice = Math.floor(prices.length ? Math.min(...prices) : 2)
+    this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
   },
 
   calcFromToPrice() {
