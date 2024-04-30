@@ -1,6 +1,6 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log(filterDataIds);
-  
+  console.log(filterDataIds)
+
   model.createCheckedFilters(filterDataIds)
   handlerUpdatePriceFrom(priceFrom)
   handlerUpdatePriceTo(priceTo)

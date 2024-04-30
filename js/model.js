@@ -185,11 +185,10 @@ const model = {
     // this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
     // console.log(this.maxPrice);
     console.log(this.minPrice)
-    
+
     if (typeof this.minPrice === 'undefined') {
       this.minPrice = 2
       console.log(this.minPrice)
-      
     }
     if (typeof this.maxPrice === 'undefined') {
       this.maxPrice = 3
@@ -202,7 +201,6 @@ const model = {
       console.log(this.maxPrice)
     }
     console.log(this.minPrice)
-
   },
 
   calcFromToPrice() {
