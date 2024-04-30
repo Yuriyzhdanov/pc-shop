@@ -15,7 +15,7 @@
     <script>
       async function test() {
         await model.looksLikeHandleLoadPage()
-        model.searchProducts('ге')
+        model.searchProducts()
         model.checkedFilters.push({
           category: 'Накопитель SSD',
           key: 'brand',
@@ -29,11 +29,11 @@
 
         model.filtrateProductsBySpecs()
 
-        model.priceFilteredProducts(28000, 100000)
+        // model.priceFilteredProducts()
 
-        model.sortingProducts('byPriceASC')
+        // model.sortingProducts('byPriceASC')
 
-        model.switchPageProducts(0)
+        // model.switchPageProducts(0)
 
         for (const key in model) {
           if (typeof model[key] !== 'function') {
@@ -42,7 +42,22 @@
         }
       }
 
-      test()
+      async function test2() {
+        await model.updateProducts()
+        await model.updateCurrencyUSD()
+
+        model.searchProducts()
+        // model.filtrateProductsBySpecs()
+        // model.priceFilteredProducts()
+
+        for (const key in model) {
+          if (typeof model[key] !== 'function') {
+            console.log(key, model[key])
+          }
+        }
+      }
+      // test()
+      test2()
     </script>
   </body>
 </html>

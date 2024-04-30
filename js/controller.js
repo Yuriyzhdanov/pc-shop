@@ -1,17 +1,14 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  model.clearCheckedFilter()
+  console.log(filterDataIds);
+  
   model.createCheckedFilters(filterDataIds)
-  renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
-  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   handlerUpdatePriceFrom(priceFrom)
   handlerUpdatePriceTo(priceTo)
-
-  this.filtrateProductsBySpecs()
-  this.priceFilteredProducts()
-  this.sortingProducts('byPriceASC')
-  this.switchPageProducts(0)
-
-  renderSwitchPage(model.countPages)
+  renderLabelTo(model.maxPrice)
+  renderLabelFrom(model.minPrice)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderSwitchPage(0)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -23,37 +20,40 @@ function handlerUpdatePriceTo(price) {
   model.priceTo = +price
 }
 
-function handleSort(sortType) {
-  model.sortingProducts(sortType)
-  model.switchPageProducts(0)
-  renderSwitchPage(model.countPages)
-  renderContainerProducts(model.paginatedProducts)
-}
+// function handleSort(sortType) {
+//   model.sortingProducts(sortType)
+//   model.switchPageProducts(0)
+//   renderSwitchPage(model.countPages)
+//   renderContainerProducts(model.paginatedProducts)
+// }
 
 async function handleLoadPageCatalog() {
   await model.looksLikeHandleLoadPage()
-  renderLabelFrom(model.minPrice)
+  // model.filtrateProductsBySpecs()
+  // model.priceFilteredProducts()
+  // model.sortingProducts('byPriceASC')
+  // model.switchPageProducts(0)
   renderLabelTo(model.maxPrice)
+  renderLabelFrom(model.minPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  model.switchPageProducts(0)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
-async function handleLoadPageProduct(id) {
-  await model.looksLikeHandleLoadPage()
-  const product = model.getProductById(id)
-  renderProductInfo(product)
-  renderProductSidebar(product)
-  const recomendation = model.recomendedProducts
-  for (let i = 0; i < 4; i++) {
-    const randomIdx = Math.floor(Math.random() * recomendation.length)
-    const randomProd = recomendation[randomIdx]
-    renderRecomendProd(randomProd)
-  }
-}
+// async function handleLoadPageProduct(id) {
+//   await model.looksLikeHandleLoadPage()
+//   const product = model.getProductById(id)
+//   renderProductInfo(product)
+//   renderProductSidebar(product)
+//   const recomendation = model.recomendedProducts
+//   for (let i = 0; i < 4; i++) {
+//     const randomIdx = Math.floor(Math.random() * recomendation.length)
+//     const randomProd = recomendation[randomIdx]
+//     renderRecomendProd(randomProd)
+//   }
+// }
 
 function handlePageClick(e) {
   const pageNum = +e.target.textContent

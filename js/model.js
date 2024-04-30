@@ -25,8 +25,8 @@ const model = {
   recomendedProducts: [],
 
   async looksLikeHandleLoadPage() {
-    await updateProducts()
-    await updateCurrencyUSD()
+    await this.updateProducts()
+    await this.updateCurrencyUSD()
 
     this.searchProducts()
     this.filtrateProductsBySpecs()
@@ -176,9 +176,33 @@ const model = {
   },
 
   calcMinMaxPrice() {
+    // const prices = this.filteredProducts.map(product =>
+    //   {
+    //     console.log(product.convertedPrice);
+    //     product.convertedPrice } )
+    // this.minPrice = Math.floor(prices.length ? Math.min(...prices) : 2)
+    // console.log(this.minPrice);
+    // this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
+    // console.log(this.maxPrice);
+    console.log(this.minPrice)
+    
+    if (typeof this.minPrice === 'undefined') {
+      this.minPrice = 2
+      console.log(this.minPrice)
+      
+    }
+    if (typeof this.maxPrice === 'undefined') {
+      this.maxPrice = 3
+    }
     const prices = this.filteredProducts.map(product => product.convertedPrice)
-    this.minPrice = Math.floor(prices.length ? Math.min(...prices) : 2)
-    this.maxPrice = Math.ceil(prices.length ? Math.max(...prices) : 3)
+    if (prices.length) {
+      this.minPrice = Math.floor(Math.min(...prices))
+      console.log(this.minPrice)
+      this.maxPrice = Math.ceil(Math.max(...prices))
+      console.log(this.maxPrice)
+    }
+    console.log(this.minPrice)
+
   },
 
   calcFromToPrice() {
