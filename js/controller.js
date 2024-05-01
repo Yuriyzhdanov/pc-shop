@@ -7,11 +7,11 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.priceFilteredProducts(priceFrom, priceTo)
   model.sortingProducts('byPriceASC')
   model.switchPageProducts(0)
-  handlerUpdatePriceFrom(priceFrom)
-  handlerUpdatePriceTo(priceTo)
-  renderFilterRangeFrom(model.priceFrom, model.minPrice, model.maxPrice)
-  renderFilterRangeTo(model.priceTo, model.minPrice, model.maxPrice)
-  renderSwitchPage()
+  handlerUpdatePriceFrom(model.priceFrom)
+  handlerUpdatePriceTo(model.priceTo)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 

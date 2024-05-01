@@ -136,6 +136,7 @@ const model = {
   },
 
   createCheckedFilters(filterDataIds) {
+    this.clearCheckedFilter()
     filterDataIds.forEach(filterDataId => {
       const idParts = filterDataId.split('-')
       const category = idParts[0]
