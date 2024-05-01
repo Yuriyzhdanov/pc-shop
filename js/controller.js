@@ -1,5 +1,7 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log('filter')
+  console.log('filterDataIds', filterDataIds)
+  // console.log('filtrated', model.filteredProducts);
+  
   model.createCheckedFilters(filterDataIds)
   model.filtrateProductsBySpecs()
   model.priceFilteredProducts(priceFrom, priceTo)
@@ -9,7 +11,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   handlerUpdatePriceTo(priceTo)
   renderFilterRangeFrom(model.priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.priceTo, model.minPrice, model.maxPrice)
-  renderSwitchPage(0)
+  renderSwitchPage()
   renderContainerProducts(model.paginatedProducts)
 }
 

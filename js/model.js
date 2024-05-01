@@ -33,11 +33,7 @@ const model = {
     this.searchProducts()
     this.filtrateProductsBySpecs()
     this.priceFilteredProducts()
-    console.log('pricing');
-    
     this.sortingProducts('byPriceASC')
-    console.log('sorting');
-    
     this.switchPageProducts(0)
 
     this.addToRecomendProd()
