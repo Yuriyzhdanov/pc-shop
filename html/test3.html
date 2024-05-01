@@ -47,18 +47,18 @@
         await model.updateCurrencyUSD()
         model.convertPrice()
         model.searchProducts()
-        model.checkedFilters.push({
-          category: 'Накопитель SSD',
-          key: 'brand',
-          values: ['Kingston', 'GoodRAM'],
-        })
+        // model.checkedFilters.push({
+        //   category: 'Накопитель SSD',
+        //   key: 'brand',
+        //   values: ['Kingston', 'GoodRAM'],
+        // })
         // model.checkedFilters.push({
         //   category: 'Накопитель SSD',
         //   key: 'brand',
         //   values: ['Kingston'],
-        // }) //при нажатии добавляется новый массив
+        // })
         model.filtrateProductsBySpecs()
-        model.priceFilteredProducts()
+        model.priceFilteredProducts(160000, 374000)
 
         model.sortingProducts('byPriceASC')
         model.switchPageProducts(0)
