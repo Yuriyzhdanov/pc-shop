@@ -46,7 +46,7 @@
         await model.updateProducts()
         await model.updateCurrencyUSD()
         model.convertPrice()
-        model.searchProducts()
+        model.searchProducts('Solaris-S')
         // model.checkedFilters.push({
         //   category: 'Накопитель SSD',
         //   key: 'brand',
@@ -58,7 +58,7 @@
         //   values: ['Kingston'],
         // })
         model.filtrateProductsBySpecs()
-        model.priceFilteredProducts(160000, 374000)
+        model.priceFilteredProducts()
 
         model.sortingProducts('byPriceASC')
         model.switchPageProducts(0)

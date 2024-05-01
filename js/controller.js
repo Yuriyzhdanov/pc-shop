@@ -1,7 +1,4 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log('filterDataIds', filterDataIds)
-  // console.log('filtrated', model.filteredProducts);
-
   model.createCheckedFilters(filterDataIds)
   model.filtrateProductsBySpecs()
   model.priceFilteredProducts(priceFrom, priceTo)
@@ -66,14 +63,20 @@ function handlePageClick(e) {
   renderContainerProducts(model.paginatedProducts)
 }
 
-const queryInput = document.querySelector('#query')
-function oninputQueryInput(e) {
-  // const query = e.target.value.trim().toLowerCase();
-  const query = e.target.value
-  query.innerHTML = ''
-  console.log(query)
-  model.searchProducts(query)
-  renderContainerProducts(model.filteredProducts)
+const searchBtn = document.querySelector('.search-btn')
+searchBtn.onclick = onClickSearchHandler
+
+function onClickSearchHandler() {
+  const queryInput = document.querySelector('#query')
+  model.searchProducts(queryInput.value)
+  model.filtrateProductsBySpecs()
+  model.priceFilteredProducts()
+  model.sortingProducts('byPriceASC')
+  model.switchPageProducts(0)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
+  queryInput.innerHTML = ''
+  
 }
 
 // queryInput.oninput = oninputQueryInput
