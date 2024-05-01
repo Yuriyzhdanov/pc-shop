@@ -46,7 +46,7 @@
         await model.updateProducts()
         await model.updateCurrencyUSD()
         model.convertPrice()
-        model.searchProducts('Solaris-S')
+        model.searchProducts()
         // model.checkedFilters.push({
         //   category: 'Накопитель SSD',
         //   key: 'brand',
@@ -60,7 +60,7 @@
         model.filtrateProductsBySpecs()
         model.priceFilteredProducts()
 
-        model.sortingProducts('byPriceASC')
+        model.sortingProducts('byPriceDESC')
         model.switchPageProducts(0)
 
         for (const key in model) {

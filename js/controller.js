@@ -22,12 +22,11 @@ function handlerUpdatePriceTo(price) {
   renderLabelTo(price)
 }
 
-// function handleSort(sortType) {
-//   model.sortingProducts(sortType)
-//   model.switchPageProducts(0)
-//   renderSwitchPage(model.countPages)
-//   renderContainerProducts(model.paginatedProducts)
-// }
+function handleSort(sortType) {
+  model.sortingProducts(sortType)
+  model.switchPageProducts(0)
+  renderContainerProducts(model.paginatedProducts)
+}
 
 async function handleLoadPageCatalog() {
   await model.looksLikeHandleLoadPage()
@@ -68,6 +67,10 @@ searchBtnClear.onclick = onClickSearchClearHandler
 
 function onClickSearchHandler() {
   const queryInput = document.querySelector('#query')
+  // const clearIcon = document.querySelector('.clear-icon')
+  //   if (queryInput.value !== '') {
+  //     clearIcon.style.opacity = '1';
+  // }
   model.searchProducts(queryInput.value)
   model.filtrateProductsBySpecs()
   model.priceFilteredProducts()
@@ -76,10 +79,11 @@ function onClickSearchHandler() {
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
+
 function onClickSearchClearHandler() {
   const queryInput = document.querySelector('#query')
   queryInput.value = ''
-  // searchBtn.style.opacity = '0';
+  searchBtn.style.opacity = '0'
 }
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
