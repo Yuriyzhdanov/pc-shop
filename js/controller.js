@@ -63,8 +63,8 @@ function handlePageClick(e) {
   renderContainerProducts(model.paginatedProducts)
 }
 
-const searchBtn = document.querySelector('.search-btn')
 searchBtn.onclick = onClickSearchHandler
+searchBtnClear.onclick = onClickSearchClearHandler
 
 function onClickSearchHandler() {
   const queryInput = document.querySelector('#query')
@@ -75,12 +75,12 @@ function onClickSearchHandler() {
   model.switchPageProducts(0)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
-  queryInput.innerHTML = ''
-  
 }
-
-// queryInput.oninput = oninputQueryInput
-
+function onClickSearchClearHandler() {
+  const queryInput = document.querySelector('#query')
+  queryInput.value = ''
+  // searchBtn.style.opacity = '0';
+}
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
 //   model.addToFavorites(productId)

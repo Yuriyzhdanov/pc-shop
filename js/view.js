@@ -1,5 +1,7 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
+const searchBtn = document.querySelector('.search-btn')
+const searchBtnClear = document.querySelector('.clear-icon-wrap')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
