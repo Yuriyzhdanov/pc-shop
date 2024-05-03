@@ -20,7 +20,7 @@
             <div class="row">
               <div class="left">
                 <input
-                  type="text"
+                  type="search"
                   name="query"
                   id="query"
                   placeholder=" Что ищем ?"
@@ -28,9 +28,6 @@
               </div>
               <div class="right">
                 <input type="submit" value="" class="search-btn" />
-                <button class="clear-icon-wrap">
-                  <img src="../img/bg/icons8close.png" alt="Clear" class="clear-icon">
-              </button>
               </div>
             </div>
           </div>
@@ -62,7 +59,9 @@
             <a href="">Собранные компьютеры</a>
           </div>
           <div class="wrap-sort row">
-            <div class="left"></div>
+            <div class="left">
+              
+            </div>
             <div class="right">
               <p>Сортирoвка</p>
               <select name="sort" class="sort">
@@ -80,36 +79,36 @@
         </div>
         <div class="bottom row">
           <div class="left">
+            <div>
+              <button class="btn filter">Фильтровать</button>
+            </div>
+            <div class="wrap-props">
+              <h3>Цена</h3>
+              <div class="wrap-range">
+                <label for="price_from">От:<span>0</span></label
+                ><input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  name="price_from"
+                  id="price_from"
+                />
+              </div>
+              <div class="wrap-range">
+                <label for="price_to">До:<span>10</span></label
+                ><input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+                  name="price_to"
+                  id="price_to"
+                />
+              </div>
+            </div>
             <div class="wrap-filter">
               <div class="wrap-props">
-                <div>
-                  <button class="btn filter">Фильтровать</button>
-                </div>
-              </div>
-              <div class="wrap-props">
-                <h3>Цена</h3>
-                <div class="wrap-range">
-                  <label for="price_from">От:<span>0</span></label
-                  ><input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                    name="price_from"
-                    id="price_from"
-                  />
-                </div>
-                <div class="wrap-range">
-                  <label for="price_to">До:<span>10</span></label
-                  ><input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="100"
-                    name="price_to"
-                    id="price_to"
-                  />
-                </div>
               </div>
             </div>
           </div>

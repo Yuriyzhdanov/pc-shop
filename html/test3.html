@@ -45,29 +45,38 @@
       async function test2() {
         await model.updateProducts()
         await model.updateCurrencyUSD()
+        console.log(model.products)
+
         model.convertPrice()
-        model.searchProducts()
+        model.searchProducts('ге')
+        console.log(model.searchedProducts)
+
+        model.checkedFilters.push({
+          key: 'Процессор',
+          values: ['Intel'],
+        })
         // model.checkedFilters.push({
-        //   category: 'Накопитель SSD',
-        //   key: 'brand',
-        //   values: ['Kingston', 'GoodRAM'],
-        // })
-        // model.checkedFilters.push({
-        //   category: 'Накопитель SSD',
-        //   key: 'brand',
-        //   values: ['Kingston'],
+        //   key: 'Объем накопителя',
+        //   values: ['240Gb'],
         // })
         model.filtrateProductsBySpecs()
+        console.log(model.filteredProducts)
+
         model.priceFilteredProducts()
+          console.log(model.pricedProducts);
+          
+        model.sortingProducts('byPriceASC')
+        console.log(model.sortedProducts);
+        
+        model.switchPageProducts(1)
+        console.log(model.paginatedProducts);
+        
 
-        model.sortingProducts('byPriceDESC')
-        model.switchPageProducts(0)
-
-        for (const key in model) {
-          if (typeof model[key] !== 'function') {
-            console.log(key, model[key])
-          }
-        }
+        // for (const key in model) {
+        //   if (typeof model[key] !== 'function') {
+        //     console.log(key, model[key])
+        //   }
+        // }
       }
       // test()
       test2()

@@ -1,7 +1,7 @@
 const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 const searchBtn = document.querySelector('.search-btn')
-const searchBtnClear = document.querySelector('.clear-icon-wrap')
+const queryInput = document.querySelector('#query')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
@@ -49,6 +49,7 @@ function renderContainerProducts(products) {
 
 function renderWrapFilter(modelFilter) {
   const elWrapFilter = document.querySelector('.wrap-filter')
+  elWrapFilter.innerHTML = ''
   for (const key in modelFilter) {
     if (typeof modelFilter[key] === 'object') {
       const elProp = generateFilterProp(key)
@@ -81,7 +82,6 @@ function renderProductInfo(product) {
 function renderRecomendProd(product) {
   const containerPave = document.querySelector('.container-pave')
   const elPave = generateRecomendProd(product)
-  for (let i = 0; i <= 4; i++) {}
   containerPave.appendChild(elPave)
 }
 

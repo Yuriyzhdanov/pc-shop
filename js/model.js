@@ -28,7 +28,7 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
 
-    this.convertPrice()
+    // this.convertPrice()
 
     this.searchProducts()
     this.filtrateProductsBySpecs()
@@ -51,10 +51,10 @@ const model = {
     this.filteredProducts = this.searchedProducts.filter(product => {
       let matchedCount = 0
       this.checkedFilters.forEach(filter => {
-        let { category, key, values } = filter
-        values.forEach(value => {
-          matchedCount += product.specs[category]?.[key] === value
-        })
+        const { key, values } = filter
+        if (values.includes(product.attributes[key])) {
+          matchedCount++
+        }
       })
       return matchedCount === this.checkedFilters.length
     })
@@ -112,24 +112,15 @@ const model = {
   },
 
   createFilter() {
-    const specs = this.searchedProducts.map(product => product.specs)
+    const specs = this.searchedProducts.map(product => product.attributes)
     for (const spec of specs) {
       for (const key in spec) {
-        const options = spec[key]
-        for (const option in options) {
-          if (key === 'Процессор' && option === 'frequency') {
-            this.replaceSpecs(options)
-          }
-          const value = options[option]
-          if (!this.filter[key]) {
-            this.filter[key] = {}
-          }
-          if (!this.filter[key][option]) {
-            this.filter[key][option] = []
-          }
-          if (!this.filter[key][option].includes(value)) {
-            this.filter[key][option].push(value)
-          }
+        const value = spec[key]
+        if (!this.filter[key]) {
+          this.filter[key] = []
+        }
+        if (!this.filter[key].includes(value)) {
+          this.filter[key].push(value)
         }
       }
     }
@@ -139,16 +130,15 @@ const model = {
     this.clearCheckedFilter()
     filterDataIds.forEach(filterDataId => {
       const idParts = filterDataId.split('-')
-      const category = idParts[0]
-      const key = idParts[1]
-      const value = idParts[2]
+      const key = idParts[0]
+      const value = idParts[1]
       const isExistFilter = this.checkedFilters.find(
-        filter => filter.category === category && filter.key === key
+        filter => filter.key === key
       )
       if (isExistFilter) {
         isExistFilter.values.push(value)
       } else {
-        this.checkedFilters.push({ category, key, values: [value] })
+        this.checkedFilters.push({ key, values: [value] })
       }
     })
   },
@@ -163,8 +153,14 @@ const model = {
   },
 
   async updateProducts() {
-    this.products = await loadComputers()
+    const response = await loadComputers()
+    if (response.success) {
+      this.products = response.payload
+    } else {
+      console.error(response.message)
+    }
   },
+
   async updateCurrencyUSD() {
     this.currencyUSD = await loadCurrency()
   },
