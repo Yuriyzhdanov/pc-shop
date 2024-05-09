@@ -50,11 +50,9 @@ function renderContainerProducts(products) {
 function renderWrapFilter(modelFilter) {
   const elWrapFilter = document.querySelector('.wrap-filter')
   elWrapFilter.innerHTML = ''
-
   for (const key in modelFilter) {
     const elProp = generateFilterProp(key)
     elWrapFilter.appendChild(elProp)
-
     for (const item of modelFilter[key]) {
       const elCheckbox = generateFilterCheckbox(key, item)
       elProp.appendChild(elCheckbox)

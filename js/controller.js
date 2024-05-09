@@ -29,36 +29,36 @@ function handleSort(sortType) {
   renderContainerProducts(model.paginatedProducts)
 }
 
-// function onClickSearchHandler() {
-//   const queryInput = document.querySelector('#query')
-//   model.searchProducts(queryInput.value)
-//   model.filtrateProductsBySpecs()
-//   model.priceFilteredProducts()
-//   model.sortingProducts('byPriceASC')
-//   model.switchPageProducts(0)
-//   renderLabelFrom(model.minPrice)
-//   renderLabelTo(model.maxPrice)
-//   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
-//   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
-//   renderWrapFilter(model.filter)
-//   renderSwitchPage(model.countPages)
-//   renderContainerProducts(model.paginatedProducts)
-// }
-// searchBtn.onclick = onClickSearchHandler
+function onClickSearchHandler() {
+  const queryInput = document.querySelector('#query')
+  model.searchProducts(queryInput.value)
+  model.filtrateProductsBySpecs()
+  model.priceFilteredProducts()
+  model.sortingProducts('byPriceASC')
+  model.switchPageProducts(0)
+  renderLabelFrom(model.minPrice)
+  renderLabelTo(model.maxPrice)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderWrapFilter(model.filter)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
+}
+searchBtn.onclick = onClickSearchHandler
 
-// function onInputSearchBtnHandler(e) {
-//   if (e.target.value == '') {
-//     model.searchProducts(queryInput.value)
-//     model.filtrateProductsBySpecs()
-//     model.priceFilteredProducts()
-//     model.sortingProducts('byPriceASC')
-//     model.switchPageProducts(0)
-//     renderWrapFilter(model.filter)
-//     renderSwitchPage(model.countPages)
-//     renderContainerProducts(model.paginatedProducts)
-//   }
-// }
-// queryInput.oninput = onInputSearchBtnHandler
+function oninputSearchBtnCloseHandler(e) {
+  if (e.target.value == '') {
+    model.searchProducts(queryInput.value)
+    model.filtrateProductsBySpecs()
+    model.priceFilteredProducts()
+    model.sortingProducts('byPriceASC')
+    model.switchPageProducts(0)
+    renderWrapFilter(model.filter)
+    renderSwitchPage(model.countPages)
+    renderContainerProducts(model.paginatedProducts)
+  }
+}
+queryInput.oninput = oninputSearchBtnCloseHandler
 
 async function handleLoadPageCatalog() {
   await model.looksLikeHandleLoadPage()
