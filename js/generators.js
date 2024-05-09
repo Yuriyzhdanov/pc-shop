@@ -35,23 +35,22 @@ function generateFilterCheckbox(key, value) {
 }
 
 function generateLabelSpecs(specs) {
-  const divLabels = document.createElement('div');
-  let i = 0;
+  const divLabels = document.createElement('div')
+  let i = 0
   for (const key in specs) {
-    const value = specs[key];
-    i++;
-    const labelValue = `${key}-${value}`;
-    const label = document.createElement('label');
-    label.textContent = value;
-    label.htmlFor = labelValue;
-    divLabels.appendChild(label);
+    const value = specs[key]
+    i++
+    const labelValue = `${key}-${value}`
+    const label = document.createElement('label')
+    label.textContent = value
+    label.htmlFor = labelValue
+    divLabels.appendChild(label)
     if (i > 8) {
-      return divLabels;
+      return divLabels
     }
   }
-  return divLabels;
+  return divLabels
 }
-
 
 function generateProduct(product) {
   const divContainterProduct = document.createElement('div')

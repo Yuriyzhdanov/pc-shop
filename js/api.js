@@ -1,7 +1,7 @@
 const API_COMPUTERS = 'http://35.225.111.193:8181/api/v3/products/computers/'
 const API_CURRENCY =
   'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD'
-  const API_COMPUTERS_NEW = 'https://web-app.click/pc-shop/api/v0/products/'
+const API_COMPUTERS_NEW = 'https://web-app.click/pc-shop/api/v0/products/'
 
 const API_STUDENTS = 'https://web-app.click/university/api/v1/students/'
 
@@ -24,7 +24,7 @@ async function loadReviews(id = '') {
 }
 
 async function loadStudents() {
-  return sendRequest(API_STUDENTS )
+  return sendRequest(API_STUDENTS)
 }
 
 async function getStudents() {
