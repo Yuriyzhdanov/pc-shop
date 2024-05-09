@@ -15,13 +15,13 @@
 //   renderContainerProducts(model.paginatedProducts)
 // }
 
-// function handlerUpdatePriceFrom(price) {
-//   model.priceFrom = +price
-// }
+function handlerUpdatePriceFrom(price) {
+  model.priceFrom = +price
+}
 
-// function handlerUpdatePriceTo(price) {
-//   model.priceTo = +price
-// }
+function handlerUpdatePriceTo(price) {
+  model.priceTo = +price
+}
 
 // function handleSort(sortType) {
 //   model.sortingProducts(sortType)
@@ -62,10 +62,10 @@
 
 async function handleLoadPageCatalog() {
   await model.looksLikeHandleLoadPage()
-  // renderLabelTo(model.maxPrice)
-  // renderLabelFrom(model.minPrice)
-  // renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
-  // renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderLabelTo(model.maxPrice)
+  renderLabelFrom(model.minPrice)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
   // renderSwitchPage(model.countPages)
   renderContainerProducts(model.products)
