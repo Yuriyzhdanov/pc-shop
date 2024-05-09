@@ -5,30 +5,30 @@ const queryInput = document.querySelector('#query')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
-// function onChangeSelectSort(e) {
-//   handleSort(e.target.value)
-// }
+function onChangeSelectSort(e) {
+  handleSort(e.target.value)
+}
 
-// function onClickButtonFilter() {
-//   const checkboxes = document.querySelectorAll(
-//     '.wrap-checkbox input[type="checkbox"]:checked'
-//   )
-//   const elInputFrom = document.querySelector('#price_from')
-//   const elInputTo = document.querySelector('#price_to')
-//   const rangeFrom = elInputFrom.value
-//   const rangeTo = elInputTo.value
-//   const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
-//   handleFiltrate(filterDataIds, +rangeFrom, +rangeTo)
-// }
+function onClickButtonFilter() {
+  const checkboxes = document.querySelectorAll(
+    '.wrap-checkbox input[type="checkbox"]:checked'
+  )
+  const elInputFrom = document.querySelector('#price_from')
+  const elInputTo = document.querySelector('#price_to')
+  const rangeFrom = elInputFrom.value
+  const rangeTo = elInputTo.value
+  const filterDataIds = Array.from(checkboxes).map(checkbox => checkbox.id)
+  handleFiltrate(filterDataIds, +rangeFrom, +rangeTo)
+}
 
 function onLoadPage() {
   const pageName = getPageName(location.pathname)
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
-    // sortSelect.addEventListener('change', onChangeSelectSort)
-    // document
-    //   .querySelector('button.filter')
-    //   .addEventListener('click', onClickButtonFilter)
+    sortSelect.addEventListener('change', onChangeSelectSort)
+    document
+      .querySelector('button.filter')
+      .addEventListener('click', onClickButtonFilter)
   }
   if (pageName === 'product') {
     const id = new URLSearchParams(location.search).get('id')
@@ -133,14 +133,14 @@ function checkingRangeFrom(rangeTo) {
   }
 }
 
-// function renderSwitchPage(pagesCount) {
-//   const elPaginatorContainer = document.querySelector('.container-paginator')
-//   elPaginatorContainer.innerHTML = ''
-//   const elPaginator = generateSwitchPage(pagesCount)
-//   elPaginatorContainer.appendChild(elPaginator)
-//   const pages = document.querySelectorAll('.page')
-//   pages.forEach(page => {
-//     page.addEventListener('click', handlePageClick)
-//   })
-//   pages[0].classList.add('active')
-// }
+function renderSwitchPage(pagesCount) {
+  const elPaginatorContainer = document.querySelector('.container-paginator')
+  elPaginatorContainer.innerHTML = ''
+  const elPaginator = generateSwitchPage(pagesCount)
+  elPaginatorContainer.appendChild(elPaginator)
+  const pages = document.querySelectorAll('.page')
+  pages.forEach(page => {
+    page.addEventListener('click', handlePageClick)
+  })
+  pages[0].classList.add('active')
+}

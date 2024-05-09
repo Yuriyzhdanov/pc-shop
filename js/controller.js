@@ -1,19 +1,19 @@
-// function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-//   model.createCheckedFilters(filterDataIds)
-//   model.filtrateProductsBySpecs()
-//   model.priceFilteredProducts(priceFrom, priceTo)
-//   model.sortingProducts('byPriceASC')
-//   model.switchPageProducts(0)
-//   handlerUpdatePriceFrom(priceFrom)
-//   handlerUpdatePriceTo(priceTo)
-//   renderLabelFrom(model.minPrice)
-//   renderLabelTo(model.maxPrice)
-//   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
-//   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
-//   renderWrapFilter(model.filter)
-//   renderSwitchPage(model.countPages)
-//   renderContainerProducts(model.paginatedProducts)
-// }
+function handleFiltrate(filterDataIds, priceFrom, priceTo) {
+  model.createCheckedFilters(filterDataIds)
+  model.filtrateProductsBySpecs()
+  model.priceFilteredProducts(priceFrom, priceTo)
+  model.sortingProducts('byPriceASC')
+  model.switchPageProducts(0)
+  handlerUpdatePriceFrom(priceFrom)
+  handlerUpdatePriceTo(priceTo)
+  renderLabelFrom(model.minPrice)
+  renderLabelTo(model.maxPrice)
+  renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
+  renderWrapFilter(model.filter)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
+}
 
 function handlerUpdatePriceFrom(price) {
   model.priceFrom = +price
@@ -23,11 +23,11 @@ function handlerUpdatePriceTo(price) {
   model.priceTo = +price
 }
 
-// function handleSort(sortType) {
-//   model.sortingProducts(sortType)
-//   model.switchPageProducts(0)
-//   renderContainerProducts(model.paginatedProducts)
-// }
+function handleSort(sortType) {
+  model.sortingProducts(sortType)
+  model.switchPageProducts(0)
+  renderContainerProducts(model.paginatedProducts)
+}
 
 // function onClickSearchHandler() {
 //   const queryInput = document.querySelector('#query')
@@ -67,8 +67,8 @@ async function handleLoadPageCatalog() {
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  // renderSwitchPage(model.countPages)
-  renderContainerProducts(model.products)
+  renderSwitchPage(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
 }
 
 // async function handleLoadPageProduct(id) {
@@ -84,15 +84,15 @@ async function handleLoadPageCatalog() {
 //   }
 // }
 
-// function handlePageClick(e) {
-//   const pageNum = +e.target.textContent
-//   const pages = e.target.parentNode.querySelectorAll('.page')
-//   model.switchPageProducts(pageNum)
-//   e.preventDefault()
-//   pages.forEach(page => page.classList.remove('active'))
-//   e.target.classList.add('active')
-//   renderContainerProducts(model.paginatedProducts)
-// }
+function handlePageClick(e) {
+  const pageNum = +e.target.textContent
+  const pages = e.target.parentNode.querySelectorAll('.page')
+  model.switchPageProducts(pageNum)
+  e.preventDefault()
+  pages.forEach(page => page.classList.remove('active'))
+  e.target.classList.add('active')
+  renderContainerProducts(model.paginatedProducts)
+}
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
