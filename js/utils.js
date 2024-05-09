@@ -34,7 +34,5 @@ function getPageName(str) {
 }
 
 function isContainsIgnoreCase(text, query) {
-  return (
-    typeof text === 'string' && text.toLowerCase().includes(query.toLowerCase())
-  )
+  return text?.toLowerCase?.().includes(query.toLowerCase())
 }
