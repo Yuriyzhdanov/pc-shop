@@ -28,7 +28,7 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
 
-    // this.convertPrice()
+    this.convertPrice()
 
     this.searchProducts()
     this.filtrateProductsBySpecs()

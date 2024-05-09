@@ -17,42 +17,41 @@ function generateFilterSubHeading(caption) {
   return elDiv
 }
 
-function generateFilterCheckbox(value, caption, key) {
+function generateFilterCheckbox(key, value) {
   const elDiv = document.createElement('div')
   const elCheckbox = document.createElement('input')
   const elLabel = document.createElement('label')
-  elCheckbox.setAttribute('type', 'checkbox')
-  elCheckbox.setAttribute('value', value)
-  elCheckbox.setAttribute('name', `${key}-${caption}`)
-  elCheckbox.setAttribute('id', `${key}-${caption}-${value}`)
-  elLabel.setAttribute('for', `${key}-${caption}-${value}`)
+  elCheckbox.type = 'checkbox'
+  elCheckbox.value = value
+  elCheckbox.name = `${key}`
+  elCheckbox.id = `${key}-${value}`
+  elLabel.htmlFor = `${key}-${value}`
   elLabel.textContent = value
   elDiv.classList.add('wrap-checkbox')
   elDiv.appendChild(elCheckbox)
   elDiv.appendChild(elLabel)
+
   return elDiv
 }
 
 function generateLabelSpecs(specs) {
-  let i = 0
-  const divLabels = document.createElement('div')
-  for (const spec in specs) {
-    const value = specs[spec]
-    for (const key in value) {
-      i++
-      const labelValue = `${spec}-${key}-${value[key]}`
-      const brandName = value[key]
-      const label = document.createElement('label')
-      label.textContent = brandName
-      label.setAttribute('for', labelValue)
-      divLabels.appendChild(label)
-      if (i > 8) {
-        return divLabels
-      }
+  const divLabels = document.createElement('div');
+  let i = 0;
+  for (const key in specs) {
+    const value = specs[key];
+    i++;
+    const labelValue = `${key}-${value}`;
+    const label = document.createElement('label');
+    label.textContent = value;
+    label.htmlFor = labelValue;
+    divLabels.appendChild(label);
+    if (i > 8) {
+      return divLabels;
     }
   }
-  return divLabels
+  return divLabels;
 }
+
 
 function generateProduct(product) {
   const divContainterProduct = document.createElement('div')
@@ -65,7 +64,7 @@ function generateProduct(product) {
   const divButtonCart = document.createElement('div')
   const divButtonFavorite = document.createElement('div')
   const divButtonCompare = document.createElement('div')
-  const divLabels = generateLabelSpecs(product.specs)
+  const divLabels = generateLabelSpecs(product.attributes)
   const aLink = document.createElement('a')
   const img = document.createElement('img')
   const h3 = document.createElement('h3')
@@ -86,9 +85,7 @@ function generateProduct(product) {
   aLink.setAttribute('target', '_blank')
   aLink.setAttribute('class', 'a-link')
   divH3.setAttribute('class', 'wrap-h3')
-  img.src =
-    'https://web-app.click/pc-shop/photos/products/computers/' +
-    product.photos.files[0]
+  img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
   img.alt = product.caption
   h3.textContent = product.caption
   b.textContent = product.convertedPrice.toFixed(2)
@@ -127,7 +124,7 @@ function generateProductSidebar(product) {
 function generateNavigation(product, slider) {
   const navigation = document.createElement('div')
   navigation.classList.add('navigation')
-  product.photos.files.forEach((file, index) => {
+  product.photos.forEach((file, index) => {
     const input = document.createElement('input')
     const label = generateLabel(file, index, product)
     input.type = 'radio'

@@ -3,6 +3,8 @@ const API_CURRENCY =
   'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD'
   const API_COMPUTERS_NEW = 'https://web-app.click/pc-shop/api/v0/products/'
 
+const API_STUDENTS = 'https://web-app.click/university/api/v1/students/'
+
 async function sendRequest(url) {
   const resp = await fetch(url)
   return resp.json()
@@ -19,4 +21,19 @@ async function loadComputers(id = '') {
 
 async function loadReviews(id = '') {
   return sendRequest('API_test' + id)
+}
+
+async function loadStudents() {
+  return sendRequest(API_STUDENTS )
+}
+
+async function getStudents() {
+  const response = await loadStudents()
+  if (response.code === 200) {
+  }
+}
+
+async function sendRequestDelete(url) {
+  const resp = await fetch(url)
+  return resp.json()
 }

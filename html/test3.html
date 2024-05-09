@@ -45,38 +45,38 @@
       async function test2() {
         await model.updateProducts()
         await model.updateCurrencyUSD()
-        console.log(model.products)
+        // console.log(model.products)
 
         model.convertPrice()
         model.searchProducts('ге')
-        console.log(model.searchedProducts)
+        // console.log(model.searchedProducts)
 
         model.checkedFilters.push({
           key: 'Процессор',
-          values: ['Intel'],
+          values: ['Intel','AMD'],
         })
         // model.checkedFilters.push({
         //   key: 'Объем накопителя',
         //   values: ['240Gb'],
         // })
         model.filtrateProductsBySpecs()
-        console.log(model.filteredProducts)
+        // console.log(model.filteredProducts)
 
-        model.priceFilteredProducts()
-          console.log(model.pricedProducts);
+        model.priceFilteredProducts(50000,200000)
+          // console.log(model.pricedProducts);
           
         model.sortingProducts('byPriceASC')
-        console.log(model.sortedProducts);
+        // console.log(model.sortedProducts);
         
-        model.switchPageProducts(1)
-        console.log(model.paginatedProducts);
+        model.switchPageProducts(2)
+        // console.log(model.paginatedProducts);
         
 
-        // for (const key in model) {
-        //   if (typeof model[key] !== 'function') {
-        //     console.log(key, model[key])
-        //   }
-        // }
+        for (const key in model) {
+          if (typeof model[key] !== 'function') {
+            console.log(key, model[key])
+          }
+        }
       }
       // test()
       test2()
