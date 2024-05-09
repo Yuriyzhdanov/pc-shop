@@ -121,6 +121,7 @@ const model = {
         }
         if (!this.filter[key].includes(value)) {
           this.filter[key].push(value)
+          this.filter[key].sort((a, b) => a - b)
         }
       }
     }
