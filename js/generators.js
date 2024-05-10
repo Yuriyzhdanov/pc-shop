@@ -119,7 +119,16 @@ function generateProductSidebar(product) {
   slider.appendChild(specsContainer)
   return slider
 }
-
+function generateDataList(captions) {
+  const datalist = document.createElement('datalist')
+  datalist.id = 'productsCaption'
+  captions.forEach(caption => {
+    const option = document.createElement('option')
+    option.value = caption
+    datalist.appendChild(option)
+  })
+  return datalist
+}
 function generateNavigation(product, slider) {
   const navigation = document.createElement('div')
   navigation.classList.add('navigation')

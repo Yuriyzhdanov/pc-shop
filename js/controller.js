@@ -43,6 +43,7 @@ function onClickSearchHandler() {
   renderWrapFilter(model.filter)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
+  console.log('work')
 }
 searchBtn.onclick = onClickSearchHandler
 
@@ -56,6 +57,8 @@ function oninputSearchBtnCloseHandler(e) {
     renderWrapFilter(model.filter)
     renderSwitchPage(model.countPages)
     renderContainerProducts(model.paginatedProducts)
+    model.setProductsCaptionToDatalist()
+    renderDataList(model.productCaptions)
   }
 }
 queryInput.oninput = oninputSearchBtnCloseHandler

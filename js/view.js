@@ -60,6 +60,12 @@ function renderWrapFilter(modelFilter) {
   }
 }
 
+function renderDataList(captions) {
+  const elSearchContainer = document.querySelector('#searchContainer')
+  const elDataList = generateDataList(captions.slice(0, 8))
+  elSearchContainer.appendChild(elDataList)
+}
+
 // function renderProductSidebar(product) {
 //   const elLeft = document.querySelector('#left')
 //   const elSlider = generateProductSidebar(product)

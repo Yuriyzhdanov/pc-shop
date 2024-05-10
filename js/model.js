@@ -23,6 +23,7 @@ const model = {
   perCountPages: 10,
 
   recomendedProducts: [],
+  productCaptions: [],
 
   async looksLikeHandleLoadPage() {
     await this.updateProducts()
@@ -207,5 +208,9 @@ const model = {
 
   getProductById(id) {
     return this.products.find(prod => prod.id === id)
+  },
+
+  setProductsCaptionToDatalist() {
+    this.productCaptions = this.products.map(product => product.caption)
   },
 }
