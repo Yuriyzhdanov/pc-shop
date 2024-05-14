@@ -57,7 +57,6 @@ function oninputSearchBtnCloseHandler(e) {
     renderWrapFilter(model.filter)
     renderSwitchPage(model.countPages)
     renderContainerProducts(model.paginatedProducts)
-    model.setProductsCaptionToDatalist()
     renderDataList(model.productCaptions)
   }
 }

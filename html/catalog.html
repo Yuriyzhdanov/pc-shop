@@ -19,12 +19,13 @@
             <input type="hidden" name="page" value="search" />
             <div class="row">
               <div class="left" id="searchContainer">
+                <datalist id="productCaptions"> </datalist>
                 <input
                   type="search"
                   name="query"
                   id="query"
                   placeholder=" Что ищем ?"
-                  list="productsCaption"
+                  list="productCaptions"
                 />
               </div>
               <div class="right">
@@ -60,9 +61,7 @@
             <a href="">Собранные компьютеры</a>
           </div>
           <div class="wrap-sort row">
-            <div class="left">
-              
-            </div>
+            <div class="left"></div>
             <div class="right">
               <p>Сортирoвка</p>
               <select name="sort" class="sort">
@@ -109,8 +108,7 @@
               </div>
             </div>
             <div class="wrap-filter">
-              <div class="wrap-props">
-              </div>
+              <div class="wrap-props"></div>
             </div>
           </div>
           <div class="right" id="pageNumberContainer">

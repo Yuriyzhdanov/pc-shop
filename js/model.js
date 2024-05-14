@@ -31,6 +31,7 @@ const model = {
 
     this.convertPrice()
 
+    this.setProductsCaptionToDatalist()
     this.searchProducts()
     this.filtrateProductsBySpecs()
     this.priceFilteredProducts()

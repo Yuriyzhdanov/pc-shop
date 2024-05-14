@@ -62,7 +62,7 @@ function renderWrapFilter(modelFilter) {
 
 function renderDataList(captions) {
   const elSearchContainer = document.querySelector('#searchContainer')
-  const elDataList = generateDataList(captions.slice(0, 8))
+  const elDataList = generateDataList(captions)
   elSearchContainer.appendChild(elDataList)
 }
 

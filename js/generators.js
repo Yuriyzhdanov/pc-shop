@@ -119,9 +119,9 @@ function generateProductSidebar(product) {
   slider.appendChild(specsContainer)
   return slider
 }
+
 function generateDataList(captions) {
-  const datalist = document.createElement('datalist')
-  datalist.id = 'productsCaption'
+  const datalist = document.querySelector('#productCaptions')
   captions.forEach(caption => {
     const option = document.createElement('option')
     option.value = caption
