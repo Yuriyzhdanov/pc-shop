@@ -29,7 +29,7 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
     await this.updateRecomendProd()
-    
+
     this.convertPrice()
 
     this.setProductsCaptionToDatalist()
@@ -193,11 +193,11 @@ const model = {
   },
 
   async updateRecomendProd() {
-    const res = await loadAuth()
-    console.log(res);
+    // const res = await loadAuth()
+    // console.log(res);
     const response = await loadRecomendProducts(3)
-    console.log(response);
-    
+    console.log(response)
+
     if (response.success) {
       this.recomendedProducts = response.payload
     } else {
