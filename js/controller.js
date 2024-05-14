@@ -1,3 +1,4 @@
+
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
   model.filtrateProductsBySpecs()
@@ -43,7 +44,6 @@ function onClickSearchHandler() {
   renderWrapFilter(model.filter)
   renderSwitchPage(model.countPages)
   renderContainerProducts(model.paginatedProducts)
-  console.log('work')
 }
 searchBtn.onclick = onClickSearchHandler
 

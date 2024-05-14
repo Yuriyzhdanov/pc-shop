@@ -66,23 +66,23 @@ function renderDataList(captions) {
   elSearchContainer.appendChild(elDataList)
 }
 
-// function renderProductSidebar(product) {
-//   const elLeft = document.querySelector('#left')
-//   const elSlider = generateProductSidebar(product)
-//   elLeft.appendChild(elSlider)
-// }
+function renderProductSidebar(product) {
+  const elLeft = document.querySelector('#left')
+  const elSlider = generateProductSidebar(product)
+  elLeft.appendChild(elSlider)
+}
 
-// function renderProductInfo(product) {
-//   const productInfo = document.querySelector('.product-info')
-//   const wrapInfo = generateProductInfo(product)
-//   productInfo.appendChild(wrapInfo)
-// }
+function renderProductInfo(product) {
+  const productInfo = document.querySelector('.product-info')
+  const wrapInfo = generateProductInfo(product)
+  productInfo.appendChild(wrapInfo)
+}
 
-// function renderRecomendProd(product) {
-//   const containerPave = document.querySelector('.container-pave')
-//   const elPave = generateRecomendProd(product)
-//   containerPave.appendChild(elPave)
-// }
+function renderRecomendProd(product) {
+  const containerPave = document.querySelector('.container-pave')
+  const elPave = generateRecomendProd(product)
+  containerPave.appendChild(elPave)
+}
 
 function onInputRangeFrom(e) {
   const rangeFrom = e.target.value

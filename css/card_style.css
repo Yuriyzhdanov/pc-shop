@@ -106,7 +106,12 @@ a {
 .wrap-search .right {
   width: 50px;
 }
-.wrap-search input[type='text'] {
+
+.left > input {
+  width: 100%;
+}
+.wrap-search input[type='search'] {
+  position: relative;
   color: var(--clr_black);
   width: 100%;
   text-indent: 3px;

@@ -109,6 +109,7 @@ a {
 .wrap-search .right {
   width: 50px;
 }
+
 .wrap-search input[type='search'] {
   position: relative;
   color: var(--clr_black);

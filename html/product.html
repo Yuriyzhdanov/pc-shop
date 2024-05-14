@@ -17,15 +17,22 @@
       </div>
       <div class="center">
         <div class="wrap-search">
-            <input type="hidden" name="page" value="search">
-            <div class="row">
-              <div class="left">
-                <input type="text" name="query" placeholder="Что ищем ?">
-              </div>
-              <div class="right">
-                <!-- <input type="submit" value=""> -->
-              </div>
+          <input type="hidden" name="page" value="search" />
+          <div class="row">
+            <div class="left" id="searchContainer">
+              <datalist id="productCaptions"> </datalist>
+              <input
+                type="search"
+                name="query"
+                id="query"
+                placeholder=" Что ищем ?"
+                list="productCaptions"
+              />
             </div>
+            <div class="right">
+              <input type="submit" value="" class="search-btn" />
+            </div>
+          </div>
         </div>
       </div>
       <div class="right">
@@ -34,9 +41,7 @@
             <span>Нажмите кнопку</span>
           </div>
           <div class="middle">
-            <!-- <a href=""> -->
               <button class="btn">Войти</button>
-            <!-- </a> -->
           </div>
           <div class="bottom">
             <span>Либо</span>
@@ -162,12 +167,11 @@
     </div>
   </div>
   </div>
-  <script src="../js/utils.js"></script>
   <script src="../js/api.js"></script>
   <script src="../js/model.js"></script>
-  <script src="../js/controller.js"></script>
   <script src="../js/generators.js"></script>
   <script src="../js/view.js"></script>
+  <script src="../js/controller.js"></script>
   <script src="../js/utils.js"></script>
 
 </body>
