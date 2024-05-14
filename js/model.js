@@ -24,11 +24,12 @@ const model = {
 
   recomendedProducts: [],
   productCaptions: [],
+  similarProducts: [],
 
   async looksLikeHandleLoadPage() {
     await this.updateProducts()
     await this.updateCurrencyUSD()
-    await this.updateRecomendProd()
+    // await this.updateRecomendProd()
 
     this.convertPrice()
 
@@ -38,8 +39,6 @@ const model = {
     this.priceFilteredProducts()
     this.sortingProducts('byPriceASC')
     this.switchPageProducts(0)
-
-    this.updateRecomendProd()
   },
 
   searchProducts(_ = '', query = _.trim()) {
@@ -192,17 +191,27 @@ const model = {
     )
   },
 
-  async updateRecomendProd() {
-    // const res = await loadAuth()
-    // console.log(res);
-    const response = await loadRecomendProducts(3)
-    console.log(response)
+  // async updateRecomendProd() {
+  //   // const res = await loadAuth()
+  //   // console.log(res);
+  //   const response = await loadRecomendProducts(3)
+  //   console.log(response)
 
-    if (response.success) {
-      this.recomendedProducts = response.payload
-    } else {
-      console.error(response.message)
-    }
+  //   if (response.success) {
+  //     this.recomendedProducts = response.payload
+  //   } else {
+  //     console.error(response.message)
+  //   }
+  // },
+  async updateSimilarProd(id) {
+    const response = await loadSimilarProducts(id)
+    console.log(response)
+    const relatedProductIds = response.payload.map(
+      product => product.relatedProductId
+    )
+    this.similarProducts = this.products.filter(product =>
+      relatedProductIds.includes(product.id)
+    )
   },
 
   replaceSpecs(options) {

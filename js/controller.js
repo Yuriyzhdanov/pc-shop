@@ -75,6 +75,9 @@ async function handleLoadPageCatalog() {
 async function handleLoadPageProduct(id) {
   id = parseInt(id)
   await model.looksLikeHandleLoadPage()
+  await model.updateSimilarProd(id)
+ 
+  
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)

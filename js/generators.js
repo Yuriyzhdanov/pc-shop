@@ -266,6 +266,26 @@ function generateRecomendProd(product) {
   return elPave
 }
 
+function generateSimilarProd(product) {
+  const elPave = document.createElement('div')
+  const similarDiv = document.createElement('div')
+  const elLink = document.createElement('a')
+  const img = document.createElement('img')
+  elPave.classList.add('tile')
+  recomendDiv.classList.add('similar')
+  const pElement = document.createElement('p')
+  elLink.setAttribute('href', `./product.html?id=${product.id}`)
+  elLink.setAttribute('target', '_blank')
+  img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
+  img.alt = product.caption
+  pElement.textContent = product.caption
+  similarDiv.appendChild(elLink)
+  elLink.appendChild(img)
+  similarDiv.appendChild(pElement)
+  elPave.appendChild(similarDiv)
+  return elPave
+}
+
 function generateSwitchPage(pagesCount) {
   const elPaginator = document.createElement('div')
   elPaginator.classList.add('paginator')
