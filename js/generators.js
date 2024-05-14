@@ -272,7 +272,7 @@ function generateSimilarProd(product) {
   const elLink = document.createElement('a')
   const img = document.createElement('img')
   elPave.classList.add('tile')
-  recomendDiv.classList.add('similar')
+  similarDiv.classList.add('similar')
   const pElement = document.createElement('p')
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')

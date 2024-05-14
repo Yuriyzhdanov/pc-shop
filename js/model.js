@@ -205,7 +205,6 @@ const model = {
   // },
   async updateSimilarProd(id) {
     const response = await loadSimilarProducts(id)
-    console.log(response)
     const relatedProductIds = response.payload.map(
       product => product.relatedProductId
     )

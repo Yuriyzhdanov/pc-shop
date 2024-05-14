@@ -84,10 +84,13 @@ function renderRecomendProd(product) {
   containerPave.appendChild(elPave)
 }
 
-function renderSimilarProd(product) {
+function renderSimilarProd(products) {
   const containerPave = document.querySelector('.container-pave')
-  const elPave = generateSimilarProd(product)
-  containerPave.appendChild(elPave)
+  containerPave.innerHTML = ''
+  products.forEach(product => {
+    const elPave = generateSimilarProd(product)
+    containerPave.appendChild(elPave)
+  })
 }
 
 function onInputRangeFrom(e) {

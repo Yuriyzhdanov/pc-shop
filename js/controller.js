@@ -76,17 +76,19 @@ async function handleLoadPageProduct(id) {
   id = parseInt(id)
   await model.looksLikeHandleLoadPage()
   await model.updateSimilarProd(id)
- 
-  
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)
-  const recomendation = model.recomendedProducts
-  for (let i = 0; i < 4; i++) {
-    const randomIdx = Math.floor(Math.random() * recomendation.length)
-    const randomProd = recomendation[randomIdx]
-    renderRecomendProd(randomProd)
-  }
+  // const recomendation = model.recomendedProducts
+  // for (let i = 0; i < 4; i++) {
+  //   const randomIdx = Math.floor(Math.random() * recomendation.length)
+  //   const randomProd = recomendation[randomIdx]
+  //   renderRecomendProd(randomProd)
+  // }
+  const similarProducts = model.similarProducts.slice(0, 4)
+  console.log(similarProducts)
+
+  renderSimilarProd(similarProducts)
 }
 
 function handlePageClick(e) {
