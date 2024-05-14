@@ -28,7 +28,8 @@ const model = {
   async looksLikeHandleLoadPage() {
     await this.updateProducts()
     await this.updateCurrencyUSD()
-
+    await this.updateRecomendProd()
+    
     this.convertPrice()
 
     this.setProductsCaptionToDatalist()
@@ -38,7 +39,7 @@ const model = {
     this.sortingProducts('byPriceASC')
     this.switchPageProducts(0)
 
-    this.addToRecomendProd()
+    this.updateRecomendProd()
   },
 
   searchProducts(_ = '', query = _.trim()) {
@@ -191,8 +192,17 @@ const model = {
     )
   },
 
-  addToRecomendProd() {
-    this.recomendedProducts = this.products
+  async updateRecomendProd() {
+    const res = await loadAuth()
+    console.log(res);
+    const response = await loadRecomendProducts(3)
+    console.log(response);
+    
+    if (response.success) {
+      this.recomendedProducts = response.payload
+    } else {
+      console.error(response.message)
+    }
   },
 
   replaceSpecs(options) {
