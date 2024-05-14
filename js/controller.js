@@ -1,4 +1,3 @@
-
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedFilters(filterDataIds)
   model.filtrateProductsBySpecs()
@@ -73,18 +72,19 @@ async function handleLoadPageCatalog() {
   renderContainerProducts(model.paginatedProducts)
 }
 
-// async function handleLoadPageProduct(id) {
-//   await model.looksLikeHandleLoadPage()
-//   const product = model.getProductById(id)
-//   renderProductInfo(product)
-//   renderProductSidebar(product)
-//   const recomendation = model.recomendedProducts
-//   for (let i = 0; i < 4; i++) {
-//     const randomIdx = Math.floor(Math.random() * recomendation.length)
-//     const randomProd = recomendation[randomIdx]
-//     renderRecomendProd(randomProd)
-//   }
-// }
+async function handleLoadPageProduct(id) {
+  id = parseInt(id)
+  await model.looksLikeHandleLoadPage()
+  const product = model.getProductById(id)
+  renderProductInfo(product)
+  renderProductSidebar(product)
+  const recomendation = model.recomendedProducts
+  for (let i = 0; i < 4; i++) {
+    const randomIdx = Math.floor(Math.random() * recomendation.length)
+    const randomProd = recomendation[randomIdx]
+    renderRecomendProd(randomProd)
+  }
+}
 
 function handlePageClick(e) {
   const pageNum = +e.target.textContent

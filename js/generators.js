@@ -152,7 +152,7 @@ function generateLabel(file, index, product) {
   const img = document.createElement('img')
   img.src = `https://web-app.click/pc-shop/photos/products/computers/${file}`
   img.alt = `img${index + 1}`
-  const idx = index + 2 === product.photos.files.length ? 1 : index + 2
+  const idx = index + 2 > product.photos.length ? 1 : index + 2
   label.htmlFor = `slider-r${idx}`
   label.appendChild(img)
   return label
@@ -161,23 +161,15 @@ function generateLabel(file, index, product) {
 function generateSpecsContainer(product) {
   const specsContainer = document.createElement('div')
   specsContainer.classList.add('specs')
-  Object.entries(product.specs).forEach(([spec, prop]) => {
+  Object.entries(product.attributes).forEach(([spec, prop]) => {
     const elP = document.createElement('p')
     const span = document.createElement('span')
     elP.innerHTML = `${spec}: `
-    span.textContent = getSpecText(prop)
+    span.textContent = prop
     elP.appendChild(span)
     specsContainer.appendChild(elP)
   })
   return specsContainer
-}
-
-function getSpecText(prop) {
-  let text = prop.brand
-  if (prop.power) text += ` (${prop.power})`
-  if (prop.capacity) text += ` (${prop.capacity})`
-  if (prop.type && prop.frequency) text += ` (${prop.type}, ${prop.frequency})`
-  return text
 }
 
 function generateProductInfo(product) {
@@ -264,9 +256,7 @@ function generateRecomendProd(product) {
   const pElement = document.createElement('p')
   elLink.setAttribute('href', `./product.html?id=${product.id}`)
   elLink.setAttribute('target', '_blank')
-  img.src =
-    'https://web-app.click/pc-shop/photos/products/computers/' +
-    product.photos.files[0]
+  img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
   img.alt = product.caption
   pElement.textContent = product.caption
   recomendDiv.appendChild(elLink)
