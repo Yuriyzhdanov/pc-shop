@@ -123,7 +123,6 @@ const model = {
         }
         if (!this.filter[key].includes(value)) {
           this.filter[key].push(value)
-          this.filter[key].sort((a, b) => a - b)
         }
       }
     }
@@ -212,7 +211,6 @@ const model = {
       relatedProductIds.includes(product.id)
     )
   },
-
 
   getProductById(id) {
     return this.products.find(prod => prod.id === id)

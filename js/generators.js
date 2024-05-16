@@ -16,6 +16,7 @@ function generateFilterCheckbox(key, value) {
   elDiv.classList.add('wrap-checkbox')
   elDiv.appendChild(elCheckbox)
   elDiv.appendChild(elLabel)
+
   return elDiv
 }
 

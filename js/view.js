@@ -53,6 +53,7 @@ function renderWrapFilter(modelFilter) {
   for (const key in modelFilter) {
     const elProp = generateFilterProp(key)
     elWrapFilter.appendChild(elProp)
+    modelFilter[key].sort((a, b) => a - b)
     for (const item of modelFilter[key]) {
       const elCheckbox = generateFilterCheckbox(key, item)
       elProp.appendChild(elCheckbox)
