@@ -86,8 +86,6 @@ async function handleLoadPageProduct(id) {
   //   renderRecomendProd(randomProd)
   // }
   const similarProducts = model.similarProducts.slice(0, 4)
-  console.log(similarProducts)
-
   renderSimilarProd(similarProducts)
 }
 

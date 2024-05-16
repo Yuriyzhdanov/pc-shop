@@ -213,17 +213,6 @@ const model = {
     )
   },
 
-  replaceSpecs(options) {
-    if (!this.filter['Процессор']['cores']) {
-      this.filter['Процессор']['cores'] = []
-    }
-    if (options['frequency'].includes('*')) {
-      options['frequency'] = options['frequency'].replace(/\s/g, '')
-      options['frequency'] = options['frequency'].replace(/\?/g, '')
-      options['frequency'] =
-        options['frequency'].split('*')[1].replace('Ghz', '').trim() + 'Ghz'
-    }
-  },
 
   getProductById(id) {
     return this.products.find(prod => prod.id === id)
