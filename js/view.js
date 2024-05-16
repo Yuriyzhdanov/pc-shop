@@ -79,14 +79,17 @@ function renderProductInfo(product) {
   productInfo.appendChild(wrapInfo)
 }
 
-function renderRecomendProd(product) {
-  const containerPave = document.querySelector('.container-pave')
-  const elPave = generateRecomendProd(product)
-  containerPave.appendChild(elPave)
+function renderRecomendProd(products) {
+  const containerPave = document.querySelector('.container-pave.recomend')
+  containerPave.innerHTML = ''
+  products.forEach(product => {
+    const elPave = generateRecomendProd(product)
+    containerPave.appendChild(elPave)
+  })
 }
 
 function renderSimilarProd(products) {
-  const containerPave = document.querySelector('.container-pave')
+  const containerPave = document.querySelector('.container-pave.similar')
   containerPave.innerHTML = ''
   products.forEach(product => {
     const elPave = generateSimilarProd(product)

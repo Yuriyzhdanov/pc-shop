@@ -79,12 +79,8 @@ async function handleLoadPageProduct(id) {
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)
-  // const recomendation = model.recomendedProducts
-  // for (let i = 0; i < 4; i++) {
-  //   const randomIdx = Math.floor(Math.random() * recomendation.length)
-  //   const randomProd = recomendation[randomIdx]
-  //   renderRecomendProd(randomProd)
-  // }
+  const recommendation = model.recommendedProducts.slice(0, 4)
+  renderRecomendProd(recommendation)
   const similarProducts = model.similarProducts.slice(0, 4)
   renderSimilarProd(similarProducts)
 }

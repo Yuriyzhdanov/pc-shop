@@ -23,14 +23,15 @@ const model = {
   countProducts: 0,
   perCountPages: 10,
 
-  recomendedProducts: [],
   productCaptions: [],
   similarProducts: [],
+  recomendedProducts: [],
+  recommendedProductsIDs: [],
 
   async looksLikeHandleLoadPage() {
     await this.updateProducts()
     await this.updateCurrencyUSD()
-    // await this.updateRecomendProd()
+    await this.updateRecomendProd()
 
     this.convertPrice()
 
@@ -188,18 +189,19 @@ const model = {
     )
   },
 
-  // async updateRecomendProd() {
-  //   // const res = await loadAuth()
-  //   // console.log(res);
-  //   const response = await loadRecomendProducts(3)
-  //   console.log(response)
+  async updateRecomendProd() {
+    const res = await loadAuth()
+    const response = await loadRecomendProducts(3)
+    if (response.success) {
+      const recommendedIds = response.payload.map(el => el.productId)
+      this.recommendedProducts = this.products.filter(prod =>
+        recommendedIds.includes(prod.id)
+      )
+    } else {
+      console.error(response.message)
+    }
+  },
 
-  //   if (response.success) {
-  //     this.recomendedProducts = response.payload
-  //   } else {
-  //     console.error(response.message)
-  //   }
-  // },
   async updateSimilarProd(id) {
     const response = await loadSimilarProducts(id)
     const relatedProductIds = response.payload.map(
