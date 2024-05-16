@@ -1,9 +1,9 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  model.createCheckedFilters(filterDataIds)
-  model.filtrateProductsBySpecs()
-  model.priceFilteredProducts(priceFrom, priceTo)
+  model.createCheckedAttrs(filterDataIds)
+  model.filtrateProducts()
+  model.rangePriceProducts(priceFrom, priceTo)
   model.sortingProducts('byPriceASC')
-  model.switchPageProducts(0)
+  model.paginateProducts(0)
   handlerUpdatePriceFrom(priceFrom)
   handlerUpdatePriceTo(priceTo)
   renderLabelFrom(priceFrom)
@@ -25,17 +25,17 @@ function handlerUpdatePriceTo(price) {
 
 function handleSort(sortType) {
   model.sortingProducts(sortType)
-  model.switchPageProducts(0)
+  model.paginateProducts(0)
   renderContainerProducts(model.paginatedProducts)
 }
 
 function onClickSearchHandler() {
   const queryInput = document.querySelector('#query')
   model.searchProducts(queryInput.value)
-  model.filtrateProductsBySpecs()
-  model.priceFilteredProducts()
+  model.filtrateProducts()
+  model.rangePriceProducts()
   model.sortingProducts('byPriceASC')
-  model.switchPageProducts(0)
+  model.paginateProducts(0)
   renderLabelFrom(model.priceFrom)
   renderLabelTo(model.priceTo)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
@@ -49,10 +49,10 @@ searchBtn.onclick = onClickSearchHandler
 function oninputSearchBtnCloseHandler(e) {
   if (e.target.value == '') {
     model.searchProducts(queryInput.value)
-    model.filtrateProductsBySpecs()
-    model.priceFilteredProducts()
+    model.filtrateProducts()
+    model.rangePriceProducts()
     model.sortingProducts('byPriceASC')
-    model.switchPageProducts(0)
+    model.paginateProducts(0)
     renderWrapFilter(model.filter)
     renderSwitchPage(model.countPages)
     renderContainerProducts(model.paginatedProducts)
@@ -92,7 +92,7 @@ async function handleLoadPageProduct(id) {
 function handlePageClick(e) {
   const pageNum = +e.target.textContent
   const pages = e.target.parentNode.querySelectorAll('.page')
-  model.switchPageProducts(pageNum)
+  model.paginateProducts(pageNum)
   e.preventDefault()
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')

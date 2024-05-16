@@ -4,14 +4,15 @@ const model = {
   products: [],
   searchedProducts: [],
   filteredProducts: [],
-  pricedProducts: [],
+  rangedPriceProducts: [],
   sortedProducts: [],
   paginatedProducts: [],
 
   searchQuery: '',
-  checkedFilters: [],
+  checkedAttrs: [],
   priceFrom: 0,
   priceTo: 0,
+  sortingType: 'byPriceASC',
   currentPage: 0,
 
   minPrice: 0,
@@ -35,51 +36,51 @@ const model = {
 
     this.setProductsCaptionToDatalist()
     this.searchProducts()
-    this.filtrateProductsBySpecs()
-    this.priceFilteredProducts()
-    this.sortingProducts('byPriceASC')
-    this.switchPageProducts(0)
+    this.clearFilter()
+    this.createFilter()
+    this.filtrateProducts()
+    this.rangePriceProducts()
+    this.sortingProducts(this.sortingType)
+    this.paginateProducts(this.currentPage)
+    this.calcCountPages()
   },
 
   searchProducts(_ = '', query = _.trim()) {
     this.searchedProducts = this.products.filter(product =>
       Object.values(product).some(text => isContainsIgnoreCase(text, query))
     )
-    this.clearFilter()
-    this.createFilter()
   },
 
-  filtrateProductsBySpecs() {
+  filtrateProducts() {
     this.filteredProducts = this.searchedProducts.filter(product => {
       let matchedCount = 0
-      this.checkedFilters.forEach(filter => {
+      this.checkedAttrs.forEach(filter => {
         const { key, values } = filter
         if (values.includes(product.attributes[key])) {
           matchedCount++
         }
       })
-      return matchedCount === this.checkedFilters.length
+      return matchedCount === this.checkedAttrs.length
     })
     this.calcMinMaxPrice()
     this.calcFromToPrice()
   },
 
-  priceFilteredProducts(priceFrom, priceTo) {
-    if (typeof priceFrom === 'undefined') {
-      priceFrom = this.minPrice
-    }
-    if (typeof priceTo === 'undefined') {
-      priceTo = this.maxPrice
-    }
-    this.pricedProducts = this.filteredProducts.filter(
+  rangePriceProducts(priceFrom, priceTo) {
+    priceFrom ?? priceTo ?? this.calcFromToPrice()
+    this.rangedPriceProducts = this.filteredProducts.filter(
       product =>
-        priceFrom <= product.convertedPrice && product.convertedPrice <= priceTo
+        this.priceFrom <= product.convertedPrice &&
+        product.convertedPrice <= this.priceTo
     )
   },
 
-  sortingProducts(type) {
-    this.sortedProducts = this.pricedProducts.slice()
-    switch (type) {
+  sortingProducts(sortingType) {
+    if (sortingType) {
+      this.sortingType = sortingType
+    }
+    this.sortedProducts = this.rangedPriceProducts.slice()
+    switch (this.sortingType) {
       case 'byPriceASC':
         this.sortedProducts.sort((a, b) => a.price - b.price)
         break
@@ -105,8 +106,7 @@ const model = {
     }
   },
 
-  switchPageProducts(pageNum) {
-    this.calcCountPages()
+  paginateProducts(pageNum) {
     this.currentPage = pageNum
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
@@ -128,30 +128,28 @@ const model = {
     }
   },
 
-  createCheckedFilters(filterDataIds) {
-    this.clearCheckedFilter()
+  createCheckedAttrs(filterDataIds) {
+    this.clearCheckedAttrs()
     filterDataIds.forEach(filterDataId => {
       const idParts = filterDataId.split('-')
       const key = idParts[0]
       const value = idParts[1]
-      const isExistFilter = this.checkedFilters.find(
-        filter => filter.key === key
-      )
+      const isExistFilter = this.checkedAttrs.find(filter => filter.key === key)
       if (isExistFilter) {
         isExistFilter.values.push(value)
       } else {
-        this.checkedFilters.push({ key, values: [value] })
+        this.checkedAttrs.push({ key, values: [value] })
       }
     })
   },
 
-  clearCheckedFilter() {
-    this.checkedFilters = []
+  clearCheckedAttrs() {
+    this.checkedAttrs = []
   },
 
   clearFilter() {
     this.filter = {}
-    this.clearCheckedFilter()
+    this.clearCheckedAttrs()
   },
 
   async updateProducts() {
