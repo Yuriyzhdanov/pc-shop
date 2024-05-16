@@ -1,25 +1,3 @@
-function getLatToCyrFilter(word) {
-  const subCategory = {
-    brand: 'бренд',
-    capacity: 'объём',
-    purpose: 'память',
-    cores: 'ядро',
-    type: 'тип',
-    frequency: 'частота',
-    power: 'мощность',
-    size: 'размер',
-    storage: 'Накопитель SSD',
-    motherboard: 'Материнская плата',
-    processor: 'Процессор',
-    RAM: 'Оперативная память',
-    power_supply: 'Блок питания',
-    case: 'Корпус',
-    graphics_card: 'Видеокарта',
-    cpu_cooler: 'Кулер для процесора',
-  }
-
-  return subCategory[word] ?? '*'
-}
 
 function toCaptalize(str) {
   return str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -35,4 +13,17 @@ function getPageName(str) {
 
 function isContainsIgnoreCase(text, query) {
   return text?.toLowerCase?.().includes(query.toLowerCase())
+}
+
+function h(tagName, attrs, text, children, listener) {
+  const el = document.createElement(tagName)
+  for (const key in attrs) {
+    el.setAttribute(key, attrs[key])
+  }
+  el.textContent = text
+  if (children) {
+    children.forEach(child => el.appendChild(child))
+  }
+  el.onclick = listener
+  return el
 }
