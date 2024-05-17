@@ -89,7 +89,8 @@ function handlePageClick(e) {
   const pageNum = +e.target.textContent
   const pages = e.target.parentNode.querySelectorAll('.page')
   model.paginateProducts(pageNum)
-  e.preventDefault()
+  // e.preventDefault()
+  // location.hash = '#header'
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')
   renderContainerProducts(model.paginatedProducts)

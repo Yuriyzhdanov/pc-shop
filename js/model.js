@@ -25,10 +25,11 @@ const model = {
 
   productCaptions: [],
   similarProducts: [],
-  recomendedProducts: [],
-  recommendedProductsIDs: [],
+
+  userId: -1,
 
   async looksLikeHandleLoadPage() {
+    await this.updateUserId()
     await this.updateProducts()
     await this.updateCurrencyUSD()
     await this.updateRecomendProd()
@@ -189,17 +190,21 @@ const model = {
     )
   },
 
+  async updateUserId() {
+    this.userId = await loadAuth()
+    console.log('this.userId :>> ', this.userId)
+  },
+
   async updateRecomendProd() {
-    const res = await loadAuth()
-    const response = await loadRecomendProducts(3)
-    if (response.success) {
-      const recommendedIds = response.payload.map(el => el.productId)
-      this.recommendedProducts = this.products.filter(prod =>
-        recommendedIds.includes(prod.id)
-      )
-    } else {
-      console.error(response.message)
-    }
+    const recommendedIds = await loadRecommendedProductsById(this.userId)
+
+    this.recommendedProducts = recommendedIds.map(id =>
+      this.products.find(p => p.id === id)
+    )
+
+    // this.recommendedProducts = this.products.filter(prod =>
+    //   recommendedIds.includes(prod.id)
+    // )
   },
 
   async updateSimilarProd(id) {

@@ -336,7 +336,7 @@ function generateSwitchPage(pagesCount) {
   elPaginator.classList.add('paginator')
   for (let i = 0; i <= pagesCount; i++) {
     const pageLink = document.createElement('a')
-    pageLink.href = '#'
+    pageLink.href = './catalog.html#header'
     pageLink.classList.add('page')
     pageLink.textContent = i
     elPaginator.appendChild(pageLink)

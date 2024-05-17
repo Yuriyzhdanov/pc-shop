@@ -1,4 +1,5 @@
 const API_COMPUTERS = 'http://35.225.111.193:8181/api/v3/products/computers/'
+// https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json
 const API_CURRENCY =
   'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD'
 const API_PRODUCTS = 'https://web-app.click/pc-shop/api/v0/products/'
@@ -7,15 +8,26 @@ const API_CUSTOMERS = 'https://web-app.click/pc-shop/api/v0/customers/'
 
 const API_SIMILAR = id => API_PRODUCTS + id + '/similar'
 
-async function sendRequest(url) {
-  const resp = await fetch(url)
+async function sendRequest(url, options = {}) {
+  const resp = await fetch(url, options)
   return resp.json()
 }
+
 async function sendRequestWithCred(url) {
-  const resp = await fetch(url, {
+  const options = {
     credentials: 'include',
-  })
-  return resp.json()
+  }
+  const json = await sendRequest(url, options)
+  return checkSuccess(json)
+}
+
+function checkSuccess(json) {
+  if (json.success === true) {
+    return json.payload ?? json.userId
+  } else if (json.success === undefined) {
+    return json
+  }
+  return []
 }
 
 async function loadCurrency() {
@@ -40,8 +52,10 @@ async function loadAuth() {
   return sendRequestWithCred(API_AUTH)
 }
 
-async function loadRecomendProducts(id = '') {
-  return sendRequestWithCred(API_CUSTOMERS + id + '/recomend/')
+async function loadRecommendedProductsById(id) {
+  let resp = await sendRequestWithCred(API_CUSTOMERS + id + '/recomend/')
+  console.log('resp :>> ', resp)
+  return resp.map(el => el.productId)
 }
 
 async function loadSimilarProducts(id) {
