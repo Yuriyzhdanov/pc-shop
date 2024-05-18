@@ -86,7 +86,7 @@ function generateProduct(product) {
   img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
   img.alt = product.caption
   h3.textContent = product.caption
-  b.textContent = product.convertedPrice.toFixed(2)
+  b.textContent = product.convertedPrice.toFixed()
   divContainterProduct.appendChild(divWrapA)
   divContainterProduct.appendChild(divLabels)
   divContainterProduct.appendChild(divP)
