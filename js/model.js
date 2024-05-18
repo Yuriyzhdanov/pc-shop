@@ -109,7 +109,11 @@ const model = {
   },
 
   paginateProducts(pageNum) {
+    console.log('pageNum',pageNum)
+    console.log("this.currentPage before",this.currentPage)
     this.currentPage = pageNum
+    console.log("this.currentPage after",this.currentPage)
+
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.sortedProducts.slice(startFrom, endTo)
@@ -192,7 +196,6 @@ const model = {
 
   async updateUserId() {
     this.userId = await loadAuth()
-    console.log('this.userId :>> ', this.userId)
   },
 
   async updateRecomendProd() {
@@ -201,10 +204,6 @@ const model = {
     this.recommendedProducts = recommendedIds.map(id =>
       this.products.find(p => p.id === id)
     )
-
-    // this.recommendedProducts = this.products.filter(prod =>
-    //   recommendedIds.includes(prod.id)
-    // )
   },
 
   async updateSimilarProd(id) {

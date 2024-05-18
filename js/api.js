@@ -57,7 +57,6 @@ async function loadAuth() {
 
 async function loadRecommendedProductsById(id) {
   let resp = await sendRequestWithCred(API_CUSTOMERS + id + '/recomend/')
-  console.log('resp :>> ', resp)
   return resp.map(el => el.productId)
 }
 
