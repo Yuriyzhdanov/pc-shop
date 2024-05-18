@@ -1,7 +1,9 @@
 const API_COMPUTERS = 'http://35.225.111.193:8181/api/v3/products/computers/'
 // https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json
+// const API_CURRENCY =
+//   'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD'
 const API_CURRENCY =
-  'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=USD'
+  'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
 const API_PRODUCTS = 'https://web-app.click/pc-shop/api/v0/products/'
 const API_AUTH = 'https://web-app.click/pc-shop/api/v0/auth'
 const API_CUSTOMERS = 'https://web-app.click/pc-shop/api/v0/customers/'
@@ -31,8 +33,9 @@ function checkSuccess(json) {
 }
 
 async function loadCurrency() {
-  const currency = await sendRequest(API_CURRENCY)
-  return currency.USD
+  const currencys = await sendRequest(API_CURRENCY)
+  const usdCurrency = currencys.find(currency => currency.cc === 'USD')
+  return usdCurrency.rate
 }
 
 async function loadComputers(id = '') {
