@@ -12,15 +12,15 @@ const API_SIMILAR = id => API_PRODUCTS + id + '/similar'
 
 async function sendRequest(url, options = {}) {
   const resp = await fetch(url, options)
-  return resp.json()
+  const json = await resp.json()
+  return checkSuccess(json)
 }
 
 async function sendRequestWithCred(url) {
   const options = {
     credentials: 'include',
   }
-  const json = await sendRequest(url, options)
-  return checkSuccess(json)
+  return await sendRequest(url, options)
 }
 
 function checkSuccess(json) {
@@ -29,7 +29,7 @@ function checkSuccess(json) {
   } else if (json.success === undefined) {
     return json
   }
-  return []
+  return null
 }
 
 async function loadCurrency() {
@@ -38,21 +38,25 @@ async function loadCurrency() {
   return usdCurrency.rate
 }
 
-async function loadComputers(id = '') {
-  return sendRequest(API_PRODUCTS + id)
+async function loadProducts() {
+  return await sendRequest(API_PRODUCTS)
+}
+
+async function loadProductById(id) {
+  return await sendRequest(API_PRODUCTS + id)
 }
 
 async function loadReviews(id = '') {
-  return sendRequest('API_test' + id)
+  return await sendRequest('API_test' + id)
 }
 
 async function sendRequestDelete(url) {
   const resp = await fetch(url)
-  return resp.json()
+  return await resp.json()
 }
 
 async function loadAuth() {
-  return sendRequestWithCred(API_AUTH)
+  return await sendRequestWithCred(API_AUTH)
 }
 
 async function loadRecommendedProductsById(id) {

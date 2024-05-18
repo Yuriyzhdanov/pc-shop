@@ -11,7 +11,7 @@ const model = {
   searchQuery: '',
   checkedAttrs: [],
   priceFrom: 0,
-  priceTo: 0,
+  priceTo: Infinity,
   sortingType: 'byPriceASC',
   currentPage: 0,
 
@@ -33,27 +33,37 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
     await this.updateRecomendProd()
-
     this.convertPrice()
-
     this.setProductsCaptionToDatalist()
-    this.searchProducts()
-    this.clearFilter()
-    this.createFilter()
-    this.filtrateProducts()
-    this.rangePriceProducts()
-    this.sortingProducts(this.sortingType)
-    this.paginateProducts(this.currentPage)
-    this.calcCountPages()
+    this.vortex()
   },
 
-  searchProducts(_ = '', query = _.trim()) {
+  vortex() {
+    this.searchProducts(this.searchQuery)
+    this.clearFilter()
+    this.createFilter()
+    this.filtrateProducts(this.checkedAttrs)
+    this.rangePriceProducts(this.priceFrom, this.priceTo)
+    this.calcCountPages()
+    this.sortingProducts(this.sortingType)
+    this.paginateProducts(this.currentPage)
+  },
+
+  searchProducts(_ = '', searchQuery = _.trim()) {
+    if (searchQuery) {
+      this.searchQuery = searchQuery
+    }
     this.searchedProducts = this.products.filter(product =>
-      Object.values(product).some(text => isContainsIgnoreCase(text, query))
+      Object.values(product).some(text =>
+        isContainsIgnoreCase(text, this.searchQuery)
+      )
     )
   },
 
-  filtrateProducts() {
+  filtrateProducts(checkedAttrs) {
+    if (checkedAttrs) {
+      this.checkedAttrs = checkedAttrs
+    }
     this.filteredProducts = this.searchedProducts.filter(product => {
       let matchedCount = 0
       this.checkedAttrs.forEach(filter => {
@@ -108,8 +118,10 @@ const model = {
     }
   },
 
-  paginateProducts(pageNum) {
-    this.currentPage = pageNum
+  paginateProducts(currentPage) {
+    if (currentPage) {
+      this.currentPage = currentPage
+    }
     const startFrom = this.currentPage * this.perCountPages
     const endTo = startFrom + this.perCountPages
     this.paginatedProducts = this.sortedProducts.slice(startFrom, endTo)
@@ -155,12 +167,7 @@ const model = {
   },
 
   async updateProducts() {
-    const response = await loadComputers()
-    if (response.success) {
-      this.products = response.payload
-    } else {
-      console.error(response.message)
-    }
+    this.products = await loadProducts()
   },
 
   async updateCurrencyUSD() {
@@ -186,7 +193,7 @@ const model = {
 
   calcCountPages() {
     this.countPages = Math.trunc(
-      this.sortedProducts.length / this.perCountPages
+      this.rangedPriceProducts.length / this.perCountPages
     )
   },
 
@@ -196,6 +203,7 @@ const model = {
   },
 
   async updateRecomendProd() {
+    console.log(this.userId)
     const recommendedIds = await loadRecommendedProductsById(this.userId)
 
     this.recommendedProducts = recommendedIds.map(id =>
