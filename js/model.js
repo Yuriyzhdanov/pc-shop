@@ -199,7 +199,6 @@ const model = {
 
   async updateUserId() {
     this.userId = await loadAuth()
-    console.log('this.userId :>> ', this.userId)
   },
 
   async updateRecomendProd() {
@@ -209,10 +208,6 @@ const model = {
     this.recommendedProducts = recommendedIds.map(id =>
       this.products.find(p => p.id === id)
     )
-
-    // this.recommendedProducts = this.products.filter(prod =>
-    //   recommendedIds.includes(prod.id)
-    // )
   },
 
   async updateSimilarProd(id) {

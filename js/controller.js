@@ -27,6 +27,7 @@ function handleSort(sortType) {
   model.sortingProducts(sortType)
   model.paginateProducts(0)
   renderContainerProducts(model.paginatedProducts)
+  renderSwitchPage(model.countPages)
 }
 
 function onClickSearchHandler() {
@@ -93,6 +94,7 @@ function handlePageClick(e) {
   // location.hash = '#header'
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')
+  
   renderContainerProducts(model.paginatedProducts)
 }
 
