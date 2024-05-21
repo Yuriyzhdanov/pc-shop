@@ -11,7 +11,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderContainerPaginator(model.countPages)
+  renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -27,7 +27,7 @@ function handleSort(sortType) {
   model.sortingProducts(sortType)
   model.paginateProducts(0)
   renderContainerProducts(model.paginatedProducts)
-  renderContainerPaginator(model.countPages)
+  renderContainerPagination(model.countPages)
 }
 
 function onClickSearchHandler() {
@@ -42,7 +42,7 @@ function onClickSearchHandler() {
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderContainerPaginator(model.countPages)
+  renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 searchBtn.onclick = onClickSearchHandler
@@ -55,7 +55,7 @@ function oninputSearchBtnCloseHandler(e) {
     model.sortingProducts('byPriceASC')
     model.paginateProducts(0)
     renderWrapFilter(model.filter)
-    renderContainerPaginator(model.countPages)
+    renderContainerPagination(model.countPages)
     renderContainerProducts(model.paginatedProducts)
     renderDataList(model.productCaptions)
   }
@@ -69,7 +69,7 @@ async function handleLoadPageCatalog() {
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderContainerPaginator(model.countPages)
+  renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -89,7 +89,7 @@ async function handleLoadPageProduct(id) {
 function handlePageClick(pageNum) {
   model.currentPage = +pageNum
   model.paginateProducts()
-  renderContainerPaginator(model.countPages, model.currentPage)
+  renderContainerPagination(model.countPages, model.currentPage)
   renderContainerProducts(model.paginatedProducts)
 }
 

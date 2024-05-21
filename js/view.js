@@ -150,11 +150,11 @@ function checkingRangeFrom(rangeTo) {
   }
 }
 
-function renderContainerPaginator(pagesCount, curPage = 0) {
-  const elPaginatorContainer = document.querySelector('.container-paginator')
-  const elPaginator = generatePaginator(pagesCount, curPage)
-  elPaginatorContainer.innerHTML = ''
-  elPaginatorContainer.appendChild(elPaginator)
+function renderContainerPagination(pagesCount, curPage = 0) {
+  const elPaginationContainer = document.querySelector('.container-pagination')
+  const elPagination = generatePagination(pagesCount, curPage)
+  elPaginationContainer.innerHTML = ''
+  elPaginationContainer.appendChild(elPagination)
 }
 
 function onClickPaginationPage(e) {

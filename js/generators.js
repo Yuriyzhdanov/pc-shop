@@ -331,9 +331,9 @@ function generateSimilarProd(product) {
   return elPave
 }
 
-function generatePaginator(pagesCount, curPage) {
-  const elPaginator = document.createElement('div')
-  elPaginator.classList.add('paginator')
+function generatePagination(pagesCount, curPage) {
+  const elPagination = document.createElement('div')
+  elPagination.classList.add('pagination')
   for (let i = 0; i <= pagesCount; i++) {
     const pageLink = document.createElement('a')
     pageLink.href = '#header'
@@ -343,7 +343,7 @@ function generatePaginator(pagesCount, curPage) {
     if (i === curPage) {
       pageLink.classList.add('active')
     }
-    elPaginator.appendChild(pageLink)
+    elPagination.appendChild(pageLink)
   }
-  return elPaginator
+  return elPagination
 }
