@@ -150,14 +150,14 @@ function checkingRangeFrom(rangeTo) {
   }
 }
 
-function renderSwitchPage(pagesCount) {
+function renderContainerPaginator(pagesCount, curPage = 0) {
   const elPaginatorContainer = document.querySelector('.container-paginator')
+  const elPaginator = generatePaginator(pagesCount, curPage)
   elPaginatorContainer.innerHTML = ''
-  const elPaginator = generateSwitchPage(pagesCount)
   elPaginatorContainer.appendChild(elPaginator)
-  const pages = document.querySelectorAll('.page')
-  pages.forEach(page => {
-    page.addEventListener('click', handlePageClick)
-  })
-  pages[0].classList.add('active')
+}
+
+function onClickPaginationPage(e) {
+  const pageNum = e.target.textContent
+  handlePageClick(pageNum)
 }

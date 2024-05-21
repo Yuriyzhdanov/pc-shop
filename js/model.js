@@ -28,13 +28,12 @@ const model = {
 
   userId: -1,
 
-  async looksLikeHandleLoadPage() {
+  async looksLikeHandleLoadCatalog() {
     await this.updateUserId()
     await this.updateProducts()
     await this.updateCurrencyUSD()
-    await this.updateRecomendProd()
     this.convertPrice()
-    this.setProductsCaptionToDatalist()
+    this.updateProductsCaptions()
     this.vortex()
   },
 
@@ -224,7 +223,7 @@ const model = {
     return this.products.find(prod => prod.id === id)
   },
 
-  setProductsCaptionToDatalist() {
+  updateProductsCaptions() {
     this.productCaptions = this.products.map(product => product.caption)
   },
 }

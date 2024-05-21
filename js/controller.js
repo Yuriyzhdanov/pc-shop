@@ -11,7 +11,7 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderSwitchPage(model.countPages)
+  renderContainerPaginator(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
@@ -27,7 +27,7 @@ function handleSort(sortType) {
   model.sortingProducts(sortType)
   model.paginateProducts(0)
   renderContainerProducts(model.paginatedProducts)
-  renderSwitchPage(model.countPages)
+  renderContainerPaginator(model.countPages)
 }
 
 function onClickSearchHandler() {
@@ -42,7 +42,7 @@ function onClickSearchHandler() {
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderSwitchPage(model.countPages)
+  renderContainerPaginator(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 searchBtn.onclick = onClickSearchHandler
@@ -55,7 +55,7 @@ function oninputSearchBtnCloseHandler(e) {
     model.sortingProducts('byPriceASC')
     model.paginateProducts(0)
     renderWrapFilter(model.filter)
-    renderSwitchPage(model.countPages)
+    renderContainerPaginator(model.countPages)
     renderContainerProducts(model.paginatedProducts)
     renderDataList(model.productCaptions)
   }
@@ -63,19 +63,19 @@ function oninputSearchBtnCloseHandler(e) {
 queryInput.oninput = oninputSearchBtnCloseHandler
 
 async function handleLoadPageCatalog() {
-  await model.looksLikeHandleLoadPage()
+  await model.looksLikeHandleLoadCatalog()
   renderLabelTo(model.maxPrice)
   renderLabelFrom(model.minPrice)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
   renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
   renderWrapFilter(model.filter)
-  renderSwitchPage(model.countPages)
+  renderContainerPaginator(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
 
 async function handleLoadPageProduct(id) {
   id = parseInt(id)
-  await model.looksLikeHandleLoadPage()
+  // await model.looksLikeHandleLoadPage()
   await model.updateSimilarProd(id)
   const product = model.getProductById(id)
   renderProductInfo(product)
@@ -86,14 +86,10 @@ async function handleLoadPageProduct(id) {
   renderSimilarProd(similarProducts)
 }
 
-function handlePageClick(e) {
-  const pageNum = +e.target.textContent
-  const pages = e.target.parentNode.querySelectorAll('.page')
-  model.paginateProducts(pageNum)
-  // location.hash = '#header'
-  pages.forEach(page => page.classList.remove('active'))
-  e.target.classList.add('active')
-
+function handlePageClick(pageNum) {
+  model.currentPage = +pageNum
+  model.paginateProducts()
+  renderContainerPaginator(model.countPages, model.currentPage)
   renderContainerProducts(model.paginatedProducts)
 }
 

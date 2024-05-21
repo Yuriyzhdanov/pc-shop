@@ -331,14 +331,18 @@ function generateSimilarProd(product) {
   return elPave
 }
 
-function generateSwitchPage(pagesCount) {
+function generatePaginator(pagesCount, curPage) {
   const elPaginator = document.createElement('div')
   elPaginator.classList.add('paginator')
   for (let i = 0; i <= pagesCount; i++) {
     const pageLink = document.createElement('a')
-    pageLink.href = './catalog.html#header'
-    pageLink.classList.add('page')
+    pageLink.href = '#header'
     pageLink.textContent = i
+    pageLink.addEventListener('click', onClickPaginationPage)
+    pageLink.classList.add('page')
+    if (i === curPage) {
+      pageLink.classList.add('active')
+    }
     elPaginator.appendChild(pageLink)
   }
   return elPaginator
