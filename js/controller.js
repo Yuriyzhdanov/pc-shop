@@ -93,7 +93,7 @@ function handlePageClick(e) {
   // location.hash = '#header'
   pages.forEach(page => page.classList.remove('active'))
   e.target.classList.add('active')
-  
+
   renderContainerProducts(model.paginatedProducts)
 }
 
