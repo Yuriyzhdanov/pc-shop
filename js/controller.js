@@ -10,7 +10,6 @@ function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   renderLabelTo(priceTo)
   renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
   renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
-  renderWrapFilter(model.filter)
   renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
 }
