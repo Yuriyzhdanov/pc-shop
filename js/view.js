@@ -2,7 +2,7 @@ const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 const searchBtn = document.querySelector('.search-btn')
 const queryInput = document.querySelector('#query')
-const productsOnDisplay = document.querySelector('.products-on-display')
+const productsCountOnDisplay = document.querySelector('.products-on-display')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
@@ -31,7 +31,7 @@ function onLoadPage() {
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
     sortSelect.addEventListener('change', onChangeSelectSort)
-    productsOnDisplay.addEventListener('change', onChangeSelectProductsPerPage)
+    productsCountOnDisplay.addEventListener('change', onChangeSelectProductsPerPage)
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
