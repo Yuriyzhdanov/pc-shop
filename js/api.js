@@ -4,7 +4,6 @@ const API_CURRENCY =
 const API_PRODUCTS = 'https://web-app.click/pc-shop/api/v0/products/'
 const API_AUTH = 'https://web-app.click/pc-shop/api/v0/auth'
 const API_CUSTOMERS = 'https://web-app.click/pc-shop/api/v0/customers/'
-
 const API_SIMILAR = id => API_PRODUCTS + id + '/similar'
 
 async function sendRequest(url, options = {}) {
@@ -43,15 +42,6 @@ async function loadProductById(id) {
   return await sendRequest(API_PRODUCTS + id)
 }
 
-async function loadReviews(id = '') {
-  return await sendRequest('API_test' + id)
-}
-
-async function sendRequestDelete(url) {
-  const resp = await fetch(url)
-  return await resp.json()
-}
-
 async function loadAuth() {
   return await sendRequestWithCred(API_AUTH)
 }
@@ -64,3 +54,7 @@ async function loadRecommendedProductsById(id) {
 async function loadSimilarProducts(id) {
   return sendRequest(API_SIMILAR(id))
 }
+
+// async function loadReviews(id = '') {
+//   return await sendRequest('API_test' + id)
+// }

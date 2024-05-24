@@ -30,6 +30,13 @@ function handleSort(sortType) {
   renderContainerPagination(model.countPages)
 }
 
+function handleDisplayingProductsOnPage(productsOnPage) {
+  model.updatePerCountPages(productsOnPage)
+  model.paginateProducts(0)
+  renderContainerPagination(model.countPages)
+  renderContainerProducts(model.paginatedProducts)
+}
+
 function onClickSearchHandler() {
   const queryInput = document.querySelector('#query')
   model.searchProducts(queryInput.value)

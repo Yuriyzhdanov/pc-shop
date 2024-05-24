@@ -2,11 +2,16 @@ const sortSelect = document.querySelector('.sort')
 const productCard = document.querySelector('.wrap-product')
 const searchBtn = document.querySelector('.search-btn')
 const queryInput = document.querySelector('#query')
+const productsOnDisplay = document.querySelector('.products-on-display')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 
 function onChangeSelectSort(e) {
   handleSort(e.target.value)
+}
+
+function onChangeSelectProductsPerPage(e) {
+  handleDisplayingProductsOnPage(e.target.value)
 }
 
 function onClickButtonFilter() {
@@ -26,6 +31,7 @@ function onLoadPage() {
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
     sortSelect.addEventListener('change', onChangeSelectSort)
+    productsOnDisplay.addEventListener('change', onChangeSelectProductsPerPage)
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)

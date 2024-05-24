@@ -43,7 +43,7 @@ const model = {
     this.createFilter()
     this.filtrateProducts(this.checkedAttrs)
     this.rangePriceProducts(this.priceFrom, this.priceTo)
-    this.calcCountPages()
+    this.updatePerCountPages(this.perCountPages)
     this.sortingProducts(this.sortingType)
     this.paginateProducts(this.currentPage)
   },
@@ -201,9 +201,7 @@ const model = {
   },
 
   async updateRecomendProd() {
-    console.log(this.userId)
     const recommendedIds = await loadRecommendedProductsById(this.userId)
-
     this.recommendedProducts = recommendedIds.map(id =>
       this.products.find(p => p.id === id)
     )
@@ -226,4 +224,10 @@ const model = {
   updateProductsCaptions() {
     this.productCaptions = this.products.map(product => product.caption)
   },
+
+  updatePerCountPages(productsOnPage) {
+    this.perCountPages = +productsOnPage
+    this.calcCountPages()
+  },
+
 }

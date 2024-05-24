@@ -3,33 +3,20 @@ function generateFilterProp(caption) {
   return elDiv
 }
 
-// function generateFilterCheckbox(key, value) {
-//   const elDiv = document.createElement('div')
-//   const elCheckbox = document.createElement('input')
-//   const elLabel = document.createElement('label')
-//   elCheckbox.type = 'checkbox'
-//   elCheckbox.value = value
-//   elCheckbox.name = `${key}`
-//   elCheckbox.id = `${key}-${value}`
-//   elLabel.htmlFor = `${key}-${value}`
-//   elLabel.textContent = value
-//   elDiv.classList.add('wrap-checkbox')
-//   elDiv.appendChild(elCheckbox)
-//   elDiv.appendChild(elLabel)
-
-//   return elDiv
-// }
-
 function generateFilterCheckbox(key, value) {
-  const elDiv = h('div', { class: 'wrap-checkbox' }, '', [
-    h('input', {
-      type: 'checkbox',
-      value: value,
-      name: key,
-      id: `${key}-${value}`,
-    }),
-    h('label', { htmlFor: `${key}-${value}` }, value),
-  ])
+  const elDiv = document.createElement('div')
+  const elCheckbox = document.createElement('input')
+  const elLabel = document.createElement('label')
+  elCheckbox.type = 'checkbox'
+  elCheckbox.value = value
+  elCheckbox.name = `${key}`
+  elCheckbox.id = `${key}-${value}`
+  elLabel.htmlFor = `${key}-${value}`
+  elLabel.textContent = value
+  elDiv.classList.add('wrap-checkbox')
+  elDiv.appendChild(elCheckbox)
+  elDiv.appendChild(elLabel)
+
   return elDiv
 }
 
