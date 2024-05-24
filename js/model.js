@@ -42,6 +42,7 @@ const model = {
     this.clearFilter()
     this.createFilter()
     this.filtrateProducts(this.checkedAttrs)
+    this.calcMinMaxPrice()
     this.rangePriceProducts(this.priceFrom, this.priceTo)
     this.updatePerCountPages(this.perCountPages)
     this.sortingProducts(this.sortingType)
@@ -190,6 +191,11 @@ const model = {
     this.priceTo = this.maxPrice
   },
 
+  setPriceFromTo(priceFrom, priceTo) {
+    this.priceFrom = priceFrom
+    this.priceTo = priceTo
+  },
+
   calcCountPages() {
     this.countPages = Math.trunc(
       this.rangedPriceProducts.length / this.perCountPages
@@ -229,5 +235,4 @@ const model = {
     this.perCountPages = +productsOnPage
     this.calcCountPages()
   },
-
 }

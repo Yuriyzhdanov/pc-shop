@@ -1,17 +1,19 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
   model.createCheckedAttrs(filterDataIds)
-  model.filtrateProducts()
-  model.rangePriceProducts(priceFrom, priceTo)
-  model.sortingProducts('byPriceASC')
-  model.paginateProducts(0)
-  handlerUpdatePriceFrom(priceFrom)
-  handlerUpdatePriceTo(priceTo)
-  renderLabelFrom(priceFrom)
-  renderLabelTo(priceTo)
-  renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
-  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
+  model.setPriceFromTo(priceFrom, priceTo)
+
+  model.vortex()
+
   renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
+
+  renderFilterRangeFrom(priceFrom, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(priceTo, model.minPrice, model.maxPrice)
+  renderLabelFrom(priceFrom)
+  renderLabelTo(priceTo)
+
+  handlerUpdatePriceFrom(priceFrom)
+  handlerUpdatePriceTo(priceTo)
 }
 
 function handlerUpdatePriceFrom(price) {
