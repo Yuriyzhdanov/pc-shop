@@ -32,7 +32,7 @@ function handleSort(sortType) {
 }
 
 function handleDisplayingProductsOnPage(productsOnPage) {
-  model.updatePerCountPages(productsOnPage)
+  model.updatePerCountPages(+productsOnPage)
   model.paginateProducts(0)
   renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)

@@ -232,7 +232,7 @@ const model = {
   },
 
   updatePerCountPages(productsOnPage) {
-    this.perCountPages = +productsOnPage
+    this.perCountPages = productsOnPage
     this.calcCountPages()
   },
 }

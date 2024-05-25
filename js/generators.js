@@ -4,19 +4,14 @@ function generateFilterProp(caption) {
 }
 
 function generateFilterCheckbox(key, value) {
-  const elDiv = document.createElement('div')
-  const elCheckbox = document.createElement('input')
-  const elLabel = document.createElement('label')
-  elCheckbox.type = 'checkbox'
-  elCheckbox.value = value
-  elCheckbox.name = `${key}`
-  elCheckbox.id = `${key}-${value}`
-  elLabel.htmlFor = `${key}-${value}`
-  elLabel.textContent = value
-  elDiv.classList.add('wrap-checkbox')
-  elDiv.appendChild(elCheckbox)
-  elDiv.appendChild(elLabel)
-
+  const elDiv = h('div', { class: 'wrap-checkbox' }, '', [
+    h(
+      'input',
+      { type: 'checkbox', value: value, name: `${key}`, id: `${key}-${value}` },
+      ''
+    ),
+    h('label', { htmlFor: `${key}-${value}` }, value),
+  ])
   return elDiv
 }
 
@@ -39,66 +34,7 @@ function generateLabelSpecs(specs) {
 }
 
 function generateProduct(product) {
-  const divContainterProduct = document.createElement('div')
-  const divWrapA = document.createElement('div')
-  const divWrapImg = document.createElement('div')
-  const divH3 = document.createElement('div')
-  const divP = document.createElement('div')
-  const divRow = document.createElement('div')
-  const divNew = document.createElement('div')
-  const divButtonCart = document.createElement('div')
-  const divButtonFavorite = document.createElement('div')
-  const divButtonCompare = document.createElement('div')
   const divLabels = generateLabelSpecs(product.attributes)
-  const aLink = document.createElement('a')
-  const img = document.createElement('img')
-  const h3 = document.createElement('h3')
-  const buttonCart = document.createElement('button')
-  const buttonFavorite = document.createElement('button')
-  const buttonCompare = document.createElement('button')
-  const p = document.createElement('p')
-  const b = document.createElement('b')
-  divContainterProduct.classList.add('wrap-product')
-  divContainterProduct.dataset.productId = product.id
-  divWrapImg.classList.add('wrap-img')
-  divRow.classList.add('row')
-  Math.random() < 0.5 && divNew.classList.add('new')
-  buttonCart.classList.add('cart')
-  buttonFavorite.classList.add('favorite')
-  buttonCompare.classList.add('compare')
-  aLink.setAttribute('href', `./product.html?id=${product.id}`)
-  aLink.setAttribute('target', '_blank')
-  aLink.setAttribute('class', 'a-link')
-  divH3.setAttribute('class', 'wrap-h3')
-  img.src = `https://web-app.click/pc-shop/photos/products/computers/${product.photos[0]}`
-  img.alt = product.caption
-  h3.textContent = product.caption
-  b.textContent = product.convertedPrice.toFixed()
-  divContainterProduct.appendChild(divWrapA)
-  divContainterProduct.appendChild(divLabels)
-  divContainterProduct.appendChild(divP)
-  divContainterProduct.appendChild(divRow)
-  divContainterProduct.appendChild(divNew)
-  divWrapA.appendChild(aLink)
-  aLink.appendChild(divWrapImg)
-  aLink.appendChild(divH3)
-  divWrapImg.appendChild(img)
-  divH3.appendChild(h3)
-  divP.appendChild(p)
-  p.appendChild(b)
-  divRow.appendChild(divButtonCart)
-  divRow.appendChild(divButtonFavorite)
-  divRow.appendChild(divButtonCompare)
-  divButtonCart.appendChild(buttonCart)
-  divButtonFavorite.appendChild(buttonFavorite)
-  divButtonCompare.appendChild(buttonCompare)
-  p.innerHTML += ' грн'
-  return divContainterProduct
-}
-
-function generateProduct(product) {
-  const divLabels = generateLabelSpecs(product.attributes)
-
   const divContainterProduct = h(
     'div',
     { class: 'wrap-product', 'data-product-id': product.id },
@@ -142,12 +78,10 @@ function generateProduct(product) {
 }
 
 function generateProductSidebar(product) {
-  const slider = document.createElement('div')
-  const navigation = generateNavigation(product, slider)
-  const specsContainer = generateSpecsContainer(product)
-  slider.classList.add('slider')
-  slider.appendChild(navigation)
-  slider.appendChild(specsContainer)
+  const slider = h('div', { class: 'slider' }, '', [
+    generateNavigation(product, slider),
+    generateSpecsContainer(product),
+  ])
   return slider
 }
 
