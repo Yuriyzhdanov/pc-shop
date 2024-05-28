@@ -207,6 +207,7 @@ const model = {
   },
 
   async updateRecomendProd() {
+    await this.updateUserId()
     const recommendedIds = await loadRecommendedProductsById(this.userId)
     this.recommendedProducts = recommendedIds.map(id =>
       this.products.find(p => p.id === id)
@@ -214,17 +215,18 @@ const model = {
   },
 
   async updateSimilarProd(id) {
-    const response = await loadSimilarProducts(id)
-    const relatedProductIds = response.payload.map(
-      product => product.relatedProductId
-    )
+    await this.updateProducts()
+    await this.updateCurrencyUSD()
+    this.convertPrice()
+    const relatedProductIds = await loadSimilarProducts(id)
     this.similarProducts = this.products.filter(product =>
       relatedProductIds.includes(product.id)
     )
   },
 
   getProductById(id) {
-    return this.products.find(prod => prod.id === id)
+    const res = this.products.find(prod => prod.id === id)
+    return res
   },
 
   updateProductsCaptions() {

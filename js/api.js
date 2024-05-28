@@ -52,7 +52,9 @@ async function loadRecommendedProductsById(id) {
 }
 
 async function loadSimilarProducts(id) {
-  return sendRequest(API_SIMILAR(id))
+  const resp = await sendRequest(API_SIMILAR(id))
+  const similarProductIds = resp.map(product => product.relatedProductId)
+  return similarProductIds
 }
 
 // async function loadReviews(id = '') {

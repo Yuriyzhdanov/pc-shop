@@ -77,11 +77,14 @@ function generateProduct(product) {
   return divContainterProduct
 }
 
+
 function generateProductSidebar(product) {
-  const slider = h('div', { class: 'slider' }, '', [
-    generateNavigation(product, slider),
-    generateSpecsContainer(product),
-  ])
+  const slider = document.createElement('div')
+  const navigation = generateNavigation(product, slider)
+  const specsContainer = generateSpecsContainer(product)
+  slider.classList.add('slider')
+  slider.appendChild(navigation)
+  slider.appendChild(specsContainer)
   return slider
 }
 
@@ -178,7 +181,7 @@ function generateProductInfo(product) {
   wrapInfo.appendChild(wrapInfoPrice)
   wrapInfoPrice.appendChild(price)
   price.appendChild(priceParagraph)
-  priceParagraph.textContent = `${product.convertedPrice.toFixed(2)}`
+  priceParagraph.textContent = `${product.convertedPrice.toFixed(0)}`
   priceParagraph.appendChild(span)
   span.textContent = 'грн'
   wrapInfo.appendChild(wrapInfoCart)

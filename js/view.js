@@ -31,7 +31,10 @@ function onLoadPage() {
   if (pageName === 'catalog') {
     handleLoadPageCatalog()
     sortSelect.addEventListener('change', onChangeSelectSort)
-    productsCountOnDisplay.addEventListener('change', onChangeSelectProductsPerPage)
+    productsCountOnDisplay.addEventListener(
+      'change',
+      onChangeSelectProductsPerPage
+    )
     document
       .querySelector('button.filter')
       .addEventListener('click', onClickButtonFilter)
