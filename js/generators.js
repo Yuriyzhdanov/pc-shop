@@ -77,7 +77,6 @@ function generateProduct(product) {
   return divContainterProduct
 }
 
-
 function generateProductSidebar(product) {
   const slider = document.createElement('div')
   const navigation = generateNavigation(product, slider)

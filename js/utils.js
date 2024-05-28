@@ -26,3 +26,32 @@ function h(tagName, attrs, text, children, listener) {
   el.onclick = listener
   return el
 }
+
+function sortAttrs(array, type) {
+  switch (type) {
+    case 'Количество ядер':
+    case 'Объем ОЗУ':
+      return array.sort((a, b) => parseInt(a) - parseInt(b))
+    case 'Объем накопителя':
+    case 'Блок питания':
+    case 'Частота ОЗУ':
+      return array.sort(
+        (a, b) =>
+          parseInt(a.replace(/[^0-9]/g, '')) -
+          parseInt(b.replace(/[^0-9]/g, ''))
+      )
+    case 'Частота процессора':
+      return array.sort(
+        (a, b) =>
+          parseFloat(a.replace(/[^\d.]/g, '')) -
+          parseFloat(b.replace(/[^\d.]/g, ''))
+      )
+    case 'Тип ОЗУ':
+    case 'Тип накопителя':
+    case 'Процессор':
+    case 'Материнская плата':
+      return array.sort()
+    default:
+      return array.sort()
+  }
+}
