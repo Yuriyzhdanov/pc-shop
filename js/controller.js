@@ -1,4 +1,6 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
+  console.log('handleFiltrate', filterDataIds)
+
   model.createCheckedAttrs(filterDataIds)
   model.setPriceFromTo(priceFrom, priceTo)
 
@@ -85,6 +87,8 @@ async function handleLoadPageProduct(id) {
   id = parseInt(id)
   await model.updateSimilarProd(id)
   await model.updateRecomendProd()
+  model.updateProductsCaptions()
+  model.searchProducts(model.searchQuery)
   const product = model.getProductById(id)
   renderProductInfo(product)
   renderProductSidebar(product)
@@ -100,7 +104,12 @@ function handlePageClick(pageNum) {
   renderContainerPagination(model.countPages, model.currentPage)
   renderContainerProducts(model.paginatedProducts)
 }
-
+function onClickClearFilter() {
+  // model.clearFilter()
+  // model.createFilter()
+  // renderContainerProducts(model.paginatedProducts)
+}
+clearFilterBtn.onclick = onClickClearFilter
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
 //   model.addToFavorites(productId)

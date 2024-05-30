@@ -3,6 +3,7 @@ const productCard = document.querySelector('.wrap-product')
 const searchBtn = document.querySelector('.search-btn')
 const queryInput = document.querySelector('#query')
 const productsCountOnDisplay = document.querySelector('.products-on-display')
+const clearFilterBtn = document.querySelector('.clear-filter')
 
 document.addEventListener('DOMContentLoaded', onLoadPage)
 

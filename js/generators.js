@@ -10,7 +10,7 @@ function generateFilterCheckbox(key, value) {
       { type: 'checkbox', value: value, name: `${key}`, id: `${key}-${value}` },
       ''
     ),
-    h('label', { htmlFor: `${key}-${value}` }, value),
+    h('label', { for: `${key}-${value}` }, value),
   ])
   return elDiv
 }
@@ -63,7 +63,7 @@ function generateProduct(product) {
       divLabels,
       h('div', { class: 'wrap-p' }, '', [
         h('p', {}, '', [
-          h('b', {}, product.convertedPrice.toFixed(2) + ' грн'),
+          h('b', {}, product.convertedPrice.toFixed(0) + ' грн'),
         ]),
       ]),
       h('div', { class: 'row' }, '', [

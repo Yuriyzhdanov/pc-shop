@@ -39,9 +39,11 @@ const model = {
 
   vortex() {
     this.searchProducts(this.searchQuery)
-    this.clearFilter()
+    // this.clearFilter()
     this.createFilter()
     this.filtrateProducts(this.checkedAttrs)
+    console.log(this.checkedAttrs)
+
     this.calcMinMaxPrice()
     this.rangePriceProducts(this.priceFrom, this.priceTo)
     this.updatePerCountPages(this.perCountPages)
@@ -61,6 +63,8 @@ const model = {
   },
 
   filtrateProducts(checkedAttrs) {
+    console.log('filtrateProducts', checkedAttrs)
+
     if (checkedAttrs) {
       this.checkedAttrs = checkedAttrs
     }
@@ -143,6 +147,7 @@ const model = {
   },
 
   createCheckedAttrs(filterDataIds) {
+    console.log('filterDataIds', filterDataIds)
     this.clearCheckedAttrs()
     filterDataIds.forEach(filterDataId => {
       const idParts = filterDataId.split('-')
