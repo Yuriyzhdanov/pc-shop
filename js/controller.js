@@ -42,11 +42,8 @@ function handleDisplayingProductsOnPage(productsOnPage) {
 
 function onClickSearchHandler() {
   const queryInput = document.querySelector('#query')
-  model.searchProducts(queryInput.value)
-  model.filtrateProducts()
-  model.rangePriceProducts()
-  model.sortingProducts('byPriceASC')
-  model.paginateProducts(0)
+  model.searchQuery = queryInput.value
+  model.vortex()
   renderLabelFrom(model.priceFrom)
   renderLabelTo(model.priceTo)
   renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
@@ -54,20 +51,13 @@ function onClickSearchHandler() {
   renderWrapFilter(model.filter)
   renderContainerPagination(model.countPages)
   renderContainerProducts(model.paginatedProducts)
+  renderDataList(model.productCaptions)
 }
 searchBtn.onclick = onClickSearchHandler
 
 function oninputSearchBtnCloseHandler(e) {
-  if (e.target.value == '') {
-    model.searchProducts(queryInput.value)
-    model.filtrateProducts()
-    model.rangePriceProducts()
-    model.sortingProducts('byPriceASC')
-    model.paginateProducts(0)
-    renderWrapFilter(model.filter)
-    renderContainerPagination(model.countPages)
-    renderContainerProducts(model.paginatedProducts)
-    renderDataList(model.productCaptions)
+  if (e.target.value === '') {
+    onClickSearchHandler()
   }
 }
 queryInput.oninput = oninputSearchBtnCloseHandler
@@ -105,11 +95,20 @@ function handlePageClick(pageNum) {
   renderContainerProducts(model.paginatedProducts)
 }
 function onClickClearFilter() {
-  // model.clearFilter()
-  // model.createFilter()
-  // renderContainerProducts(model.paginatedProducts)
+  model.clearFilter()
+  model.createFilter()
+  model.vortex()
+  renderWrapFilter(model.filter)
+  renderContainerProducts(model.paginatedProducts)
+  renderLabelTo(model.maxPrice)
+  renderLabelFrom(model.minPrice)
+  renderFilterRangeFrom(model.minPrice, model.minPrice, model.maxPrice)
+  renderFilterRangeTo(model.maxPrice, model.minPrice, model.maxPrice)
+  renderWrapFilter(model.filter)
+  renderContainerPagination(model.countPages)
 }
 clearFilterBtn.onclick = onClickClearFilter
+
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
 //   model.addToFavorites(productId)

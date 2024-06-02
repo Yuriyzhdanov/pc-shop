@@ -432,3 +432,8 @@ a {
   background: linear-gradient(45deg, hsl(255, 85%, 65%), hsl(180, 85%, 65%));
   box-shadow: 0 0 5px 0 #789;
 }
+
+.clear-filter:hover{
+  background: linear-gradient(45deg, hsl(327, 100%, 52%), hsl(180, 85%, 65%));
+  box-shadow: 0 0 5px 0 #789;
+}
