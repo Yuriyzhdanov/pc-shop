@@ -61,6 +61,7 @@ function renderWrapFilter(modelFilter) {
   const elWrapFilter = document.querySelector('.wrap-filter')
   elWrapFilter.innerHTML = ''
   for (const key in modelFilter) {
+    modelFilter[key] = normalizeStorageCapacity(modelFilter[key])
     const elProp = generateFilterProp(key)
     elWrapFilter.appendChild(elProp)
     modelFilter[key] = sortAttrs(modelFilter[key], key)

@@ -55,3 +55,7 @@ function sortAttrs(array, type) {
       return array.sort()
   }
 }
+
+function normalizeStorageCapacity(storageCapacity) {
+  return storageCapacity.map(capacity => capacity.replace(/,$/, ''))
+}
