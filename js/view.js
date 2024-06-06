@@ -172,3 +172,20 @@ function onClickPaginationPage(e) {
   const pageNum = e.target.textContent
   handlePageClick(pageNum)
 }
+
+let count = 0
+function onClickFavoriteProducts(e) {
+  count = favoritesClickCount(count)
+  renderFavoritesCount(count)
+  const productId = e.target.closest('.wrap-product').dataset.productId
+  console.log(productId)
+  favorites.addProductById(+productId)
+  // renderContainerProducts(favorites.products)
+}
+function renderFavoritesCount(count) {
+  const favoritesCount = document.querySelector('.center > span')
+  favoritesCount.textContent = count
+}
+function favoritesClickCount(count) {
+  return count + 1
+}

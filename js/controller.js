@@ -1,6 +1,4 @@
 function handleFiltrate(filterDataIds, priceFrom, priceTo) {
-  console.log('handleFiltrate', filterDataIds)
-
   model.createCheckedAttrs(filterDataIds)
   model.setPriceFromTo(priceFrom, priceTo)
 
@@ -88,12 +86,18 @@ async function handleLoadPageProduct(id) {
   renderSimilarProd(similarProducts)
 }
 
+function handleLoadPageFavotites() {
+  renderContainerProducts(favorites.products)
+  
+}
+
 function handlePageClick(pageNum) {
   model.currentPage = +pageNum
   model.paginateProducts()
   renderContainerPagination(model.countPages, model.currentPage)
   renderContainerProducts(model.paginatedProducts)
 }
+
 function onClickClearFilter() {
   model.clearFilter()
   model.createFilter()
@@ -111,5 +115,7 @@ clearFilterBtn.onclick = onClickClearFilter
 
 // function handleLoadPageFavotites(e) {
 //   const productId = e.target.closest('.wrap-product').dataset.productId
-//   model.addToFavorites(productId)
+//   console.log(productId)
+
+//   // model.addToFavorites(productId)
 // }

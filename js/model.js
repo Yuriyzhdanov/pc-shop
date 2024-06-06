@@ -7,25 +7,24 @@ const model = {
   rangedPriceProducts: [],
   sortedProducts: [],
   paginatedProducts: [],
-
   searchQuery: '',
   checkedAttrs: [],
   priceFrom: 0,
   priceTo: Infinity,
   sortingType: 'byPriceASC',
   currentPage: 0,
-
+  
   minPrice: 0,
   maxPrice: 0,
   currencyUSD: 0,
-
+  
   countPages: 0,
   countProducts: 0,
   perCountPages: 10,
-
+  
   productCaptions: [],
   similarProducts: [],
-
+  favoritesProducts: [],
   userId: -1,
 
   async looksLikeHandleLoadCatalog() {
@@ -143,7 +142,6 @@ const model = {
   },
 
   createCheckedAttrs(filterDataIds) {
-    console.log('filterDataIds', filterDataIds)
     this.clearCheckedAttrs()
     filterDataIds.forEach(filterDataId => {
       const idParts = filterDataId.split('-')
@@ -238,4 +236,5 @@ const model = {
     this.perCountPages = productsOnPage
     this.calcCountPages()
   },
+
 }

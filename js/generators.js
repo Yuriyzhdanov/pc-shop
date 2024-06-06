@@ -68,7 +68,9 @@ function generateProduct(product) {
       ]),
       h('div', { class: 'row' }, '', [
         h('div', { class: 'cart' }, '', [h('button')]),
-        h('div', { class: 'favorite' }, '', [h('button')]),
+        h('div', { class: 'favorite' }, '', [
+          h('button', {}, '', [], onClickFavoriteProducts),
+        ]),
         h('div', { class: 'compare' }, '', [h('button')]),
       ]),
       h('div', { class: Math.random() < 0.5 ? 'new' : '' }),
