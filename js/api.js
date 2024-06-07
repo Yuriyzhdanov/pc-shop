@@ -5,9 +5,15 @@ const API_PRODUCTS = 'https://web-app.click/pc-shop/api/v0/products/'
 const API_AUTH = 'https://web-app.click/pc-shop/api/v0/auth'
 const API_CUSTOMERS = 'https://web-app.click/pc-shop/api/v0/customers/'
 const API_SIMILAR = id => API_PRODUCTS + id + '/similar'
+const API_FAVORITES =
+  'https://web-app.click/pc-shop/api/v0/customers/3/favorites/'
+// const API_FAVORITES = id => `${API_CUSTOMERS}${id}/favorites/`
 
 async function sendRequest(url, options = {}) {
   const resp = await fetch(url, options)
+  if (resp.status === 204) {
+    return
+  }
   const json = await resp.json()
   return checkSuccess(json)
 }
@@ -48,15 +54,57 @@ async function loadAuth() {
 
 async function loadRecommendedProductsById(id) {
   let resp = await sendRequestWithCred(API_CUSTOMERS + id + '/recomend/')
-  return resp.map(el => el.productId)
+  return resp.map(product => product.productId)
 }
 
-async function loadSimilarProducts(id) {
+async function loadSimilarProductsById(id) {
   const resp = await sendRequest(API_SIMILAR(id))
-  const similarProductIds = resp.map(product => product.relatedProductId)
-  return similarProductIds
+  return resp.map(product => product.relatedProductId)
+}
+
+async function loadFavoriteProducts() {
+  const options = {
+    headers: {
+      Cookie: 'session=ff0099aa',
+    },
+    credentials: 'include',
+  }
+  return await sendRequest(API_FAVORITES, options)
+}
+
+async function loadFavoriteProductsById() {
+  const res = await loadFavoriteProducts()
+  return res.map(product => product.productId)
+}
+
+async function updateFavoritesProductsById(productId) {
+  const options = {
+    method: 'POST',
+    headers: {
+      Cookie: 'session=ff0099aa',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({ productId: productId }),
+  }
+  return await sendRequest(API_FAVORITES, options)
+}
+
+async function deleteFavoritesById(idProd) {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      Cookie: 'session=ff0099aa',
+    },
+    credentials: 'include',
+  }
+  return await sendRequest(API_FAVORITES + idProd, options)
 }
 
 // async function loadReviews(id = '') {
 //   return await sendRequest('API_test' + id)
 // }
+// async function run() {
+//   await updateFavoritesProductsById(69)
+// }
+// run()

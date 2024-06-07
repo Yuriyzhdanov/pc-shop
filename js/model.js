@@ -13,18 +13,17 @@ const model = {
   priceTo: Infinity,
   sortingType: 'byPriceASC',
   currentPage: 0,
-  
+
   minPrice: 0,
   maxPrice: 0,
   currencyUSD: 0,
-  
+
   countPages: 0,
   countProducts: 0,
   perCountPages: 10,
-  
+
   productCaptions: [],
   similarProducts: [],
-  favoritesProducts: [],
   userId: -1,
 
   async looksLikeHandleLoadCatalog() {
@@ -217,7 +216,7 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
     this.convertPrice()
-    const relatedProductIds = await loadSimilarProducts(id)
+    const relatedProductIds = await loadSimilarProductsById(id)
     this.similarProducts = this.products.filter(product =>
       relatedProductIds.includes(product.id)
     )
@@ -236,5 +235,4 @@ const model = {
     this.perCountPages = productsOnPage
     this.calcCountPages()
   },
-
 }

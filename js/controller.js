@@ -113,9 +113,13 @@ function onClickClearFilter() {
 }
 clearFilterBtn.onclick = onClickClearFilter
 
-// function handleLoadPageFavotites(e) {
-//   const productId = e.target.closest('.wrap-product').dataset.productId
-//   console.log(productId)
+let count = 0
+function onClickFavoriteProducts(e) {
+  count = favoritesClickCount(count)
+  renderFavoritesCount(count)
+  const productId = e.target.closest('.wrap-product').dataset.productId
+  console.log(+productId);
+  favorites.updateFavoritesProducts(+productId)
+}
 
-//   // model.addToFavorites(productId)
-// }
+

@@ -46,6 +46,9 @@ function onLoadPage() {
       handleLoadPageProduct(id)
     }
   }
+  if (pageName === 'favorites') {
+    renderContainerProducts(favorites.favoriteProducts)
+  }
 }
 
 function renderContainerProducts(products) {
@@ -53,6 +56,14 @@ function renderContainerProducts(products) {
   elContainerProduct.innerHTML = ''
   products.forEach(product => {
     const elTile = generateProduct(product)
+    elContainerProduct.appendChild(elTile)
+  })
+}
+function renderContainerFavoriteProducts(products) {
+  const elContainerProduct = document.querySelector('.container-products')
+  elContainerProduct.innerHTML = ''
+  products.forEach(product => {
+    const elTile =  generateFavoriteProduct(product)
     elContainerProduct.appendChild(elTile)
   })
 }
@@ -173,15 +184,6 @@ function onClickPaginationPage(e) {
   handlePageClick(pageNum)
 }
 
-let count = 0
-function onClickFavoriteProducts(e) {
-  count = favoritesClickCount(count)
-  renderFavoritesCount(count)
-  const productId = e.target.closest('.wrap-product').dataset.productId
-  console.log(productId)
-  favorites.addProductById(+productId)
-  // renderContainerProducts(favorites.products)
-}
 function renderFavoritesCount(count) {
   const favoritesCount = document.querySelector('.center > span')
   favoritesCount.textContent = count
