@@ -122,4 +122,9 @@ function onClickFavoriteProducts(e) {
   favorites.updateFavoritesProducts(+productId)
 }
 
+function onClickRemoveProducts(e) {
+  const productId = e.target.closest('.wrap-product').dataset.productId
+  favorites.removeProductById(+productId);
+  renderContainerFavoriteProducts(favorites.favoriteProducts)
+}
 

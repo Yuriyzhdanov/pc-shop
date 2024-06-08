@@ -25,16 +25,17 @@ const favorites = {
     )
   },
   async updateFavoritesProducts(productId) {
-    console.log(productId);
-    
     await updateFavoritesProductsById(productId)
+    await this.loadFavoriteProducts()
     console.log(this.favoriteProducts)
   },
   calcCounter() {
     this.counter = this.products.length
   },
-  removeProductById(id) {
-    this.products = this.products.toSpliced(id, 1)
+  async removeProductById(id) {
+    await deleteFavoritesById(id)
+    this.favoriteProducts= this.favoriteProducts.filter(product => product.id !== id)
+    console.log(this.favoriteProducts)
   },
 }
 async function runFavoritesProd() {

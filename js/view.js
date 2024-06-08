@@ -47,6 +47,7 @@ function onLoadPage() {
     }
   }
   if (pageName === 'favorites') {
+    console.log('pageNameWork');
     renderContainerProducts(favorites.favoriteProducts)
   }
 }

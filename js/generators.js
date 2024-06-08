@@ -114,7 +114,7 @@ function generateFavoriteProduct(product) {
       h('div', { class: 'row' }, '', [
         h('div', { class: 'cart' }, '', [h('button')]),
         h('div', { class: 'delete' }, '', [
-          h('button', {}, '', [], onClickFavoriteProducts),
+          h('button', {}, '', [], onClickRemoveProducts),
         ]),
         h('div', { class: 'compare' }, '', [h('button')]),
       ]),
