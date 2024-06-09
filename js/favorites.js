@@ -1,45 +1,50 @@
 const favorites = {
   products: [],
-  favoriteProducts: [],
   counter: 0,
-  ids: [],
+  currencyUSD: 1,
 
-  async updateProducts() {
-    this.products = await loadProducts()
+  calcCounter() {
+    this.counter = this.products.length
   },
+
   async updateCurrencyUSD() {
     this.currencyUSD = await loadCurrency()
   },
+
   convertPrice() {
     this.products.forEach(
       product => (product.convertedPrice = product.price * this.currencyUSD)
     )
   },
-  async loadFavoriteProducts() {
-    await this.updateProducts()
+
+  async addProductById(id) {
+    const product = await loadProductById(id)
+    this.products.push(product)
+    await this.updateCurrencyUSD()
+    this.calcCounter()
+    postFavoriteProductId(id)
+  },
+
+  async updateProducts() {
+    const products = await loadFavoriteProducts()
+    this.products.push(...products)
     await this.updateCurrencyUSD()
     this.convertPrice()
-    this.ids = await loadFavoriteProductsById()
-    this.favoriteProducts = this.products.filter(product =>
-      this.ids.includes(product.id)
-    )
+    this.calcCounter()
+    console.log(this.products);
+    
   },
-  async updateFavoritesProducts(productId) {
-    await updateFavoritesProductsById(productId)
-    await this.loadFavoriteProducts()
-    console.log(this.favoriteProducts)
-  },
-  calcCounter() {
-    this.counter = this.products.length
-  },
-  async removeProductById(id) {
-    await deleteFavoritesById(id)
-    this.favoriteProducts= this.favoriteProducts.filter(product => product.id !== id)
-    console.log(this.favoriteProducts)
+
+  removeProductById(id) {
+    this.products = this.products.filter(product => product.id !== id)
+    this.calcCounter()
+    deleteFavoriteProductId(id)
   },
 }
 async function runFavoritesProd() {
-  const res = await favorites.loadFavoriteProducts()
+  const res = await favorites.updateProducts()
+  console.log(res)
+
   return res
 }
 runFavoritesProd()

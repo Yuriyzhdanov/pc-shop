@@ -72,12 +72,11 @@ async function loadFavoriteProducts() {
   return await sendRequest(API_FAVORITES, options)
 }
 
-async function loadFavoriteProductsById() {
-  const res = await loadFavoriteProducts()
-  return res.map(product => product.productId)
-}
+// async function loadFavoriteProductIds() {
+//   return loadFavoriteProducts();
+// }
 
-async function updateFavoritesProductsById(productId) {
+async function postFavoriteProductId(productId) {
   const options = {
     method: 'POST',
     headers: {
@@ -90,7 +89,7 @@ async function updateFavoritesProductsById(productId) {
   return await sendRequest(API_FAVORITES, options)
 }
 
-async function deleteFavoritesById(idProd) {
+async function deleteFavoriteProductId(id) {
   const options = {
     method: 'DELETE',
     headers: {
@@ -98,13 +97,15 @@ async function deleteFavoritesById(idProd) {
     },
     credentials: 'include',
   }
-  return await sendRequest(API_FAVORITES + idProd, options)
+  return await sendRequest(API_FAVORITES + id, options)
 }
 
 // async function loadReviews(id = '') {
 //   return await sendRequest('API_test' + id)
 // }
 // async function run() {
-//   await updateFavoritesProductsById(69)
+//   const res = await loadProductById(69)
+//   console.log(res);
+  
 // }
 // run()

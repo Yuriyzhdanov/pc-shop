@@ -48,6 +48,7 @@ function onLoadPage() {
   }
   if (pageName === 'favorites') {
     console.log('pageNameWork');
+    favorites.calcCounter()
     renderContainerProducts(favorites.favoriteProducts)
   }
 }
@@ -187,7 +188,9 @@ function onClickPaginationPage(e) {
 
 function renderFavoritesCount(count) {
   const favoritesCount = document.querySelector('.center > span')
+  // favoritesCount.textContent = favorites.counter
   favoritesCount.textContent = count
+
 }
 function favoritesClickCount(count) {
   return count + 1
