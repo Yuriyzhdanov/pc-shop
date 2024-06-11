@@ -72,10 +72,6 @@ async function loadFavoriteProducts() {
   return await sendRequest(API_FAVORITES, options)
 }
 
-// async function loadFavoriteProductIds() {
-//   return loadFavoriteProducts();
-// }
-
 async function postFavoriteProductId(productId) {
   const options = {
     method: 'POST',
@@ -100,12 +96,8 @@ async function deleteFavoriteProductId(id) {
   return await sendRequest(API_FAVORITES + id, options)
 }
 
-// async function loadReviews(id = '') {
-//   return await sendRequest('API_test' + id)
-// }
-// async function run() {
-//   const res = await loadProductById(69)
-//   console.log(res);
-  
-// }
-// run()
+const api = {
+
+}
+
+

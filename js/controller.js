@@ -86,9 +86,9 @@ async function handleLoadPageProduct(id) {
   renderSimilarProd(similarProducts)
 }
 
-function handleLoadPageFavotites() {
-  renderContainerProducts(favorites.products)
-  
+async function handleLoadPageFavotites() {
+  await favorites.updateProducts()
+  renderContainerFavoriteProducts(favorites.products)
 }
 
 function handlePageClick(pageNum) {
@@ -114,17 +114,44 @@ function onClickClearFilter() {
 clearFilterBtn.onclick = onClickClearFilter
 
 let count = 0
+// function onClickFavoriteProducts(e) {
+//   const productId = e.target.closest('.wrap-product').dataset.productId
+//   // if (favorites.products.filter(product => product.id === productId)) {
+//   //   console.log('Товар уже добавлен')
+//   //   return
+//   // }
+//   count = favoritesClickCount(count)
+//   renderFavoritesCount(count)
+//   console.log(+productId)
+//   favorites.addProductById(+productId)
+// }
+
 function onClickFavoriteProducts(e) {
-  count = favoritesClickCount(count)
-  renderFavoritesCount(count)
-  const productId = e.target.closest('.wrap-product').dataset.productId
-  console.log(+productId);
-  favorites.updateFavoritesProducts(+productId)
+  ;(e.target.toogle = !e.target.toogle)
+    ? onClickFavoriteOn(e)
+    : onClickFavoriteOff(e)
 }
 
 function onClickRemoveProducts(e) {
   const productId = e.target.closest('.wrap-product').dataset.productId
-  favorites.removeProductById(+productId);
-  renderContainerFavoriteProducts(favorites.favoriteProducts)
+  favorites.removeProductById(+productId)
+  renderContainerFavoriteProducts(favorites.products)
 }
 
+function onClickFavoriteOn(e) {
+  const button = e.target.closest('button')
+  button.classList.add('favorite-btn')
+  const productId = e.target.closest('.wrap-product').dataset.productId
+  count = favoritesClickCount(count, true)
+  renderFavoritesCount(count)
+  favorites.addProductById(+productId)
+}
+
+function onClickFavoriteOff(e) {
+  const button = e.target.closest('button')
+  button.classList.remove('favorite-btn')
+  const productId = e.target.closest('.wrap-product').dataset.productId
+  count = favoritesClickCount(count, false)
+  renderFavoritesCount(count)
+  favorites.removeProductById(+productId)
+}

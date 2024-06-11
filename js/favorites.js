@@ -26,13 +26,18 @@ const favorites = {
   },
 
   async updateProducts() {
-    const products = await loadFavoriteProducts()
+    const favoriteProducts = await loadFavoriteProducts()
+    const productIds = favoriteProducts.map(product => product.productId)
+    const products = []
+    for (const id of productIds) {
+      const product = await loadProductById(id)
+      products.push(product)
+    }
     this.products.push(...products)
     await this.updateCurrencyUSD()
     this.convertPrice()
     this.calcCounter()
-    console.log(this.products);
-    
+    console.log(productIds)
   },
 
   removeProductById(id) {
@@ -41,10 +46,4 @@ const favorites = {
     deleteFavoriteProductId(id)
   },
 }
-async function runFavoritesProd() {
-  const res = await favorites.updateProducts()
-  console.log(res)
 
-  return res
-}
-runFavoritesProd()

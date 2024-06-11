@@ -47,9 +47,7 @@ function onLoadPage() {
     }
   }
   if (pageName === 'favorites') {
-    console.log('pageNameWork');
-    favorites.calcCounter()
-    renderContainerProducts(favorites.favoriteProducts)
+    handleLoadPageFavotites()
   }
 }
 
@@ -62,6 +60,8 @@ function renderContainerProducts(products) {
   })
 }
 function renderContainerFavoriteProducts(products) {
+  console.log('products',products);
+  
   const elContainerProduct = document.querySelector('.container-products')
   elContainerProduct.innerHTML = ''
   products.forEach(product => {
@@ -188,10 +188,9 @@ function onClickPaginationPage(e) {
 
 function renderFavoritesCount(count) {
   const favoritesCount = document.querySelector('.center > span')
-  // favoritesCount.textContent = favorites.counter
   favoritesCount.textContent = count
-
 }
-function favoritesClickCount(count) {
-  return count + 1
+
+function favoritesClickCount(currentCount, isFavorited) {
+  return isFavorited ? currentCount + 1 : currentCount - 1;
 }
