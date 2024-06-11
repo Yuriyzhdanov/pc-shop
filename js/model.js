@@ -165,11 +165,11 @@ const model = {
   },
 
   async updateProducts() {
-    this.products = await loadProducts()
+    this.products = await api.loadProducts()
   },
 
   async updateCurrencyUSD() {
-    this.currencyUSD = await loadCurrency()
+    this.currencyUSD = await api.loadCurrency()
   },
 
   convertPrice() {
@@ -201,12 +201,12 @@ const model = {
   },
 
   async updateUserId() {
-    this.userId = await loadAuth()
+    this.userId = await api.loadAuth()
   },
 
   async updateRecomendProd() {
     await this.updateUserId()
-    const recommendedIds = await loadRecommendedProductsById(this.userId)
+    const recommendedIds = await api.loadRecommendedProductsById(this.userId)
     this.recommendedProducts = recommendedIds.map(id =>
       this.products.find(p => p.id === id)
     )
@@ -216,7 +216,7 @@ const model = {
     await this.updateProducts()
     await this.updateCurrencyUSD()
     this.convertPrice()
-    const relatedProductIds = await loadSimilarProductsById(id)
+    const relatedProductIds = await api.loadSimilarProductsById(id)
     this.similarProducts = this.products.filter(product =>
       relatedProductIds.includes(product.id)
     )
