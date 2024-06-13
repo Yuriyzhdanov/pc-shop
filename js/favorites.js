@@ -7,20 +7,10 @@ const favorites = {
     this.counter = this.products.length
   },
 
-  async updateCurrencyUSD() {
-    this.currencyUSD = await api.loadCurrency()
-  },
-
-  convertPrice() {
-    this.products.forEach(
-      product => (product.convertedPrice = product.price * this.currencyUSD)
-    )
-  },
-
   async addProductById(id) {
     const product = await api.loadProductById(id)
     this.products.push(product)
-    await this.updateCurrencyUSD()
+    await shop.updateCurrencyUSD.call(this)
     this.calcCounter()
     api.postFavoriteProductId(id)
   },
@@ -34,10 +24,9 @@ const favorites = {
       products.push(product)
     }
     this.products.push(...products)
-    await this.updateCurrencyUSD()
-    this.convertPrice()
+    await shop.updateCurrencyUSD.call(this)
+    shop.convertPrice.call(this)
     this.calcCounter()
-    console.log(productIds)
   },
 
   removeProductById(id) {

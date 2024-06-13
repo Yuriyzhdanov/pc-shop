@@ -13,64 +13,16 @@
     <script src="../js/model.js"></script>
 
     <script>
-      async function test() {
-        await model.looksLikeHandleLoadPage()
-        // model.searchProducts() 
-        // model.checkedFilters.push({
-        //   category: 'Накопитель SSD',
-        //   key: 'brand',
-        //   values: ['Kingston', 'GoodRAM'],
-        // })
-        // model.checkedFilters.push({
-        //   category: 'Оперативная память',
-        //   key: 'capacity',
-        //   values: ['16Gb'],
-        // })
-
-        // model.filtrateProductsBySpecs()
-
-        // model.priceFilteredProducts(40000, 56777)
-
-        // model.sortingProducts('byPriceASC')
-
-        // model.switchPageProducts(0)
-
-        for (const key in model) {
-          if (typeof model[key] !== 'function') {
-            console.log(key, model[key])
-          }
-        }
-      }
-
       async function test2() {
+        await model.updateUserId()
         await model.updateProducts()
         await model.updateCurrencyUSD()
-        // console.log(model.products)
-
         model.convertPrice()
-        model.searchProducts('ге')
-        // console.log(model.searchedProducts)
-
-        model.checkedFilters.push({
-          key: 'Процессор',
-          values: ['Intel','AMD'],
-        })
-        // model.checkedFilters.push({
-        //   key: 'Объем накопителя',
-        //   values: ['240Gb'],
-        // })
-        model.filtrateProductsBySpecs()
-        // console.log(model.filteredProducts)
-
-        model.priceFilteredProducts(50000,200000)
-          // console.log(model.pricedProducts);
-          
-        model.sortingProducts('byPriceASC')
-        // console.log(model.sortedProducts);
-        
-        model.switchPageProducts(2)
-        // console.log(model.paginatedProducts);
-        
+        model.updateProductsCaptions()
+        model.searchProducts(this.searchQuery)
+        model.filtrateProducts(this.checkedAttrs)
+        model.calcMinMaxPrice()
+        model.rangePriceProducts(10000, 20000)
 
         for (const key in model) {
           if (typeof model[key] !== 'function') {
@@ -78,7 +30,7 @@
           }
         }
       }
-      // test()
+
       test2()
     </script>
   </body>

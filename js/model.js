@@ -28,9 +28,9 @@ const model = {
 
   async looksLikeHandleLoadCatalog() {
     await this.updateUserId()
-    await this.updateProducts()
-    await this.updateCurrencyUSD()
-    this.convertPrice()
+    await shop.updateProducts.call(this)
+    await shop.updateCurrencyUSD.call(this)
+    shop.convertPrice.call(this)
     this.updateProductsCaptions()
     this.vortex()
     this.clearFilter()
@@ -164,19 +164,19 @@ const model = {
     this.clearCheckedAttrs()
   },
 
-  async updateProducts() {
-    this.products = await api.loadProducts()
-  },
+  // async updateProducts() {
+  //   this.products = await api.loadProducts()
+  // },
 
   async updateCurrencyUSD() {
     this.currencyUSD = await api.loadCurrency()
   },
 
-  convertPrice() {
-    this.products.forEach(
-      product => (product.convertedPrice = product.price * this.currencyUSD)
-    )
-  },
+  // convertPrice() {
+  //   this.products.forEach(
+  //     product => (product.convertedPrice = product.price * this.currencyUSD)
+  //   )
+  // },
 
   calcMinMaxPrice() {
     const prices = this.filteredProducts.map(product => product.convertedPrice)
@@ -213,9 +213,9 @@ const model = {
   },
 
   async updateSimilarProd(id) {
-    await this.updateProducts()
-    await this.updateCurrencyUSD()
-    this.convertPrice()
+    await shop.updateProducts.call(this)
+    await shop.updateCurrencyUSD.call(this)
+    shop.convertPrice.call(this)
     const relatedProductIds = await api.loadSimilarProductsById(id)
     this.similarProducts = this.products.filter(product =>
       relatedProductIds.includes(product.id)
